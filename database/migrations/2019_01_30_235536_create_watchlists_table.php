@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReviewsTable extends Migration
+class CreateWatchlistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,16 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('watchlists', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('content');
-            $table->float('rating');
+            $table->string('list_name');
             $table->timestamps();
 
             // Foreign keys
-            $table->unsignedInteger('film_id');
-            $table->foreign('film_id')->references('id')->on('films');
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedInteger('user_id')->references('id')->on('users');
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *
@@ -34,6 +30,6 @@ class CreateReviewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('watchlists');
     }
 }
