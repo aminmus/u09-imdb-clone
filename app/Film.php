@@ -11,4 +11,10 @@ class Film extends Model
     {
         return $this->hasMany('App\Review');
     }
+
+    // One Film belongs to many Watchlists
+    public function watchlists()
+    {
+        return $this->belongsToMany('App\Watchlist');
+    }
 }

@@ -19,7 +19,8 @@ class CreateWatchlistsTable extends Migration
             $table->timestamps();
 
             // Foreign keys
-            $table->unsignedInteger('user_id')->references('id')->on('users');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
