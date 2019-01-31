@@ -27,4 +27,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    // One User can write many Reviews
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
+
+    // One User can have many Watchlists
+    public function watchlists()
+    {
+        return $this->hasMany('App\Watchlist');
+    }
 }
