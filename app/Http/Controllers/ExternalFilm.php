@@ -15,9 +15,8 @@ class ExternalFilm extends Controller
         
         $response = $client->request('GET', '?apikey=9f8c9418&t=star+wars');
         
-        $body = $response->getBody();
-
-        echo $body;
-        
+        $json = $response->getBody();
+        $body = json_decode($json);
+        return view('externalfilm')->with('body', $body);
     }
 }

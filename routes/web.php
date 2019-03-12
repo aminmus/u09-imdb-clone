@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('watchlists', 'WatchlistController');
-Route::get('testingapi', 'ExternalFilm@saveApiData')->with();
+Route::get('testingapi', 'ExternalFilm@saveApiData');
 
 // Route::get('/testsearch', function () {
 //     return view('testsearch')->with($json);
