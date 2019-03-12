@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('watchlists', 'WatchlistController');
+Route::get('testingapi', 'ExternalFilm@saveApiData')->with();
+
+// Route::get('/testsearch', function () {
+//     return view('testsearch')->with($json);
+// });
+
+// Route::get('/testsearch', function () {
+//     return view('testsearch');
+// });
