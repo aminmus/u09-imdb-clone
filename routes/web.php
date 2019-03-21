@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('watchlists', 'WatchlistController');
+Route::resource('watchlist', 'WatchlistController');
 Route::get('testingapi', 'ExternalFilm@saveApiData');
 /* Route::post('test', 'ReviewController@test');
 

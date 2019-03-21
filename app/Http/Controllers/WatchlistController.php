@@ -14,8 +14,8 @@ class WatchlistController extends Controller
      */
     public function index()
     {
-        $watchlists = Watchlist::all();
-        return view('watchlists.index')->with('watchlists', $watchlists);
+        $watchlist = Watchlist::all();
+        return view('watchlist.index')->with('watchlist', $watchlist);
     }
     /**
      * Show the form for creating a new resource.
@@ -36,7 +36,7 @@ class WatchlistController extends Controller
     public function store(Request $request)
     {
         //
-        
+        var_dump($request);
         $watchlist = new Watchlist;
 
         $watchlist->imdbID = $request->imdbID;
