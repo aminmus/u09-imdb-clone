@@ -37,8 +37,13 @@ class WatchlistController extends Controller
     public function store(Request $request)
     {
         //
-    }
+        
+        $watchlist = new Watchlist;
 
+        $watchlist->imdbID = $request->imdbID;
+
+        $watchlist->save();
+    }
     /**
      * Display the specified resource.
      *
@@ -49,7 +54,6 @@ class WatchlistController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -60,7 +64,6 @@ class WatchlistController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -72,7 +75,6 @@ class WatchlistController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
