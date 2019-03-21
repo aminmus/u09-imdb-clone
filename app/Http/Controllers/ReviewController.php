@@ -11,7 +11,6 @@ class ReviewController extends Controller
     public function gettest(Request $request) 
     {
         $someInput = $request->search;
-        /* echo $someInput; */
 
         $client = new Client(['base_uri' => 'http://www.omdbapi.com']);
         
