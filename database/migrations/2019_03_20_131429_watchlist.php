@@ -15,7 +15,9 @@ class Watchlist extends Migration
     {
         Schema::create('watchlist', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('imdbID');
+            $table->integer('movie_id');
+            $table->string('title');
+            $table->string('poster_path');
             $table->timestamps();
         });
     }
