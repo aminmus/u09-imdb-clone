@@ -37,12 +37,15 @@ class WatchlistController extends Controller
     public function store(Request $request)
     {
         //
-        
-        $watchlist = new Watchlist;
+       /*  var_dump($request); */
+        $watchlists = new Watchlist;
 
-        $watchlist->imdbID = $request->imdbID;
+        $watchlists->movie_id = $request->movie_id;
+        $watchlists->title = $request->title;
+        $watchlists->poster_path = $request->poster_path;
 
-        $watchlist->save();
+
+        $watchlists->save();
     }
     /**
      * Display the specified resource.
@@ -50,17 +53,17 @@ class WatchlistController extends Controller
      * @param  \App\Watchlist  $watchlist
      * @return \Illuminate\Http\Response
      */
-    public function show(Watchlist $watchlist)
+    public function show(Watchlist $watchlists)
     {
         //
     }
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Watchlist  $watchlist
+     * @param  \App\Watchlist  $watchlists
      * @return \Illuminate\Http\Response
      */
-    public function edit(Watchlist $watchlist)
+    public function edit(Watchlist $watchlists)
     {
         //
     }
@@ -68,20 +71,20 @@ class WatchlistController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Watchlist  $watchlist
+     * @param  \App\Watchlist  $watchlists
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Watchlist $watchlist)
+    public function update(Request $request, Watchlist $watchlists)
     {
         //
     }
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Watchlist  $watchlist
+     * @param  \App\Watchlist  $watchlists
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Watchlist $watchlist)
+    public function destroy(Watchlist $watchlists)
     {
         //
     }

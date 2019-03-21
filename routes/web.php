@@ -14,22 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::resource('watchlists', 'WatchlistController');
-Route::get('testingapi', 'ExternalFilm@saveApiData');
-
-// Route::get('/testsearch', function () {
-//     return view('testsearch')->with($json);
-// });
-
-// Route::get('/testsearch', function () {
-//     return view('testsearch');
-// });
-Route::resource('watchlist', 'WatchlistController');
 Route::get('testingapi', 'ExternalFilm@saveApiData');
 /* Route::post('test', 'ReviewController@test');
 
 Route::get('test', 'ReviewController@test'); */
 Route::post('test', 'SearchController@gettest')->name('test.testing');
-Route::post('savemovie', 'WatchlistController@store');
+Route::post('testingapi', 'WatchlistController@store');
 Route::any('adminer', '\Miroc\LaravelAdminer\AdminerController@index');
