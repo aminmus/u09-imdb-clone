@@ -9,12 +9,18 @@ class Watchlist extends Model
     //
 
     /* protected $fillable = ['user_id, title']; */
-    protected $fillable = ['movie_id', 'title', 'poster_path'];
+    protected $fillable = ['imdbDB'];
 
-    protected $table = "watchlist";
+    protected $table = "watchlists";
 
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    // One Watchlist has many Films
+    public function film()
+    {
+        return $this->hasMany('App\Film');
     }
 }

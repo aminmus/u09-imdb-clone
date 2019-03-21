@@ -14,8 +14,8 @@ class WatchlistController extends Controller
      */
     public function index()
     {
-        $watchlist = Watchlist::all();
-        return view('watchlist.index')->with('watchlist', $watchlist);
+        $watchlists = Watchlist::all();
+        return view('watchlist.index')->with('watchlists', $watchlist);
     }
     /**
      * Show the form for creating a new resource.
@@ -37,14 +37,14 @@ class WatchlistController extends Controller
     {
         //
        /*  var_dump($request); */
-        $watchlist = new Watchlist;
+        $watchlists = new Watchlist;
 
-        $watchlist->movie_id = $request->movie_id;
-        $watchlist->title = $request->title;
-        $watchlist->poster_path = $request->poster_path;
+        $watchlists->movie_id = $request->movie_id;
+        $watchlists->title = $request->title;
+        $watchlists->poster_path = $request->poster_path;
 
 
-        $watchlist->save();
+        $watchlists->save();
     }
     /**
      * Display the specified resource.
@@ -52,17 +52,17 @@ class WatchlistController extends Controller
      * @param  \App\Watchlist  $watchlist
      * @return \Illuminate\Http\Response
      */
-    public function show(Watchlist $watchlist)
+    public function show(Watchlist $watchlists)
     {
         //
     }
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Watchlist  $watchlist
+     * @param  \App\Watchlist  $watchlists
      * @return \Illuminate\Http\Response
      */
-    public function edit(Watchlist $watchlist)
+    public function edit(Watchlist $watchlists)
     {
         //
     }
@@ -70,20 +70,20 @@ class WatchlistController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Watchlist  $watchlist
+     * @param  \App\Watchlist  $watchlists
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Watchlist $watchlist)
+    public function update(Request $request, Watchlist $watchlists)
     {
         //
     }
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Watchlist  $watchlist
+     * @param  \App\Watchlist  $watchlists
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Watchlist $watchlist)
+    public function destroy(Watchlist $watchlists)
     {
         //
     }

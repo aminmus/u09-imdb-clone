@@ -29,7 +29,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function watchlist()
+    public function watchlists()
     {
         return $this->hasMany('App\Watchlist');
     }
