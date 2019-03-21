@@ -11,7 +11,7 @@ class Watchlist extends Model
     /* protected $fillable = ['user_id, title']; */
     protected $fillable = ['imdbDB'];
 
-  
+    protected $table = "watchlist";
 
     public function user()
     {
