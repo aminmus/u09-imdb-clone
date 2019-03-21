@@ -5,16 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 
-class ReviewController extends Controller
+class SearchController extends Controller
 {
 
     public function gettest(Request $request) 
     {
         $someInput = $request->search;
-        /* echo $someInput; */
-
+         
         $client = new Client(['base_uri' => 'http://www.omdbapi.com']);
-        
         $response = $client->request('GET', "?apikey=9f8c9418&t=${someInput}");
         
         $json = $response->getBody();
