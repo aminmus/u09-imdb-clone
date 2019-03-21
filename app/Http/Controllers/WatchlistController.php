@@ -36,7 +36,7 @@ class WatchlistController extends Controller
     public function store(Request $request)
     {
         //
-      
+        var_dump($request);
         $watchlist = new Watchlist;
 
         $watchlist->imdbID = $request->imdbID;
