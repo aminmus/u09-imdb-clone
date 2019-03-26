@@ -27,6 +27,6 @@ class SearchController extends Controller
             
         $json = $response->getBody();
         $body = json_decode($json);
-        return view('externalfilm')->with('body', $body);
+        return view('welcome')->with('body', $body);
     } 
 }

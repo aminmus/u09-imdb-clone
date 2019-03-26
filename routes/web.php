@@ -15,10 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('watchlist', 'WatchlistController');
-Route::get('testingapi', 'ExternalFilm@saveApiData');
-/* Route::post('test', 'ReviewController@test');
+Route::get('testingapi', 'WatchlistController@test');
 
-Route::get('test', 'ReviewController@test'); */
 Route::post('test', 'SearchController@gettest')->name('test.testing');
 Route::post('testingapi', 'WatchlistController@store');
+Route::get('testingapi', 'WatchlistController@show');
 Route::any('adminer', '\Miroc\LaravelAdminer\AdminerController@index');
+Route::get('nowpls', 'TestController@index');

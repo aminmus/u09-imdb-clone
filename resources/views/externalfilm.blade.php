@@ -1,6 +1,3 @@
-
-
-
 <form method="POST" action="{{ route('test.testing') }}">
      
     <input type="text" name="search">
@@ -26,4 +23,3 @@
 @else
     <h1>Didnt work</h1>
 @endif
-

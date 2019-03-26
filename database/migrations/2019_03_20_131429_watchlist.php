@@ -15,13 +15,18 @@ class Watchlist extends Migration
     {
         Schema::create('watchlist', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('movie_id');
-            $table->string('title');
-            $table->string('poster_path');
+            $table->string('name');
             $table->timestamps();
+            //Foreign keys
+           /*  $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')-> on('users'); */
+            //Foreign keys
+            /* $table->unsignedInteger('film_id');
+            $table->foreign('film_id')->references('id')-> on('film');
+            $table->timestamps(); */
         });
     }
-
+    /* App\Watchlist::create(['name' => 'test', 'user_id' => 0, 'film_id' => 0]); */
     /**
      * Reverse the migrations.
      *
