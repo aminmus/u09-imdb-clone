@@ -8,7 +8,7 @@ use GuzzleHttp\Client;
 class SearchController extends Controller
 {
 
-    public function gettest(Request $request) 
+    public function searchMovie(Request $request) 
     {
         /* $someInput = $request->search;
          
@@ -19,10 +19,10 @@ class SearchController extends Controller
         $body = json_decode($json);
         return view('searchresults')->with('body', $body); */
 
-        $someInput = $request->search;
+        $searchString = $request->search;
         
         $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
-        $response = $client->request('GET', "search/movie?api_key=45499dda27fbc45918728b51e4e82810&query=${someInput}");
+        $response = $client->request('GET', "search/movie?api_key=45499dda27fbc45918728b51e4e82810&query=${searchString}");
         
             
         $json = $response->getBody();

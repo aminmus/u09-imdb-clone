@@ -17,7 +17,7 @@ Route::get('/', function () {
 Route::resource('watchlist', 'WatchlistController');
 Route::get('testingapi', 'WatchlistController@test');
 
-Route::post('test', 'SearchController@gettest')->name('test.testing');
+Route::post('/', 'SearchController@searchMovie')->name('searchMovie');
 Route::post('testingapi', 'WatchlistController@store');
 Route::get('testingapi', 'WatchlistController@show');
 Route::any('adminer', '\Miroc\LaravelAdminer\AdminerController@index');
