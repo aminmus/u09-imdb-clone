@@ -26,4 +26,10 @@ class Watchlist extends Model
     {
         return $this->belongsToMany('App\Film', 'film_watchlist', 'film_id', 'watchlist_id');
     }
+
+    // One Watchlist has many Films
+    public function film()
+    {
+        return $this->hasMany('App\Film');
+    }
 }

@@ -13,7 +13,7 @@ class Watchlist extends Migration
      */
     public function up()
     {
-        Schema::create('watchlist', function (Blueprint $table) {
+        Schema::create('watchlists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
@@ -34,6 +34,6 @@ class Watchlist extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('watchlist');
+        Schema::dropIfExists('watchlists');
     }
 }

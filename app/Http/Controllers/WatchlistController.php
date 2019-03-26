@@ -16,8 +16,8 @@ class WatchlistController extends Controller
      */
     public function index()
     {
-        $watchlist = Watchlist::all();
-        return view('watchlist.index')->with('watchlist', $watchlist);
+        $watchlists = Watchlist::all();
+        return view('watchlist.index')->with('watchlists', $watchlist);
     }
     /**
      * Show the form for creating a new resource.
@@ -56,15 +56,6 @@ class WatchlistController extends Controller
         $watchlist = new Watchlist;
         $watchlist->name = "test";
         $watchlist->save();
-        /* $title = "Superman, Spiderman or Batman";
-        $film_watchlist = Film::find($title);
-        
-        dd($film_watchlist); */
-
-      /*   $test = 6;
-        $film = Film::find(1);
-        dd($film);
-        $film->watchlist()->attach(1);  */
         
         $currentWatchlistId = 5;
         $film = Film::all()->last();
@@ -72,12 +63,6 @@ class WatchlistController extends Controller
         /* dd($test2);
         
         $film = Film::where('id', $test2)->pluck('id'); */
-        
-        
-        
-        //this executes the insert-query
-        /* $filmwatchlist = Film::where('id', 3);
-        $filmwatchlist->watchlist()->attach(1)); */
         
         /* $filmwatchlist = new Filmwatchlist;
         $filmwatchlist->save(); */
@@ -88,7 +73,7 @@ class WatchlistController extends Controller
      * @param  \App\Watchlist  $watchlist
      * @return \Illuminate\Http\Response
      */
-    public function show(Watchlist $watchlist)
+    public function show(Watchlist $watchlists)
     {
         //
         $users = Watchlist::select('movie_info')->where('id', 1)->get();
@@ -99,10 +84,10 @@ class WatchlistController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Watchlist  $watchlist
+     * @param  \App\Watchlist  $watchlists
      * @return \Illuminate\Http\Response
      */
-    public function edit(Watchlist $watchlist)
+    public function edit(Watchlist $watchlists)
     {
         //
     }
@@ -110,20 +95,20 @@ class WatchlistController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Watchlist  $watchlist
+     * @param  \App\Watchlist  $watchlists
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Watchlist $watchlist)
+    public function update(Request $request, Watchlist $watchlists)
     {
         //
     }
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Watchlist  $watchlist
+     * @param  \App\Watchlist  $watchlists
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Watchlist $watchlist)
+    public function destroy(Watchlist $watchlists)
     {
         //
     }
