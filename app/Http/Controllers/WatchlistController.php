@@ -16,8 +16,28 @@ class WatchlistController extends Controller
      */
     public function index()
     {
-        $watchlists = Watchlist::all();
-        return view('watchlist.index')->with('watchlists', $watchlist);
+        $watchlist = FilmWatchlist::where('watchlist_id', 5)->get();
+        /* dd($watchlist); */
+       /*  foreach ($watchlist as $movie) {
+               var_dump($movie->attributes);
+            
+        } */
+        $movieIds = [];
+        foreach ($watchlist as $movie) {
+            /* var_dump($movie->perPage); */
+            array_push($movieIds, $movie->film_id); 
+        }
+        /* dd($movieIds); */
+       /*  $products = [];
+        foreach ($orders as $order) {
+            if ($order->product) {
+                $products[] = $order->product;
+            }
+        } */
+        
+        $filmsFromWatchlist = Film::whereIn('id', $movieIds)->get();
+        
+        return view('watchlist')->with('filmsFromWatchlist', $filmsFromWatchlist);
     }
     /**
      * Show the form for creating a new resource.
@@ -59,7 +79,7 @@ class WatchlistController extends Controller
         
         $currentWatchlistId = 5;
         $film = Film::all()->last();
-        $film->watchlist()->attach($currentWatchlsitId);
+        $film->watchlist()->attach($currentWatchlistId);
         /* dd($test2);
         
         $film = Film::where('id', $test2)->pluck('id'); */
