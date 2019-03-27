@@ -149,17 +149,6 @@ class WatchlistController extends Controller
     }
 
     public function saveWatchlist(Request $request)
-<<<<<<< HEAD
-   {
-       // dd($request->name);
-
-       $watchlist = new Watchlist;
-
-       $watchlist->name = $request->name;
-       $watchlist->save();
-       return redirect('/watchlist');
-   }
-=======
     {
         // dd($request->name);
         
@@ -169,5 +158,4 @@ class WatchlistController extends Controller
         $watchlist->save();
         return redirect('/watchlist');
     }
->>>>>>> 545300cf1632963057cf36cc47478ef5af7cc0c2
 }
