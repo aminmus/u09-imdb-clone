@@ -27,10 +27,10 @@ class WatchlistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
-      return view('watchlistform');
+        return view('watchlistform');
+      
     }
     /**
      * Store a newly created resource in storage.
@@ -71,8 +71,9 @@ class WatchlistController extends Controller
         $film->save();
         
         $watchlist = new Watchlist;
-        $watchlist->name = "Comedy";
+        $watchlist->name = $request('name');
         $watchlist->save();
+        return redirect('/watchlist');
         
         $currentWatchlistId = 5;
         $film = Film::all()->last();
@@ -148,6 +149,7 @@ class WatchlistController extends Controller
     }
 
     public function saveWatchlist(Request $request)
+<<<<<<< HEAD
    {
        // dd($request->name);
 
@@ -157,4 +159,15 @@ class WatchlistController extends Controller
        $watchlist->save();
        return redirect('/watchlist');
    }
+=======
+    {
+        // dd($request->name);
+        
+        $watchlist = new Watchlist;
+
+        $watchlist->name = $request->name;
+        $watchlist->save();
+        return redirect('/watchlist');
+    }
+>>>>>>> 545300cf1632963057cf36cc47478ef5af7cc0c2
 }
