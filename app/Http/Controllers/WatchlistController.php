@@ -16,28 +16,11 @@ class WatchlistController extends Controller
      */
     public function index()
     {
-        $watchlist = FilmWatchlist::where('watchlist_id', 5)->get();
-        /* dd($watchlist); */
-       /*  foreach ($watchlist as $movie) {
-               var_dump($movie->attributes);
-            
-        } */
-        $movieIds = [];
-        foreach ($watchlist as $movie) {
-            /* var_dump($movie->perPage); */
-            array_push($movieIds, $movie->film_id); 
-        }
-        /* dd($movieIds); */
-       /*  $products = [];
-        foreach ($orders as $order) {
-            if ($order->product) {
-                $products[] = $order->product;
-            }
-        } */
         
-        $filmsFromWatchlist = Film::whereIn('id', $movieIds)->get();
+        $allWatchlists = Watchlist::all();
         
-        return view('watchlist')->with('filmsFromWatchlist', $filmsFromWatchlist);
+        
+        return view('watchlist')->with('allWatchlists', $allWatchlists);
     }
     /**
      * Show the form for creating a new resource.
@@ -64,7 +47,21 @@ class WatchlistController extends Controller
         $watchlist->poster_path = $request->poster_path; */
         
         /* $array = array($request->movie_id,$request->titl$request->poster_path;) */
+        /* $film = new Film;
+        $film->title = $request->title;
+        $film->poster_path = $request->poster_path;
+        $film->movie_id = $request->movie_id;
 
+        $ifexists = Film::where('movie_id', $film->movie_id)->exists();
+        var_dump($ifexists); 
+        
+        if ($ifexists) {
+            dd('movie alrdy exists');
+
+        } else {
+            echo 'Movie added';
+            $film->save();
+        } */
 
         $film = new Film;
 
@@ -74,12 +71,12 @@ class WatchlistController extends Controller
         $film->save();
         
         $watchlist = new Watchlist;
-        $watchlist->name = "test";
+        $watchlist->name = "Comedy";
         $watchlist->save();
         
         $currentWatchlistId = 5;
         $film = Film::all()->last();
-        $film->watchlist()->attach($currentWatchlistId);
+        $film->watchlist()->attach(1);
         /* dd($test2);
         
         $film = Film::where('id', $test2)->pluck('id'); */
@@ -133,8 +130,21 @@ class WatchlistController extends Controller
         //
     }
 
-    public function test(Request $request) 
-    {
-        return view('externalfilm');
+    public function loadSelectedWatchlist(Request $request) 
+    {   
+
+        
+        $selectedWatchlist = $request->watchlists;
+        $watchlist = FilmWatchlist::where('watchlist_id', $selectedWatchlist)->get();
+      
+        $movieIds = [];
+        foreach ($watchlist as $movie) {
+         
+            array_push($movieIds, $movie->film_id); 
+        }
+      
+        $filmsFromWatchlist = Film::whereIn('id', $movieIds)->get();
+
+        return view('showselectedwatchlist')->with('filmsFromWatchlist', $filmsFromWatchlist);
     }
 }

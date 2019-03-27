@@ -28,8 +28,8 @@ class Watchlist extends Model
     }
 
     // One Watchlist has many Films
-    public function film()
+    /* public function film()
     {
         return $this->hasMany('App\Film');
-    }
+    } */
 }

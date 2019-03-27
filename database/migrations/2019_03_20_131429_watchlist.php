@@ -13,12 +13,12 @@ class Watchlist extends Migration
      */
     public function up()
     {
-        Schema::create('watchlists', function (Blueprint $table) {
+        Schema::create('watchlist', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
             //Foreign keys
-           /*  $table->unsignedInteger('user_id');
+            /* $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')-> on('users'); */
             //Foreign keys
             /* $table->unsignedInteger('film_id');

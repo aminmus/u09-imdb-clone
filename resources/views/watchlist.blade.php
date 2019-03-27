@@ -1,11 +1,17 @@
 
 
 
+<h1>Select Watchlist</h1>
+ <form method="GET" action="{{ action('WatchlistController@loadSelectedWatchlist') }}" >
+    <select name="watchlists">
+    @foreach ($allWatchlists as $watchlist)
+    <option value="<?php echo $watchlist->id;?>"><?php echo $watchlist->name;?></option>
 
-@foreach ($filmsFromWatchlist as $film)
+    @endforeach
+    
+    </select>
+    <button type="submit">Show Watchlist</button>
+</form>
 
-<h1>{{$film->title}} </h1>
-<p>  {{$film->id}}<p>
-<img src="http://image.tmdb.org/t/p/w185/<?php echo $film->poster_path;?>">
+<!---  Refaktorisera ovanstående formulär till att göra en submit när man väljer en select "onchange"-> fire submit -->
 
-@endforeach
