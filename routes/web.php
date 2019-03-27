@@ -22,3 +22,7 @@ Route::get('test', 'ReviewController@test'); */
 Route::post('test', 'SearchController@gettest')->name('test.testing');
 Route::post('testingapi', 'WatchlistController@store');
 Route::any('adminer', '\Miroc\LaravelAdminer\AdminerController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
