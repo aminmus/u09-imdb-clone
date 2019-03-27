@@ -139,7 +139,6 @@ class WatchlistController extends Controller
       
         $movieIds = [];
         foreach ($watchlist as $movie) {
-         
             array_push($movieIds, $movie->film_id); 
         }
       
