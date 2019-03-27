@@ -18,8 +18,8 @@ class Watchlist extends Migration
             $table->string('name');
             $table->timestamps();
             //Foreign keys
-            /* $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')-> on('users'); */
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')-> on('users');
             //Foreign keys
             /* $table->unsignedInteger('film_id');
             $table->foreign('film_id')->references('id')-> on('film');

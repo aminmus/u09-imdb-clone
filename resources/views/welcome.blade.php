@@ -61,10 +61,14 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .container {
+                display:flex;
+            }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -89,8 +93,20 @@
                     <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                     <button type="submit">Search Movie</button>
                     </form>
+                   
                 </div>
-
+                    <div class="container">
+                        
+                            
+                            @foreach ($popularMovies->results as $movie)
+                            <div class="col">
+                            <a href="{{ url('showmovie/' .$movie->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $movie->poster_path;?>"> </a>
+                            </div>
+                            @endforeach
+                            
+                        
+                    </div>
+                  
                                 @if(isset($body->results))
                     @foreach ($body->results as $result)
 

@@ -71,7 +71,7 @@ class WatchlistController extends Controller
         $film->save();
         
         $watchlist = new Watchlist;
-        $watchlist->name = $request('name');
+        $watchlist->name = "test";
         $watchlist->save();
         return redirect('/watchlist');
         

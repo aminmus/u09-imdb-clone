@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/', 'SearchController@getPopularMovies');
 Route::resource('watchlist', 'WatchlistController');
 Route::get('testingapi', 'WatchlistController@test');
 
