@@ -29,4 +29,19 @@ class SearchController extends Controller
         $body = json_decode($json);
         return view('welcome')->with('body', $body);
     } 
+
+    public function searchMovieById(Request $request)
+    {
+        /* This function recieves a request when a user clicks a movie after having used the search function and makes a request with the movie id */
+
+        $movieId = $request->id;
+        
+        $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
+        $response = $client->request('GET', "movie/${movieId}?api_key=45499dda27fbc45918728b51e4e82810");
+        
+        $json = $response->getBody();
+        $body = json_decode($json);
+        return view('selectedfilm')->with('body', $body);
+
+    }
 }

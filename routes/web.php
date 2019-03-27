@@ -28,3 +28,4 @@ Route::get('watchlisttest', 'WatchlistController@loadSelectedWatchlist');
 // Leo routes
 Route::get('watchlist/create','WatchlistController@create');
 Route::post('/watchlist','WatchlistController@saveWatchlist');
+Route::get('showmovie/{id}', 'SearchController@searchMovieById');
