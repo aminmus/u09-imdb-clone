@@ -30,7 +30,7 @@ class WatchlistController extends Controller
     public function create()
     {
         //
-      
+      return view('watchlistform');
     }
     /**
      * Store a newly created resource in storage.
@@ -146,4 +146,15 @@ class WatchlistController extends Controller
 
         return view('showselectedwatchlist')->with('filmsFromWatchlist', $filmsFromWatchlist);
     }
+
+    public function saveWatchlist(Request $request)
+   {
+       // dd($request->name);
+
+       $watchlist = new Watchlist;
+
+       $watchlist->name = $request->name;
+       $watchlist->save();
+       return redirect('/watchlist');
+   }
 }

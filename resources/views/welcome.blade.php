@@ -96,8 +96,8 @@
 
                     <h1>{{$result->title}} </h1>
                     <p>  {{$result->id}}<p>
-                    <a href="{{ url('showmovie/' .$result->id. '/') }}">Try me </a>
-                    <img src="http://image.tmdb.org/t/p/w185/<?php echo $result->poster_path;?>">
+                    <a href="{{ url('showmovie/' .$result->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $result->poster_path;?>"> </a>
+                    
                     <!-- <form method="POST" action="{{ action('WatchlistController@store') }}">
                     <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                     <input name="movie_id" type="hidden" value="<?php echo $result->id;?>"/>

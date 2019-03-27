@@ -25,3 +25,7 @@ Route::get('nowpls', 'TestController@index');
 Route::get('watchlist', 'WatchlistController@index');
 Route::get('watchlisttest', 'WatchlistController@loadSelectedWatchlist');
 Route::get('showmovie/{id}', 'SearchController@searchMovieById');
+
+
+Route::get('watchlist/create', 'WatchlistController@create');
+Route::post('/watchlist', 'WatchlistController@saveWatchlist');
