@@ -24,3 +24,7 @@ Route::any('adminer', '\Miroc\LaravelAdminer\AdminerController@index');
 Route::get('nowpls', 'TestController@index');
 Route::get('watchlist', 'WatchlistController@index');
 Route::get('watchlisttest', 'WatchlistController@loadSelectedWatchlist');
+
+// Leo routes
+Route::get('watchlist/create','WatchlistController@create');
+Route::post('/watchlist','WatchlistController@saveWatchlist');
