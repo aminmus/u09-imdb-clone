@@ -71,7 +71,7 @@ class WatchlistController extends Controller
         $film->save();
         
         $watchlist = new Watchlist;
-        $watchlist->name = "test";
+        $watchlist->name = $request('name');
         $watchlist->save();
         return redirect('/watchlist');
         
@@ -151,6 +151,10 @@ class WatchlistController extends Controller
     public function saveWatchlist(Request $request)
     {
         // dd($request->name);
+        
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
         
         $watchlist = new Watchlist;
 
