@@ -56,7 +56,7 @@ class SearchController extends Controller
         
         $json = $response->getBody();
         $popularMovies = json_decode($json);
-        return view('welcome')->with('popularMovies', $popularMovies);
+        return view('splashpagepopularmovies')->with('popularMovies', $popularMovies);
         
     }
 }

@@ -1,6 +1,13 @@
 
+@extends('welcome')
 
 
+        
+
+       
+
+
+@section('content')
 
 <h1>{{$body->title}} </h1>
 <p>  {{$body->id}}<p>
@@ -16,3 +23,4 @@
 <input name="poster_path" type="hidden" value="<?php echo $body->poster_path;?>"/>
 <button type="submit">Save Movie</button>
 </form>
+@endsection

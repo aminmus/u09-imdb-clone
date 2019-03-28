@@ -8,7 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <!-- Styles -->
         <style>
             html, body {
@@ -68,63 +68,18 @@
         </style>
     </head>
     <body>
-        <div class="position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+        @include('partials.navbar')
+    
+            @yield('content')
 
-            <div class="content">
-                <div class="title m-b-md">
-                    IMDB Clone
-                </div>
-                <div>
-                    <form method="POST" action="{{ route('searchMovie') }}">
-                    <input type="text" name="search">
-                    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-                    <button type="submit">Search Movie</button>
-                    </form>
-                   
-                </div>
-                    <div class="container">
-                        
-                            
-                            @foreach ($popularMovies->results as $movie)
-                            <div class="col">
-                            <a href="{{ url('showmovie/' .$movie->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $movie->poster_path;?>"> </a>
-                            </div>
-                            @endforeach
-                            
-                        
-                    </div>
+        @include('partials.footer')
+
+
                   
-                                @if(isset($body->results))
-                    @foreach ($body->results as $result)
+                         
 
-                    <h1>{{$result->title}} </h1>
-                    <p>  {{$result->id}}<p>
-                    <a href="{{ url('showmovie/' .$result->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $result->poster_path;?>"> </a>
                     
-                    <!-- <form method="POST" action="{{ action('WatchlistController@store') }}">
-                    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-                    <input name="movie_id" type="hidden" value="<?php echo $result->id;?>"/>
-                    <input name="title" type="hidden" value="<?php echo $result->title;?>"/>
-                    <input name="poster_path" type="hidden" value="<?php echo $result->poster_path;?>"/>
-                    <button type="submit">Save Movie</button>
-                    </form> -->
-                    @endforeach
-                @else
-                    <h1></h1>
-                @endif
 
                 <div class="links">
                     <a href="{{ url('/watchlist') }}">My Watchlists</a>
