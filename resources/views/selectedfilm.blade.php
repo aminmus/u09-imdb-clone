@@ -20,4 +20,4 @@
 <input name="poster_path" type="hidden" value="<?php echo $body->poster_path;?>"/>
 <button type="submit">Save Movie</button>
 </form>
-@endsection --}}
+@endsection
