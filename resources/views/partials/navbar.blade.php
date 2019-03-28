@@ -1,12 +1,12 @@
 
 
-<div class="container">
-    <div class="row ">
+<!-- <div class="container"> -->
+    <div class="row justify-content-center">
 
         <div class="column">
                 IMDB Clone Dragones
         </div>
-        <div class="column align-self-center">
+        <div class="row justify-content-center">
             <form method="POST" action="{{ route('searchMovie') }}">
             <input type="text" name="search">
             <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
@@ -18,7 +18,7 @@
                 <a href="{{ url('/watchlist') }}">My Watchlists</a>
         </div>
     </div>
-</div>
+<!-- </div> -->
   
 
 <div class="position-ref full-height">

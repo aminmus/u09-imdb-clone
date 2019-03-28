@@ -14,6 +14,8 @@
     <input name="poster_path" type="hidden" value="<?php echo $result->poster_path;?>"/>
     <button type="submit">Save Movie</button>
     </form>
+
+    
     @endforeach
 @else
     <h1>Didnt work</h1>
