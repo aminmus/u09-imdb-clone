@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Watchlist;
-use Illuminate\Http\Request;
+use App\Film;
+use App\Filmwatchlist;
 
 class WatchlistController extends Controller
 {
@@ -14,8 +15,11 @@ class WatchlistController extends Controller
      */
     public function index()
     {
-        $watchlists = Watchlist::all();
-        return view('watchlists.index')->with('watchlists', $watchlists);
+        
+        $allWatchlists = Watchlist::all();
+        
+        
+        return view('watchlist')->with('allWatchlists', $allWatchlists);
     }
 
     /**
@@ -23,9 +27,10 @@ class WatchlistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return view('watchlistform');
+      
     }
 
     /**
@@ -36,16 +41,50 @@ class WatchlistController extends Controller
      */
     public function store(Request $request)
     {
-        //
-       /*  var_dump($request); */
-        $watchlists = new Watchlist;
+       
+        /* $watchlist = new Watchlist;
+        $watchlist->movie_id = $request->movie_id;
+        $watchlist->title = $request->title;
+        $watchlist->poster_path = $request->poster_path; */
+        
+        /* $array = array($request->movie_id,$request->titl$request->poster_path;) */
+        /* $film = new Film;
+        $film->title = $request->title;
+        $film->poster_path = $request->poster_path;
+        $film->movie_id = $request->movie_id;
 
-        $watchlists->movie_id = $request->movie_id;
-        $watchlists->title = $request->title;
-        $watchlists->poster_path = $request->poster_path;
+        $ifexists = Film::where('movie_id', $film->movie_id)->exists();
+        var_dump($ifexists); 
+        
+        if ($ifexists) {
+            dd('movie alrdy exists');
 
+        } else {
+            echo 'Movie added';
+            $film->save();
+        } */
 
-        $watchlists->save();
+        $film = new Film;
+
+        $film->title = $request->title;
+        $film->poster_path = $request->poster_path;
+        $film->movie_id = $request->movie_id;
+        $film->save();
+        
+        $watchlist = new Watchlist;
+        $watchlist->name = $request('name');
+        $watchlist->save();
+        return redirect('/watchlist');
+        
+        $currentWatchlistId = 5;
+        $film = Film::all()->last();
+        $film->watchlist()->attach(1);
+        /* dd($test2);
+        
+        $film = Film::where('id', $test2)->pluck('id'); */
+        
+        /* $filmwatchlist = new Filmwatchlist;
+        $filmwatchlist->save(); */
     }
     /**
      * Display the specified resource.
@@ -56,6 +95,10 @@ class WatchlistController extends Controller
     public function show(Watchlist $watchlists)
     {
         //
+        $users = Watchlist::select('movie_info')->where('id', 1)->get();
+        
+        /* echo $users; */
+      
     }
     /**
      * Show the form for editing the specified resource.
@@ -87,5 +130,37 @@ class WatchlistController extends Controller
     public function destroy(Watchlist $watchlists)
     {
         //
+    }
+
+    public function loadSelectedWatchlist(Request $request) 
+    {   
+
+        
+        $selectedWatchlist = $request->watchlists;
+        $watchlist = FilmWatchlist::where('watchlist_id', $selectedWatchlist)->get();
+      
+        $movieIds = [];
+        foreach ($watchlist as $movie) {
+            array_push($movieIds, $movie->film_id); 
+        }
+      
+        $filmsFromWatchlist = Film::whereIn('id', $movieIds)->get();
+
+        return view('showselectedwatchlist')->with('filmsFromWatchlist', $filmsFromWatchlist);
+    }
+
+    public function saveWatchlist(Request $request)
+    {
+        // dd($request->name);
+        
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        
+        $watchlist = new Watchlist;
+
+        $watchlist->name = $request->name;
+        $watchlist->save();
+        return redirect('/watchlist');
     }
 }

@@ -14,15 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('watchlists', 'WatchlistController');
-Route::get('testingapi', 'ExternalFilm@saveApiData');
-/* Route::post('test', 'ReviewController@test');
+Route::get('/', 'SearchController@getPopularMovies');
+Route::resource('watchlist', 'WatchlistController');
+Route::get('testingapi', 'WatchlistController@test');
 
-Route::get('test', 'ReviewController@test'); */
-Route::post('test', 'SearchController@gettest')->name('test.testing');
+Route::post('selectedfilm', 'SearchController@searchMovie')->name('searchMovie');
 Route::post('testingapi', 'WatchlistController@store');
+Route::get('testingapi', 'WatchlistController@show');
 Route::any('adminer', '\Miroc\LaravelAdminer\AdminerController@index');
+Route::get('watchlist', 'WatchlistController@index');
+Route::get('watchlisttest', 'WatchlistController@loadSelectedWatchlist');
+Route::get('showmovie/{id}', 'SearchController@searchMovieById');
 
-Auth::routes();
+// Leo routes
+Route::get('watchlist/create', 'WatchlistController@create');
+Route::post('/watchlist', 'WatchlistController@saveWatchlist');
 
-Route::get('/home', 'HomeController@index')->name('home');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Film;
+use App\Watchlist;
 use Illuminate\Http\Request;
 
 class FilmController extends Controller
@@ -15,6 +16,13 @@ class FilmController extends Controller
     public function index()
     {
         //
+      /*   $watchlist = Watchlist::find(1);
+        dd($watchlist->film);
+ */
+        $film = Film::find(5);
+        dd($film->watchlist()->attach(2));
+
+        
     }
     /**
      * Show the form for creating a new resource.
