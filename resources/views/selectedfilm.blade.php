@@ -3,11 +3,7 @@
 @extends('welcome')
 
 
-        
-
-       
-
-
+    
 @section('content')
 
 <h1>{{$body->title}} </h1>

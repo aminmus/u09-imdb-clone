@@ -18,7 +18,7 @@ Route::get('/', 'SearchController@getPopularMovies');
 Route::resource('watchlist', 'WatchlistController');
 Route::get('testingapi', 'WatchlistController@test');
 
-Route::post('selectedfilm', 'SearchController@searchMovie')->name('searchMovie');
+Route::post('searchresults', 'SearchController@searchMovie')->name('searchMovie');
 Route::post('testingapi', 'WatchlistController@store');
 Route::get('testingapi', 'WatchlistController@show');
 Route::any('adminer', '\Miroc\LaravelAdminer\AdminerController@index');
