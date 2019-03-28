@@ -1,5 +1,6 @@
 @extends('welcome')
 
+@section('content')
 @if(isset($body->results))
     @foreach ($body->results as $result)
 
@@ -29,4 +30,5 @@
 @else
     <h1>Didnt work</h1>
 @endif 
+@endsection
 
