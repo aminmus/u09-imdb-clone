@@ -81,9 +81,7 @@
 
                     
 
-                <div class="links">
-                    <a href="{{ url('/watchlist') }}">My Watchlists</a>
-                 </div>
+                
             </div>
         </div>
     </body>

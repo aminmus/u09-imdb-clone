@@ -3,16 +3,20 @@
 <div class="container">
     <div class="row ">
 
-    <div class="">
-            IMDB Clone Dragones
-    </div>
-    <div class="column align-self-center">
-        <form method="POST" action="{{ route('searchMovie') }}">
-        <input type="text" name="search">
-        <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-        <button type="submit">Search Movie</button>
-        </form>
-    </div>
+        <div class="column">
+                IMDB Clone Dragones
+        </div>
+        <div class="column align-self-center">
+            <form method="POST" action="{{ route('searchMovie') }}">
+            <input type="text" name="search">
+            <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+            <button type="submit">Search Movie</button>
+            </form>
+        </div>
+        
+        <div class="links column">
+                <a href="{{ url('/watchlist') }}">My Watchlists</a>
+        </div>
     </div>
 </div>
   

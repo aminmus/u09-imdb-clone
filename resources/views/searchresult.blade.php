@@ -1,11 +1,6 @@
-<form method="POST" action="{{ route('searchMovie') }}">
-     
-    <input type="text" name="search">
-    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-    <button type="submit">Search Movie</button>
-</form>
 
-<!-- 
+
+
 @if(isset($body->results))
     @foreach ($body->results as $result)
 
@@ -22,5 +17,5 @@
     @endforeach
 @else
     <h1>Didnt work</h1>
-@endif -->
+@endif 
 

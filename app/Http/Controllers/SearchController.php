@@ -27,7 +27,7 @@ class SearchController extends Controller
             
         $json = $response->getBody();
         $body = json_decode($json);
-        return view('welcome')->with('body', $body);
+        return view('searchresult')->with('body', $body);
     } 
 
     public function searchMovieById(Request $request)
@@ -56,7 +56,7 @@ class SearchController extends Controller
         
         $json = $response->getBody();
         $popularMovies = json_decode($json);
-        return view('splashpagepopularmovies')->with('popularMovies', $popularMovies);
+        return view('popularmovies')->with('popularMovies', $popularMovies);
         
     }
 }

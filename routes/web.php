@@ -18,7 +18,7 @@ Route::get('/', 'SearchController@getPopularMovies');
 Route::resource('watchlist', 'WatchlistController');
 Route::get('testingapi', 'WatchlistController@test');
 
-Route::post('/', 'SearchController@searchMovie')->name('searchMovie');
+Route::post('selectedfilm', 'SearchController@searchMovie')->name('searchMovie');
 Route::post('testingapi', 'WatchlistController@store');
 Route::get('testingapi', 'WatchlistController@show');
 Route::any('adminer', '\Miroc\LaravelAdminer\AdminerController@index');
@@ -28,6 +28,6 @@ Route::get('watchlisttest', 'WatchlistController@loadSelectedWatchlist');
 Route::get('showmovie/{id}', 'SearchController@searchMovieById');
 
 // Leo routes
-Route::get('watchlist/create','WatchlistController@create');
-Route::post('/watchlist','WatchlistController@saveWatchlist');
+Route::get('watchlist/create', 'WatchlistController@create');
+Route::post('/watchlist', 'WatchlistController@saveWatchlist');
 
