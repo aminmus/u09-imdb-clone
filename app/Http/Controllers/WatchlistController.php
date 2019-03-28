@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Watchlist;
 use App\Film;
 use App\Filmwatchlist;
+use Illuminate\Http\Request;
 
 class WatchlistController extends Controller
 {
@@ -134,8 +135,6 @@ class WatchlistController extends Controller
 
     public function loadSelectedWatchlist(Request $request) 
     {   
-
-        
         $selectedWatchlist = $request->watchlists;
         $watchlist = FilmWatchlist::where('watchlist_id', $selectedWatchlist)->get();
       
