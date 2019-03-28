@@ -30,3 +30,6 @@ Route::get('showmovie/{id}', 'SearchController@searchMovieById');
 Route::get('watchlist/create', 'WatchlistController@create');
 Route::post('/watchlist', 'WatchlistController@saveWatchlist');
 
+// Authentication Routes (added by default by laravel)
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
