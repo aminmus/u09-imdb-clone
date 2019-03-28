@@ -1,13 +1,14 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Laravel</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -19,15 +20,9 @@
                 margin: 0;
             }
 
-<body>
-    <div>
-        <form action="/search">
-            <label for="search">Search for movie</label>
-            <input type="text" name="search" id="search">
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-</body>
+            .full-height {
+                height: 100vh;
+            }
 
             .flex-center {
                 align-items: center;
@@ -66,27 +61,37 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
-
-            .container {
-                display:flex;
-            }
         </style>
     </head>
     <body>
+        <div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
 
-        @include('partials.navbar')
-    
-            @yield('content')
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
 
-        @include('partials.footer')
+            <div class="content">
+                <div class="title m-b-md">
+                    IMDB
+                </div>
 
-
-                  
-                         
-
-                    
-
-                
+                <div class="links">
+                    <a href="https://laravel.com/docs">Documentation</a>
+                    <a href="https://laracasts.com">Laracasts</a>
+                    <a href="https://laravel-news.com">News</a>
+                    <a href="https://nova.laravel.com">Nova</a>
+                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                </div>
             </div>
         </div>
     </body>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Watchlist;
 use App\Film;
 use App\Filmwatchlist;
@@ -22,6 +21,7 @@ class WatchlistController extends Controller
         
         return view('watchlist')->with('allWatchlists', $allWatchlists);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -32,6 +32,7 @@ class WatchlistController extends Controller
         return view('watchlistform');
       
     }
+
     /**
      * Store a newly created resource in storage.
      *

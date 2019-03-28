@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Film;
 use App\Watchlist;
 use Illuminate\Http\Request;
-class TestController extends Controller
+
+class FilmController extends Controller
 {
     /**
      * Display a listing of the resource.
