@@ -44,6 +44,28 @@ class WatchlistController extends Controller
     public function store(Request $request)
     {
         
+        /* $film = new Film;
+
+        $film->title = $request->title;
+        $film->poster_path = $request->poster_path;
+        $film->movie_id = $request->movie_id;
+        $film->save();
+        
+        $userId = Auth::id();
+        $watchlist = new Watchlist;
+        $watchlistId = $request->watchlist_id;
+        Watchlist::find()
+        Watchlist::where('id', $watchlistId)
+        $watchlist->name = 'mayb this';
+        $watchlist->user_id = $userId
+        $watchlist->save();
+        
+        
+        $currentWatchlistId = 5;
+        $film = Film::all()->last();
+        $film->watchlist()->attach(1);
+        return redirect('/watchlist'); */
+
         $film = new Film;
 
         $film->title = $request->title;
@@ -51,15 +73,15 @@ class WatchlistController extends Controller
         $film->movie_id = $request->movie_id;
         $film->save();
         
-        $watchlist = new Watchlist;
-        $watchlist->name = 'mayb this';
-        $watchlist->user_id = 2;
-        $watchlist->save();
+        /* $userId = Auth::id();
+        $watchlist = new Watchlist; */
+        $watchlistId = $request->watchlist_id;
         
         
-        /* $currentWatchlistId = 5; */
+        
+        $currentWatchlistId = 5;
         $film = Film::all()->last();
-        $film->watchlist()->attach(1);
+        $film->watchlist()->attach($watchlistId);
         return redirect('/watchlist');
     }
     /**
@@ -131,8 +153,10 @@ class WatchlistController extends Controller
             'name' => 'required'
         ]);
         
-        $watchlist = new Watchlist;
 
+        $userId = Auth::id();
+        $watchlist = new Watchlist;
+        $watchlist->user_Id = $userId;
         $watchlist->name = $request->name;
         $watchlist->save();
         return redirect('/watchlist');
