@@ -161,11 +161,11 @@ class WatchlistController extends Controller
         $watchlist->user_Id = $userId;
         $watchlist->name = $request->name;
         $watchlist->save();
-        return redirect('/watchlist');
+        return redirect('/watchlist')->with('success', 'Watchlist Created!');
     }
 
     public function deleteMovie(Request $request)
-   {
-       return 123;
-   }
+    {
+        return 123;
+    }
 }
