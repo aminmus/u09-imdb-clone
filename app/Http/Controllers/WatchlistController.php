@@ -60,6 +60,7 @@ class WatchlistController extends Controller
         $watchlist->user_id = $userId
         $watchlist->save();
         
+        $watchlist = $request->input();
         
         $currentWatchlistId = 5;
         $film = Film::all()->last();
@@ -152,6 +153,7 @@ class WatchlistController extends Controller
         $this->validate($request, [
             'name' => 'required'
         ]);
+        $userId = Auth::id();
         
 
         $userId = Auth::id();
