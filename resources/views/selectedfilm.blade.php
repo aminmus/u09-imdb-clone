@@ -16,20 +16,19 @@
 
 @auth
     @if(isset($userWatchlist))
-    <select>
+    <form method="POST" action="{{ action('WatchlistController@store') }}">
+    <select name="watchlist_id">
         @foreach ($userWatchlist as $watchlist)
         <option value="<?php echo $watchlist->id ;?>"><?php echo $watchlist->name ;?></option>
         @endforeach
     </select>
-        <form method="POST" action="{{ action('WatchlistController@store') }}">
-        <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
         <input name="movie_id" type="hidden" value="<?php echo $body->id;?>"/>
         <input name="title" type="hidden" value="<?php echo $body->title;?>"/>
         <input name="poster_path" type="hidden" value="<?php echo $body->poster_path;?>"/>
-        <input name="watchlist_id" type="hidden" value="1"/>{{-- Make this dynamic  --}}
-        <button type="submit">Save Movie</button>
-        </form>
-        <h1>You are logged in</h1>
+        {{-- <input name="watchlist_id" type="hidden" value="{{$watchlist->id}}"/> --}}{{-- Make value dynamic  --}}
+    <button type="submit">Save Movie</button>
+    </form> 
     @else
         <h1>No watchlists, why dont you create some!</h1>
     @endif
