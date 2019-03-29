@@ -7,7 +7,7 @@
        <h1>{{$film->title}}</h1>
        <p>{{$film->movie_id}}</p>
        <img src="http://image.tmdb.org/t/p/w185/{{$film->poster_path}}">
-       <form method="POST" action="/deletemovie/{{$film->movie_id}}">
+       <form method="POST" action="/deletemovie/{{$film->id}}">
            @method('DELETE')
            @csrf
            <button class="btn btn-danger mt-2"type="submit">Delete</button>
