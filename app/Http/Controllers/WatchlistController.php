@@ -51,15 +51,17 @@ class WatchlistController extends Controller
         $film->movie_id = $request->movie_id;
         $film->save();
         
-        $watchlist = new Watchlist;
-        $watchlist->name = 'mayb this';
-        $watchlist->user_id = 2;
-        $watchlist->save();
+        // $watchlist = new Watchlist;
+        // $watchlist = new Watchlist;
+        // $watchlist->name = 'mayb this';
+        // $watchlist->user_id = 2;
+        // $watchlist->save();
         
+        $watchlist = $request->input();
         
         /* $currentWatchlistId = 5; */
         $film = Film::all()->last();
-        $film->watchlist()->attach(1);
+        $film->watchlist()->attach(2);
         return redirect('/watchlist');
     }
     /**
@@ -130,8 +132,10 @@ class WatchlistController extends Controller
         $this->validate($request, [
             'name' => 'required'
         ]);
+        $userId = Auth::id();
         
         $watchlist = new Watchlist;
+        $watchlist->user_id = $userId;
 
         $watchlist->name = $request->name;
         $watchlist->save();
