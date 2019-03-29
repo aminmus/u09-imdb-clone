@@ -161,4 +161,9 @@ class WatchlistController extends Controller
         $watchlist->save();
         return redirect('/watchlist');
     }
+
+    public function deleteMovie(Request $request)
+   {
+       return 123;
+   }
 }

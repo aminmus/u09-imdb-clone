@@ -30,6 +30,7 @@ Route::get('selectedfilm/{id}', 'SearchController@searchMovieById');
 // Leo routes
 Route::get('watchlist/create', 'WatchlistController@create');
 Route::post('/watchlist', 'WatchlistController@saveWatchlist');
+Route::delete('/deletemovie/{id}', 'WatchlistController@deleteMovie');
 
 // Authentication Routes (added by default by laravel)
 Auth::routes();
