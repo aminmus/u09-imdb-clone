@@ -30,7 +30,6 @@ class WatchlistController extends Controller
     public function create(Request $request)
     {
         return view('watchlistform');
-      
     }
 
     /**
@@ -98,15 +97,14 @@ class WatchlistController extends Controller
         //
     }
 
-    public function loadSelectedWatchlist(Request $request) 
-    {   
-
+    public function loadSelectedWatchlist(Request $request)
+    {
         $selectedWatchlist = $request->watchlists;
         $watchlist = FilmWatchlist::where('watchlist_id', $selectedWatchlist)->get();
       
         $movieIds = [];
         foreach ($watchlist as $movie) {
-            array_push($movieIds, $movie->film_id); 
+            array_push($movieIds, $movie->film_id);
         }
       
         $filmsFromWatchlist = Film::whereIn('id', $movieIds)->get();
@@ -116,7 +114,6 @@ class WatchlistController extends Controller
 
     public function saveWatchlist(Request $request)
     {
-        
         $this->validate($request, [
             'name' => 'required'
         ]);
@@ -133,9 +130,8 @@ class WatchlistController extends Controller
 
     public function deleteMovie(Request $request)
     {
-       
         $movie_id = $request->id;
         Filmwatchlist::where('film_id', $movie_id)->delete();
-       
+        return back();
     }
 }
