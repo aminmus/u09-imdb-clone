@@ -17,11 +17,9 @@ class WatchlistController extends Controller
      */
     public function index()
     {
-        
-        $allWatchlists = Watchlist::all();
-        
-        
-        return view('watchlist')->with('allWatchlists', $allWatchlists);
+        $userId = Auth::id();
+        $userWatchlists = Watchlist::where('user_id', $userId)->get();
+        return view('watchlist')->with('userWatchlists', $userWatchlists);
     }
 
     /**
@@ -44,29 +42,6 @@ class WatchlistController extends Controller
     public function store(Request $request)
     {
         
-        /* $film = new Film;
-
-        $film->title = $request->title;
-        $film->poster_path = $request->poster_path;
-        $film->movie_id = $request->movie_id;
-        $film->save();
-        
-        $userId = Auth::id();
-        $watchlist = new Watchlist;
-        $watchlistId = $request->watchlist_id;
-        Watchlist::find()
-        Watchlist::where('id', $watchlistId)
-        $watchlist->name = 'mayb this';
-        $watchlist->user_id = $userId
-        $watchlist->save();
-        
-        $watchlist = $request->input();
-        
-        $currentWatchlistId = 5;
-        $film = Film::all()->last();
-        $film->watchlist()->attach(1);
-        return redirect('/watchlist'); */
-
         $film = new Film;
 
         $film->title = $request->title;
@@ -74,12 +49,7 @@ class WatchlistController extends Controller
         $film->movie_id = $request->movie_id;
         $film->save();
         
-        /* $userId = Auth::id();
-        $watchlist = new Watchlist; */
         $watchlistId = $request->watchlist_id;
-        
-        
-        
         $currentWatchlistId = 5;
         $film = Film::all()->last();
         $film->watchlist()->attach($watchlistId);
@@ -95,9 +65,6 @@ class WatchlistController extends Controller
     {
         //
         $users = Watchlist::select('movie_info')->where('id', 1)->get();
-        
-        /* echo $users; */
-      
     }
     /**
      * Show the form for editing the specified resource.
@@ -167,7 +134,8 @@ class WatchlistController extends Controller
     public function deleteMovie(Request $request)
     {
        
-       $movie_id = $request->id;
-       Filmwatchlist::where('film_id', $movie_id)->delete();
+        $movie_id = $request->id;
+        Filmwatchlist::where('film_id', $movie_id)->delete();
+       
     }
 }
