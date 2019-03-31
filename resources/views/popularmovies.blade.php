@@ -8,7 +8,7 @@
         @foreach ($popularMovies->results as $movie)
         <?php if($count == 5) break; ?>
         <div class="col">
-        <a href="{{ url('showmovie/' .$movie->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $movie->poster_path;?>"> </a>
+        <a href="{{ url('selectedfilm/' .$movie->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $movie->poster_path;?>"> </a>
         </div>
         <?php $count++; ?>
         @endforeach

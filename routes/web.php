@@ -24,12 +24,13 @@ Route::get('testingapi', 'WatchlistController@show');
 Route::any('adminer', '\Miroc\LaravelAdminer\AdminerController@index');
 Route::get('watchlist', 'WatchlistController@index');
 Route::get('watchlisttest', 'WatchlistController@loadSelectedWatchlist');
-Route::get('showmovie/{id}', 'SearchController@searchMovieById');
+Route::get('selectedfilm/{id}', 'SearchController@searchMovieById');
 
 
 // Leo routes
 Route::get('watchlist/create', 'WatchlistController@create');
 Route::post('/watchlist', 'WatchlistController@saveWatchlist');
+Route::delete('/deletemovie/{id}', 'WatchlistController@deleteMovie');
 
 // Authentication Routes (added by default by laravel)
 Auth::routes();

@@ -6,6 +6,7 @@ use App\Watchlist;
 use App\Film;
 use App\Filmwatchlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WatchlistController extends Controller
 {
@@ -42,28 +43,29 @@ class WatchlistController extends Controller
      */
     public function store(Request $request)
     {
-       
-        /* $watchlist = new Watchlist;
-        $watchlist->movie_id = $request->movie_id;
-        $watchlist->title = $request->title;
-        $watchlist->poster_path = $request->poster_path; */
         
-        /* $array = array($request->movie_id,$request->titl$request->poster_path;) */
         /* $film = new Film;
+
         $film->title = $request->title;
         $film->poster_path = $request->poster_path;
         $film->movie_id = $request->movie_id;
-
-        $ifexists = Film::where('movie_id', $film->movie_id)->exists();
-        var_dump($ifexists); 
+        $film->save();
         
-        if ($ifexists) {
-            dd('movie alrdy exists');
-
-        } else {
-            echo 'Movie added';
-            $film->save();
-        } */
+        $userId = Auth::id();
+        $watchlist = new Watchlist;
+        $watchlistId = $request->watchlist_id;
+        Watchlist::find()
+        Watchlist::where('id', $watchlistId)
+        $watchlist->name = 'mayb this';
+        $watchlist->user_id = $userId
+        $watchlist->save();
+        
+        $watchlist = $request->input();
+        
+        $currentWatchlistId = 5;
+        $film = Film::all()->last();
+        $film->watchlist()->attach(1);
+        return redirect('/watchlist'); */
 
         $film = new Film;
 
@@ -72,20 +74,16 @@ class WatchlistController extends Controller
         $film->movie_id = $request->movie_id;
         $film->save();
         
-        $watchlist = new Watchlist;
-        $watchlist->name = 'test';
-        $watchlist->save();
-        return redirect('/watchlist');
+        /* $userId = Auth::id();
+        $watchlist = new Watchlist; */
+        $watchlistId = $request->watchlist_id;
+        
+        
         
         $currentWatchlistId = 5;
         $film = Film::all()->last();
-        $film->watchlist()->attach(1);
-        /* dd($test2);
-        
-        $film = Film::where('id', $test2)->pluck('id'); */
-        
-        /* $filmwatchlist = new Filmwatchlist;
-        $filmwatchlist->save(); */
+        $film->watchlist()->attach($watchlistId);
+        return redirect('/watchlist');
     }
     /**
      * Display the specified resource.
@@ -135,6 +133,7 @@ class WatchlistController extends Controller
 
     public function loadSelectedWatchlist(Request $request) 
     {   
+
         $selectedWatchlist = $request->watchlists;
         $watchlist = FilmWatchlist::where('watchlist_id', $selectedWatchlist)->get();
       
@@ -150,16 +149,23 @@ class WatchlistController extends Controller
 
     public function saveWatchlist(Request $request)
     {
-        // dd($request->name);
         
         $this->validate($request, [
             'name' => 'required'
         ]);
+        $userId = Auth::id();
         
-        $watchlist = new Watchlist;
 
+        $userId = Auth::id();
+        $watchlist = new Watchlist;
+        $watchlist->user_Id = $userId;
         $watchlist->name = $request->name;
         $watchlist->save();
-        return redirect('/watchlist');
+        return redirect('/watchlist')->with('success', 'Watchlist Created!');
+    }
+
+    public function deleteMovie(Request $request)
+    {
+        return 123;
     }
 }
