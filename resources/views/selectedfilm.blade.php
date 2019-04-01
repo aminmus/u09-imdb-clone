@@ -38,6 +38,8 @@
     <h1>Create an account to create watchlists</h1>
 @endguest
 
+
+
 {{-- <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Watchlists

@@ -32,6 +32,10 @@ Route::get('watchlist/create', 'WatchlistController@create');
 Route::post('/watchlist', 'WatchlistController@saveWatchlist');
 Route::delete('/deletemovie/{id}', 'WatchlistController@deleteMovie');
 
+
+Route::post('morereviews', 'ReviewController@postReview');
+
+
 // Authentication Routes (added by default by laravel)
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

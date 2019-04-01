@@ -117,9 +117,7 @@ class WatchlistController extends Controller
         $this->validate($request, [
             'name' => 'required'
         ]);
-        $userId = Auth::id();
         
-
         $userId = Auth::id();
         $watchlist = new Watchlist;
         $watchlist->user_Id = $userId;
