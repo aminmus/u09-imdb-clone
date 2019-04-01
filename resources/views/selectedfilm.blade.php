@@ -49,7 +49,11 @@
     </div>
 </div> 
 
-
+ @foreach ($reviews as $review)
+     <h1>{{$review->content}}</h1>
+     <h1>{{$review->rating}}</h1>
+     <h1>{{$review->user_id}}</h1>
+ @endforeach
  <!-- Här behövs det visas kommentarer för specifik film
  Ladda in reviews. -->
 

@@ -10,12 +10,14 @@ use App\Film;
 
 class ReviewController extends Controller
 {
-    public function gettest(Request $request)
+    public function getReviews(Request $request)
     {
+
     }
 
     public function showReview()
-    {
+    {   
+        
         return view('reviews');
     }
 
