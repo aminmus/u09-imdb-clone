@@ -18,7 +18,7 @@ Route::get('/', 'SearchController@getPopularMovies');
 Route::resource('watchlist', 'WatchlistController');
 Route::get('testingapi', 'WatchlistController@test');
 
-Route::post('selectedfilm', 'SearchController@searchMovie')->name('searchMovie');
+Route::post('searchresults', 'SearchController@searchMovie')->name('searchMovie');
 Route::post('testingapi', 'WatchlistController@store');
 Route::get('testingapi', 'WatchlistController@show');
 Route::any('adminer', '\Miroc\LaravelAdminer\AdminerController@index');
@@ -31,3 +31,6 @@ Route::get('showmovie/{id}', 'SearchController@searchMovieById');
 Route::get('watchlist/create', 'WatchlistController@create');
 Route::post('/watchlist', 'WatchlistController@saveWatchlist');
 
+// Authentication Routes (added by default by laravel)
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
