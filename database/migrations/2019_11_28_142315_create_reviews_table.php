@@ -21,7 +21,6 @@ class CreateReviewsTable extends Migration
 
             // Foreign keys
             $table->unsignedInteger('film_id');
-            $table->foreign('film_id')->references('id')->on('film');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });
