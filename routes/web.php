@@ -26,11 +26,19 @@ Route::get('watchlist', 'WatchlistController@index');
 Route::get('watchlisttest', 'WatchlistController@loadSelectedWatchlist');
 Route::get('selectedfilm/{id}', 'SearchController@searchMovieById');
 
+// Reviews
+Route::get('reviews', 'ReviewController@showReview');
+Route::post('postReviews', 'ReviewController@postReview');
+
 
 // Leo routes
 Route::get('watchlist/create', 'WatchlistController@create');
 Route::post('/watchlist', 'WatchlistController@saveWatchlist');
 Route::delete('/deletemovie/{id}', 'WatchlistController@deleteMovie');
+
+
+Route::post('morereviews', 'ReviewController@postReview');
+
 
 // Authentication Routes (added by default by laravel)
 Auth::routes();
