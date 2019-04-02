@@ -50,11 +50,6 @@
     </div>
 </div> 
 
-{{-- @if(Request::is('reviews/*'))
-        
-@include('editreviews')
-
-@endif --}}
 
  @foreach ($reviews as $review)
      <h1>{{$review->content}}</h1>
@@ -69,11 +64,8 @@
     </form>
     <button type="submit" class="btn btn-primary">Edit</button>
     <hr>
-
-    
-     
-     
  @endforeach
+ 
 
 
  <!-- Här behövs det visas kommentarer för specifik film

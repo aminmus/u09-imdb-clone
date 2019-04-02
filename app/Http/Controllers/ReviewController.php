@@ -52,7 +52,7 @@ class ReviewController extends Controller
         $review = Review::find($id);
         $review->delete();
 
-        return back()->with('success', 'Review deleted');
+        return back()->with('success', 'Review Deleted');
         
         
     }
