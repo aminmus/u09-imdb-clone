@@ -84,14 +84,22 @@ class SearchController extends Controller
 
     public function searchActor (Request $request) 
     {
+        // Get movies
         $actorId = $request->id;
-        
         $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
         $response = $client->request('GET', "person/${actorId}/movie_credits?api_key=45499dda27fbc45918728b51e4e82810&language=en-US");
-        
         $json = $response->getBody();
         $result = json_decode($json);
-        $actor = $result->cast;
-        return view('selectedactor')->with('actor', $actor);
+        $movies = $result->cast;
+
+        // Get info
+        $personId = $request->id;
+        $client2 = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
+        $response2 = $client2->request('GET', "person/${personId}?api_key=45499dda27fbc45918728b51e4e82810&language=en-US");
+        $json2 = $response2->getBody();
+        $result2 = json_decode($json2);
+        $actor = $result2;
+        
+        return view('selectedactor')->with(compact('movies', 'actor'));
     }
 }
