@@ -6,11 +6,17 @@
     
 @section('content')
 
+
 <h1>{{$body->title}} </h1>
 <p>  {{$body->id}}<p>
 <p>  {{$body->budget}}<p>
 <p>  {{$body->overview}}<p>
 <p>  {{$body->popularity}}<p>
+@foreach ($credits->cast as $cast)
+    <p>$cast->character</p>
+    <p>$cast->name</p>
+    <img src="http://image.tmdb.org/t/p/w185/<?php echo $cast->profile_path;?>" alt="<?php echo $cast->name ;?>">
+@endforeach
 
 <img src="http://image.tmdb.org/t/p/w185/<?php echo $body->poster_path;?>">
 

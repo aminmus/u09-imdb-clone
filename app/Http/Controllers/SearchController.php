@@ -42,23 +42,28 @@ class SearchController extends Controller
         if($checkWatchlist) {
             $userWatchlist = Watchlist::where('user_id', $userId)->get();
         } 
-        
-        
-        /* if($userWatchlist) 
-        {
 
-        } else {
-
-        } */
-
+        // Main api call
         $movieId = $request->id;
         $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
         $response = $client->request('GET', "movie/${movieId}?api_key=45499dda27fbc45918728b51e4e82810");
-        
         $json = $response->getBody();
         $body = json_decode($json);
-        /* return view('selectedfilm')->with('body', $body); */
-        return view('selectedfilm')->with(compact('userWatchlist', 'body', 'reviews'));
+        
+        // Second api call 
+        $movieId2 = $request->id;
+        $client2 = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
+        $response2 = $client2->request('GET', "movie/${movieId2}/credits?api_key=45499dda27fbc45918728b51e4e82810");
+        $json2 = $response2->getBody();
+        $credits = json_decode($json2);
+
+      
+          
+     
+
+    
+
+        return view('selectedfilm')->with(compact('userWatchlist', 'body', 'reviews', 'credits'));
 
     }
 
