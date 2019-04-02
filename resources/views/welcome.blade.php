@@ -72,8 +72,8 @@
 </head>
 
 <body>
-
     @include('partials.navbar')
+    @include('inc.messages')
 
     @yield('content')
 
