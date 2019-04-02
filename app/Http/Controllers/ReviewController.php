@@ -33,5 +33,6 @@ class ReviewController extends Controller
         $review->user_id = $userId;
 
         $review->save();
+        return back();
     }
 }

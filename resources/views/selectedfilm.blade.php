@@ -56,7 +56,9 @@
  @endforeach
  <!-- Här behövs det visas kommentarer för specifik film
  Ladda in reviews. -->
+@auth
+    @include('reviews') 
+@endauth
 
-@include('reviews')
 
 @endsection
