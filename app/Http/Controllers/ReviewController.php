@@ -54,6 +54,10 @@ class ReviewController extends Controller
 
     public function deleteReview($id)
     {
+        // $auth_id = auth()->user()->id;
+        // $review_id = Review::find($id)->user_id;
+
+        // return $review_id;
         $review = Review::find($id);
         $review->delete();
 
