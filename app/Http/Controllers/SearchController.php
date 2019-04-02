@@ -81,4 +81,17 @@ class SearchController extends Controller
         return view('popularmovies')->with('popularMovies', $popularMovies);
         
     }
+
+    public function searchActor (Request $request) 
+    {
+        $actorId = $request->id;
+        
+        $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
+        $response = $client->request('GET', "person/${actorId}/movie_credits?api_key=45499dda27fbc45918728b51e4e82810&language=en-US");
+        
+        $json = $response->getBody();
+        $result = json_decode($json);
+        $actor = $result->cast;
+        return view('selectedactor')->with('actor', $actor);
+    }
 }

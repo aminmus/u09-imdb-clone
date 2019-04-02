@@ -30,6 +30,9 @@ Route::get('selectedfilm/{id}', 'SearchController@searchMovieById');
 Route::get('reviews', 'ReviewController@showReview');
 Route::post('postReviews', 'ReviewController@postReview');
 
+// selectedActor
+Route::get('selectedActor/{id}', 'SearchController@searchActor');
+
 
 // Leo routes
 Route::get('watchlist/create', 'WatchlistController@create');
