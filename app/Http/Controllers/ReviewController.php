@@ -10,6 +10,11 @@ use App\Film;
 
 class ReviewController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['showReview']]);
+    }
+
     public function getReviews(Request $request)
     {
 

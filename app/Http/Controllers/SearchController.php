@@ -12,6 +12,11 @@ use App\Review;
 class SearchController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['searchMovie', 'getPopularMovies']]);
+    }
+
     public function searchMovie(Request $request) 
     {
        
