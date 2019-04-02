@@ -35,4 +35,11 @@ class ReviewController extends Controller
         $review->save();
         return back();
     }
+
+    public function editReview($id)
+    {
+        $review = Review::find($id);
+
+        return view('editreview')->with('review', $review);
+    }
 }

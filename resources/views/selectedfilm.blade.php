@@ -28,6 +28,7 @@
         <input name="poster_path" type="hidden" value="<?php echo $body->poster_path;?>"/>
         {{-- <input name="watchlist_id" type="hidden" value="{{$watchlist->id}}"/> --}}{{-- Make value dynamic  --}}
     <button type="submit">Save Movie</button>
+    
     </form> 
     @else
         <h1>No watchlists, why dont you create some!</h1>
@@ -53,6 +54,7 @@
      <h1>{{$review->content}}</h1>
      <h1>{{$review->rating}}</h1>
      <h1>{{$review->user_id}}</h1>
+<button class="btn btn-link"><a href="/reviews/{{$review->id}}/edit">Edit</a></button>
  @endforeach
  <!-- Här behövs det visas kommentarer för specifik film
  Ladda in reviews. -->
