@@ -45,4 +45,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Profile
-Route::get('/profile', 'ProfileController@showProfile');
+Route::get('profile', 'ProfileController@showProfile');
