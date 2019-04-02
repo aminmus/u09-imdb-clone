@@ -40,6 +40,20 @@ class ReviewController extends Controller
     {
         $review = Review::find($id);
 
-        return view('editreview')->with('review', $review);
+        view('editreview')->with(compact('review'));
+
+        return back()->with('edit', $edit);
+
+        // need to be completed
+    }
+
+    public function deleteReview($id)
+    {
+        $review = Review::find($id);
+        $review->delete();
+
+        return back()->with('success', 'Review deleted');
+        
+        
     }
 }

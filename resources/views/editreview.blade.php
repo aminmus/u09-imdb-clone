@@ -1,6 +1,7 @@
 
 {{-- {{dd($review)}} --}}
-   
+@section('edit')
+    
 <div class="container">
         <div class="col-md-8">
             <form method="POST" action="{{ action('ReviewController@postReview') }}" >
@@ -26,3 +27,5 @@
             </form>
         </div>
     </div>
+
+@endsection

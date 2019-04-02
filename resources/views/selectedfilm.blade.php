@@ -50,12 +50,32 @@
     </div>
 </div> 
 
+{{-- @if(Request::is('reviews/*'))
+        
+@include('editreviews')
+
+@endif --}}
+
  @foreach ($reviews as $review)
      <h1>{{$review->content}}</h1>
      <h1>{{$review->rating}}</h1>
      <h1>{{$review->user_id}}</h1>
-<button class="btn btn-link"><a href="/reviews/{{$review->id}}/edit">Edit</a></button>
+
+    <hr>
+    <form class="d-inline"method="POST" action="/reviews/{{$review->id}}">
+        @method('DELETE')
+        @csrf
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+    <button type="submit" class="btn btn-primary">Edit</button>
+    <hr>
+
+    
+     
+     
  @endforeach
+
+
  <!-- Här behövs det visas kommentarer för specifik film
  Ladda in reviews. -->
 @auth
