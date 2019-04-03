@@ -28,9 +28,12 @@
         <input name="poster_path" type="hidden" value="<?php echo $body->poster_path;?>"/>
         {{-- <input name="watchlist_id" type="hidden" value="{{$watchlist->id}}"/> --}}{{-- Make value dynamic  --}}
     <button type="submit">Save Movie</button>
+    
     </form> 
     @else
         <h1>No watchlists, why dont you create some!</h1>
+        <button class="btn btn-link"><a href="/watchlist/create">Create Watchlist</a></button>
+        <hr>
     @endif
 @endauth
 
@@ -50,6 +53,33 @@
         <a class="dropdown-item" href="#">Something else here</a>
     </div>
 </div> --}}
+
+
+<hr>
+ @foreach ($reviews as $review)
+     <h1>{{$review->content}}</h1>
+     <h1>{{$review->rating}}</h1>
+     <h1>{{$review->user_id}}</h1>
+     <hr>
+@if(Auth::user()->id === $review->user_id)
+    <form class="d-inline"method="POST" action="/reviews/{{$review->id}}">
+        @method('DELETE')
+        @csrf
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+    <button type="submit" class="btn btn-primary">Edit</button>
+    <hr>
+@endif
+ @endforeach
+ 
+ 
+
+
+ <!-- Här behövs det visas kommentarer för specifik film
+ Ladda in reviews. -->
+@auth
+    @include('reviews') 
+@endauth
 
 
 

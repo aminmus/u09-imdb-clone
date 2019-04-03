@@ -10,12 +10,19 @@ use App\Film;
 
 class ReviewController extends Controller
 {
-    public function gettest(Request $request)
+    public function __construct()
     {
+        $this->middleware('auth', ['except' => ['showReview']]);
+    }
+
+    public function getReviews(Request $request)
+    {
+
     }
 
     public function showReview()
-    {
+    {   
+        
         return view('reviews');
     }
 
@@ -31,5 +38,31 @@ class ReviewController extends Controller
         $review->user_id = $userId;
 
         $review->save();
+        return back();
+    }
+
+    public function editReview($id)
+    {
+        $review = Review::find($id);
+
+        view('editreview')->with(compact('review'));
+
+        return back()->with('edit', $edit);
+
+        // need to be completed
+    }
+
+    public function deleteReview($id)
+    {
+        // $auth_id = auth()->user()->id;
+        // $review_id = Review::find($id)->user_id;
+
+        // return $review_id;
+        $review = Review::find($id);
+        $review->delete();
+
+        return back()->with('success', 'Review Deleted');
+        
+        
     }
 }
