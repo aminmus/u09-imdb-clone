@@ -6,10 +6,16 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use App\Watchlist;
+use App\Review;
 
 
 class SearchController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['searchMovie', 'getPopularMovies']]);
+    }
 
     public function searchMovie(Request $request) 
     {
@@ -31,7 +37,10 @@ class SearchController extends Controller
     {
         /* This function recieves a request when a user clicks a movie after having used the search function and makes a request with the movie id */
         
+        $reviews = Review::where('film_id', $request->id)->get();
         
+
+
         $userId = Auth::id();
         $checkWatchlist = Watchlist::where('user_id', $userId)->exists();
         $userWatchlist = null;
@@ -54,7 +63,7 @@ class SearchController extends Controller
         $json = $response->getBody();
         $body = json_decode($json);
         /* return view('selectedfilm')->with('body', $body); */
-        return view('selectedfilm')->with(compact('userWatchlist', 'body'));
+        return view('selectedfilm')->with(compact('userWatchlist', 'body', 'reviews'));
 
     }
 
