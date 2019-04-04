@@ -7,5 +7,6 @@
 </div>
 
 @include('admin.reviews')
+@include('admin.users')
 
 @endsection
