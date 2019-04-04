@@ -1,3 +1,7 @@
+@extends('welcome')
+
+@section('content')
+    
 <h1>Create Watchlist</h1>
 <form method="POST" action="/watchlist">
     @csrf
@@ -5,3 +9,4 @@
     <input type="text" name="name" placeholder="genre">
     <button type="submit">Submit</button>
 </form>
+@endsection
