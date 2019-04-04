@@ -14,7 +14,8 @@ class SearchController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['searchMovie', 'getPopularMovies']]);
+        // ser till att man måste vara en authorized user för att kunna se vyerna i denna controller förutom de i except arrayen.
+        // $this->middleware('auth', ['except' => ['searchMovie', 'getPopularMovies']]);
     }
 
     public function searchMovie(Request $request) 
