@@ -10,6 +10,7 @@
         <div class="card-body justify-content-center">
             <div class="container">
        
+<<<<<<< HEAD
             <?php $count = 0; ?>
             @foreach ($popularMovies->results as $movie)
             <?php if ($count == 5) {
@@ -22,6 +23,13 @@
 
             @endforeach
           </div>
+=======
+        <?php $count = 0; ?>
+        @foreach ($popularMovies->results as $movie)
+        <?php if($count == 5) break; ?>
+        <div class="col">
+        <a href="{{ url('selectedfilm/' .$movie->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $movie->poster_path;?>"> </a>
+>>>>>>> develop
         </div>
       </div>
     </div>

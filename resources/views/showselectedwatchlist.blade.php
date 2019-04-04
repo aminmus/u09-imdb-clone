@@ -12,6 +12,11 @@
           <div class="card-body justify-content-center">
             <img src="http://image.tmdb.org/t/p/w185/<?php echo $film->poster_path;?>">
           </div>
+          <form method="POST" action="/deletemovie/{{$film->id}}">
+           @method('DELETE')
+           @csrf
+           <button class="btn btn-danger mt-2"type="submit">Delete</button>
+       </form>
         </div>
       </div>
     </div>

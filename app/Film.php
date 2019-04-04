@@ -27,8 +27,8 @@ class Film extends Model
     }
 
     // One Film belongs to many Watchlists
-    public function watchlists()
+    /* public function watchlists()
     {
         return $this->belongsToMany('App\Watchlist');
-    }
+    } */
 }
