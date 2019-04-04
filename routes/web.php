@@ -50,16 +50,13 @@ Route::post('morereviews', 'ReviewController@postReview');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-// Profile
-Route::get('profile', 'ProfileController@showProfile');
-
-
-
-
 // Admin Routes
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin', 'AdminController@index');
 });
 Route::delete('deleteReview', 'AdminController@deleteReview');
 Route::delete('deleteUser', 'AdminController@deleteUser');
+
+// Profile
+Route::get('profile', 'ProfileController@showProfile');
+Route::get('profile/reviews', 'ReviewController@getMyReviews');

@@ -17,12 +17,10 @@ class ReviewController extends Controller
 
     public function getReviews(Request $request)
     {
-
     }
 
     public function showReview()
-    {   
-        
+    {
         return view('reviews');
     }
 
@@ -62,8 +60,14 @@ class ReviewController extends Controller
         $review->delete();
 
         return back()->with('success', 'Review Deleted');
-        
-        
+    }
+
+    // Gets all reviews that were created by the signed in user
+    public function getMyReviews()
+    {
+        $user = Auth::user();
+        $reviews = $user->reviews()->get();
+        return view('myReviews')->with('reviews', $reviews);
     }
 
     public function updateReview(Request $request, $id)
