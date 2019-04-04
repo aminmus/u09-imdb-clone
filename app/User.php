@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'is_admin',
     ];
 
     /**
@@ -39,4 +39,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Watchlist');
     }
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
+    
 }
