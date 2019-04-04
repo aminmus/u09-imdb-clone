@@ -83,7 +83,18 @@ class SearchController extends Controller
         
         $json = $response->getBody();
         $popularMovies = json_decode($json);
-        return view('popularmovies')->with('popularMovies', $popularMovies);
+        $MovieArray = [];
+        
+        foreach($popularMovies as $item) {
+              array_push($MovieArray, $item);  
+        }
+        
+        $finalArray = $MovieArray[3];
+        
+        
+        $popularMoviesSliced = array_slice($finalArray, 0, 5, true);
+        
+        return view('popularmovies')->with('popularMoviesSliced', $popularMoviesSliced);
         
     }
 

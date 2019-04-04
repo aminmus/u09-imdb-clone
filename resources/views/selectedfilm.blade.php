@@ -5,8 +5,12 @@
 
     
 @section('content')
+    <div>
+        <img src="http://image.tmdb.org/t/p/w1280/<?php echo $body->backdrop_path;?>" alt="">
+    </div>
 
 <div class="row justify-content-center my-5">
+    
   <div class="col-md-8 text-center">
     <div class="card card-default">
       <div class="card-header">
@@ -36,9 +40,7 @@
     
     <?php $count = 0; ?>
 @foreach ($credits->cast as $cast)
-    <?php if ($count == 5) {
-    break;
-} ?>
+    <?php if($count == 5) break; ?>
     <p>{{$cast->character}}</p>
     <p>{{$cast->name}}</p>
     <a href="{{ url('selectedActor/' .$cast->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $cast->profile_path;?>" alt=""></a>
