@@ -49,6 +49,12 @@ Route::post('morereviews', 'ReviewController@postReview');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
+
+// Admin Routes
 Route::group(['middleware' => ['auth', 'admin']], function() {
     Route::get('/admin', 'AdminController@index' );
 });
+Route::delete('deleteReview', 'AdminController@deleteReview');
+Route::delete('deleteUser', 'AdminController@deleteUser');
