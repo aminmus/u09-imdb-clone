@@ -16,7 +16,7 @@
                         <li><a href="#">Account Settings (coming soon)</a></li>
 
                         @if (Auth::user()->is_admin)
-                        <li><a href="#">Administration (coming soon)</a></li>
+                        <li><a href="/admin">Administration</a></li>
                         @endif
 
                     </ul>
