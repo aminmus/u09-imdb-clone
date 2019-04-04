@@ -37,6 +37,7 @@
         <input name="title" type="hidden" value="<?php echo $body->title;?>"/>
         <input name="poster_path" type="hidden" value="<?php echo $body->poster_path;?>"/>
     <button type="submit">Save Movie</button>
+    <a href="/watchlist/create" class="btn btnlink">Create Watchlist</a>
     
     </form> 
     @else
