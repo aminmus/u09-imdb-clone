@@ -58,3 +58,5 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 });
 Route::delete('deleteReview', 'AdminController@deleteReview');
 Route::delete('deleteUser', 'AdminController@deleteUser');
+// Profile
+Route::get('profile', 'ProfileController@showProfile');
