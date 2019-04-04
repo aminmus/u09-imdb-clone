@@ -13,10 +13,13 @@
 <p>  {{$body->overview}}<p>
 <p>  {{$body->popularity}}<p>
     
+    <?php $count = 0; ?>
 @foreach ($credits->cast as $cast)
+    <?php if($count == 5) break; ?>
     <p>{{$cast->character}}</p>
     <p>{{$cast->name}}</p>
     <a href="{{ url('selectedActor/' .$cast->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $cast->profile_path;?>" alt=""></a>
+    <?php $count++; ?>
 @endforeach
 
 <img src="http://image.tmdb.org/t/p/w185/<?php echo $body->poster_path;?>">
