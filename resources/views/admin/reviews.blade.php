@@ -3,12 +3,12 @@
     <thead>
         <tr>
             <th scope="col">id</th>
-            <th scope="col">content</th>
-            <th scope="col">rating</th>
-            <th scope="col">created at</th>
-            <th scope="col">updated at</th>
-            <th scope="col">film id</th>
-            <th scope="col">user id</th>
+            <th scope="col">Content</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Created at</th>
+            <th scope="col">Updated at</th>
+            <th scope="col">Film id</th>
+            <th scope="col">User id</th>
         </tr>
     </thead>
     <tbody>
