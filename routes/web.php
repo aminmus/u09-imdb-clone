@@ -32,6 +32,9 @@ Route::post('postReviews', 'ReviewController@postReview');
 Route::get('reviews/{id}/edit', 'ReviewController@editReview');
 Route::delete('reviews/{id}', 'ReviewController@deleteReview');
 
+// selectedActor
+Route::get('selectedActor/{id}', 'SearchController@searchActor');
+
 
 // Leo routes
 Route::get('watchlist/create', 'WatchlistController@create');
@@ -46,5 +49,14 @@ Route::post('morereviews', 'ReviewController@postReview');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
+
+// Admin Routes
+Route::group(['middleware' => ['auth', 'admin']], function() {
+    Route::get('/admin', 'AdminController@index' );
+});
+Route::delete('deleteReview', 'AdminController@deleteReview');
+Route::delete('deleteUser', 'AdminController@deleteUser');
 // Profile
 Route::get('profile', 'ProfileController@showProfile');

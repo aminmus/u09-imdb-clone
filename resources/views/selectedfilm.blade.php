@@ -6,11 +6,21 @@
     
 @section('content')
 
+
 <h1>{{$body->title}} </h1>
 <p>  {{$body->id}}<p>
 <p>  {{$body->budget}}<p>
 <p>  {{$body->overview}}<p>
 <p>  {{$body->popularity}}<p>
+    
+    <?php $count = 0; ?>
+@foreach ($credits->cast as $cast)
+    <?php if($count == 5) break; ?>
+    <p>{{$cast->character}}</p>
+    <p>{{$cast->name}}</p>
+    <a href="{{ url('selectedActor/' .$cast->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $cast->profile_path;?>" alt=""></a>
+    <?php $count++; ?>
+@endforeach
 
 <img src="http://image.tmdb.org/t/p/w185/<?php echo $body->poster_path;?>">
 
@@ -26,8 +36,9 @@
         <input name="movie_id" type="hidden" value="<?php echo $body->id;?>"/>
         <input name="title" type="hidden" value="<?php echo $body->title;?>"/>
         <input name="poster_path" type="hidden" value="<?php echo $body->poster_path;?>"/>
-        {{-- <input name="watchlist_id" type="hidden" value="{{$watchlist->id}}"/> --}}{{-- Make value dynamic  --}}
     <button type="submit">Save Movie</button>
+    <a href="/watchlist/create" class="btn btn-link">Create Watchlist</a>
+    <a class="btn btn-link" href="/watchlist">Show Watchlists</a>
     
     </form> 
     @else
@@ -61,6 +72,8 @@
      <h1>{{$review->rating}}</h1>
      <h1>{{$review->user_id}}</h1>
      <hr>
+@auth
+    
 @if(Auth::user()->id === $review->user_id)
     <form class="d-inline"method="POST" action="/reviews/{{$review->id}}">
         @method('DELETE')
@@ -70,6 +83,8 @@
     <button type="submit" class="btn btn-primary">Edit</button>
     <hr>
 @endif
+@endauth
+
  @endforeach
  
  
