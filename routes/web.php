@@ -50,5 +50,13 @@ Route::post('morereviews', 'ReviewController@postReview');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+<<<<<<< HEAD
 // Profile
 Route::get('profile', 'ProfileController@showProfile');
+=======
+Route::group(['middleware' => ['auth', 'admin']], function() {
+    Route::get('/admin', function () {
+        return view('admin');
+    });
+});
+>>>>>>> add middleware to protect admin route
