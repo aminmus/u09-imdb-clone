@@ -36,7 +36,6 @@ class SearchController extends Controller
     public function searchMovieById(Request $request)
     {
         /* This function recieves a request when a user clicks a movie after having used the search function and makes a request with the movie id */
-        
         $reviews = Review::where('film_id', $request->id)->get();
         
 
