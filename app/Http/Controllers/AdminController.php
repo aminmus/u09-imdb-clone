@@ -13,7 +13,8 @@ class AdminController extends Controller
     public function index ()
     {
         $users = User::all();
-        $reviews = Review::all();
+        $reviews = Review::all()->toArray();
+        
         
         return view('admin')->with(compact('users', 'reviews'));
     }
