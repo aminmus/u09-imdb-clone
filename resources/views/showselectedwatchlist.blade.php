@@ -10,7 +10,7 @@
             <h1>{{$film->title}}</h1>
           </div>
           <div class="card-body justify-content-center">
-            <img src="http://image.tmdb.org/t/p/w185/<?php echo $film->poster_path;?>">
+            <a href="{{ url('selectedfilm/' .$film->movie_id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $film->poster_path;?>"> </a>
           </div>
           <form method="POST" action="/deletemovie/{{$film->id}}">
            @method('DELETE')

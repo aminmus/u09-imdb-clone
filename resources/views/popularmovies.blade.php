@@ -8,9 +8,7 @@
           <h1 class="text-center">Top 5 Movies</h1>
         </div>
         <div class="card-body justify-content-center">
-            <div class="container">
-       
-<<<<<<< HEAD
+            <div class="container">  
             <?php $count = 0; ?>
             @foreach ($popularMovies->results as $movie)
             <?php if ($count == 5) {
@@ -23,13 +21,25 @@
 
             @endforeach
           </div>
-=======
         <?php $count = 0; ?>
         @foreach ($popularMovies->results as $movie)
-        <?php if($count == 5) break; ?>
+        <?php if ($count == 5) {
+    break;
+} ?>
         <div class="col">
         <a href="{{ url('selectedfilm/' .$movie->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $movie->poster_path;?>"> </a>
->>>>>>> develop
+              <?php $count = 0; ?>
+              @foreach ($popularMovies->results as $movie)
+              <?php if ($count == 5) {
+    break;
+} ?>
+              <div class="col">
+              <a href="{{ url('selectedfilm/' .$movie->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $movie->poster_path;?>"> </a>
+              </div>
+              <?php $count++; ?>
+              @endforeach
+      
+          </div>
         </div>
       </div>
     </div>
