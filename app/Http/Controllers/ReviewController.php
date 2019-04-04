@@ -70,7 +70,7 @@ class ReviewController extends Controller
     {
         $review = Review::find($id);
         $review->content = $request->content;
-        $review->rating = $review->rating;
+        $review->rating = $request->rating;
         $review->save();
         
         return back()->with('success', 'Review Updated!');
