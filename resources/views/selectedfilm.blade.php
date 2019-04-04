@@ -6,11 +6,18 @@
     
 @section('content')
 
+
 <h1>{{$body->title}} </h1>
 <p>  {{$body->id}}<p>
 <p>  {{$body->budget}}<p>
 <p>  {{$body->overview}}<p>
 <p>  {{$body->popularity}}<p>
+    
+@foreach ($credits->cast as $cast)
+    <p>{{$cast->character}}</p>
+    <p>{{$cast->name}}</p>
+    <a href="{{ url('selectedActor/' .$cast->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $cast->profile_path;?>" alt=""></a>
+@endforeach
 
 <img src="http://image.tmdb.org/t/p/w185/<?php echo $body->poster_path;?>">
 
@@ -26,7 +33,6 @@
         <input name="movie_id" type="hidden" value="<?php echo $body->id;?>"/>
         <input name="title" type="hidden" value="<?php echo $body->title;?>"/>
         <input name="poster_path" type="hidden" value="<?php echo $body->poster_path;?>"/>
-        {{-- <input name="watchlist_id" type="hidden" value="{{$watchlist->id}}"/> --}}{{-- Make value dynamic  --}}
     <button type="submit">Save Movie</button>
     
     </form> 
