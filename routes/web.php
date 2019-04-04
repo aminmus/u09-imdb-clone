@@ -55,8 +55,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('profile', 'ProfileController@showProfile');
 =======
 Route::group(['middleware' => ['auth', 'admin']], function() {
-    Route::get('/admin', function () {
-        return view('admin');
-    });
+    Route::get('/admin', 'AdminController@index' );
 });
 >>>>>>> add middleware to protect admin route
