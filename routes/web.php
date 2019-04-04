@@ -50,11 +50,16 @@ Route::post('morereviews', 'ReviewController@postReview');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-<<<<<<< HEAD
+
 // Profile
 Route::get('profile', 'ProfileController@showProfile');
-=======
-Route::group(['middleware' => ['auth', 'admin']], function() {
-    Route::get('/admin', 'AdminController@index' );
+
+
+
+
+// Admin Routes
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/admin', 'AdminController@index');
 });
->>>>>>> add middleware to protect admin route
+Route::delete('deleteReview', 'AdminController@deleteReview');
+Route::delete('deleteUser', 'AdminController@deleteUser');
