@@ -13,10 +13,7 @@
         <h1>{{$body->title}} </h1>
       </div>
       <div class="card-body justify-content-center">
-        <p>  {{$body->id}}<p>
-        <p>  {{$body->budget}}<p>
         <p>  {{$body->overview}}<p>
-        <p>  {{$body->popularity}}<p>
 
         <img src="http://image.tmdb.org/t/p/w185/<?php echo $body->poster_path;?>">
         <form method="POST" action="{{ action('WatchlistController@store') }}">
@@ -34,18 +31,21 @@
 
 
     
+<div class="row justify-content-center">
     <?php $count = 0; ?>
 @foreach ($credits->cast as $cast)
     <?php if ($count == 5) {
     break;
 } ?>
+<div class="mx-3">
     <p>{{$cast->character}}</p>
     <p>{{$cast->name}}</p>
     <a href="{{ url('selectedActor/' .$cast->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $cast->profile_path;?>" alt=""></a>
     <?php $count++; ?>
+    </div>
 @endforeach
+    </div>
 
-<img src="http://image.tmdb.org/t/p/w185/<?php echo $body->poster_path;?>">
 
 @auth
     @if(isset($userWatchlist))

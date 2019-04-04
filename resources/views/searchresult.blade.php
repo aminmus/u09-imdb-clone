@@ -5,7 +5,6 @@
     @foreach ($body->results as $result)
 
     
-    <a href="{{ url('selectedfilm/' .$result->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $result->poster_path;?>"> </a>
    <div class="row justify-content-center text-center my-5">
     <div class="col-md-8 text-center">
         <div class="card card-default">
