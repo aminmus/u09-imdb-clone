@@ -87,22 +87,25 @@
 </div> --}}
 
 
-<hr>
+<h1>REVIEWS</h1>
  @foreach ($reviews as $review)
+ <div class="container card my-3">
+  <div class="row justify-content-center">
      <h1>{{$review->content}}</h1>
      <h1>{{$review->rating}}</h1>
      <h1>{{$review->user_id}}</h1>
      <hr>
 @auth
     
+  </div>
 @if(Auth::user()->id === $review->user_id)
     <form class="d-inline"method="POST" action="/reviews/{{$review->id}}">
         @method('DELETE')
         @csrf
         <button class="btn btn-danger" type="submit">Delete</button>
+        <button type="submit" class="btn btn-primary">Edit</button>
     </form>
-    <button type="submit" class="btn btn-primary">Edit</button>
-    <hr>
+  </div>
 @endif
 @endauth
 
