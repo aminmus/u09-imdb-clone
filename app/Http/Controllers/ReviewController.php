@@ -65,4 +65,14 @@ class ReviewController extends Controller
         
         
     }
+
+    public function updateReview(Request $request, $id)
+    {
+        $review = Review::find($id);
+        $review->content = $request->content;
+        $review->rating = $request->rating;
+        $review->save();
+        
+        return back()->with('success', 'Review Updated!');
+    }
 }
