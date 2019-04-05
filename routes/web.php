@@ -33,6 +33,9 @@ Route::get('reviews/{id}/edit', 'ReviewController@editReview');
 Route::delete('reviews/{id}', 'ReviewController@deleteReview');
 Route::put('reviews/{id}', 'ReviewController@updateReview');
 
+// selectedActor
+Route::get('selectedActor/{id}', 'SearchController@searchActor');
+
 
 // Leo routes
 Route::get('watchlist/create', 'WatchlistController@create');
