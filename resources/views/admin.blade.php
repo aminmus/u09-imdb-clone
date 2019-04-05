@@ -8,5 +8,6 @@
 
 @include('admin.reviews')
 @include('admin.users')
+@include('admin.watchlists')
 
 @endsection
