@@ -12,11 +12,11 @@
                         <li><a href="{{ url('/watchlist') }}">Watchlists</a></li>
 
                         <!-- TODO: Add hrefs to views below when they are created  -->
-                        <li><a href="#">Reviews (coming soon)</a></li>
+                        <li><a href="{{ url('/profile/reviews')}}">Reviews</a></li>
                         <li><a href="#">Account Settings (coming soon)</a></li>
 
                         @if (Auth::user()->is_admin)
-                        <li><a href="#">Administration (coming soon)</a></li>
+                        <li><a href="/admin">Administration</a></li>
                         @endif
 
                     </ul>
