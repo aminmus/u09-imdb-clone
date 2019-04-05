@@ -20,7 +20,6 @@ class Filmwatchlist extends Migration
             $table->unsignedInteger('watchlist_id');
             $table->foreign('watchlist_id')->references('id')->on('watchlist');
             $table->timestamps();
-            
         });
     }
 
