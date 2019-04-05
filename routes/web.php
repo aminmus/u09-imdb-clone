@@ -53,11 +53,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 // Admin Routes
-Route::group(['middleware' => ['auth', 'admin']], function() {
-    Route::get('/admin', 'AdminController@index' );
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/admin', 'AdminController@index');
 });
 Route::delete('deleteReview', 'AdminController@deleteReview');
 Route::delete('deleteUser', 'AdminController@deleteUser');
+Route::delete('deleteWatchlist', 'AdminController@deleteWatchlist');
 
 // Profile
 Route::get('profile', 'ProfileController@showProfile');
