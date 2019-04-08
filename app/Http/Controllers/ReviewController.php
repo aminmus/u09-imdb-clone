@@ -67,7 +67,7 @@ class ReviewController extends Controller
     {
         $user = Auth::user();
         $reviews = $user->reviews()->get();
-        return view('myReviews')->with('reviews', $reviews);
+        return view('reviews.myReviews')->with('reviews', $reviews);
     }
 
     public function updateReview(Request $request, $id)

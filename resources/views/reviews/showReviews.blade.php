@@ -17,4 +17,4 @@
 @endif
 @endauth
 
-@endforeach
+@include('reviews.editModal')
