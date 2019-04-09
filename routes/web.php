@@ -59,7 +59,6 @@ Route::delete('deleteReview', 'AdminController@deleteReview');
 Route::delete('deleteUser', 'AdminController@deleteUser');
 Route::delete('deleteWatchlist', 'AdminController@deleteWatchlist');
 
-// Route::get('admin/create', 'AdminController@create');
 Route::get('admin/add/review', function () {
     return view('admin/addReview');
 });
