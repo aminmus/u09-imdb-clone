@@ -48,4 +48,9 @@ class AdminController extends Controller
         Watchlist::whereIn('id', $watchlists)->delete();
         return redirect('/admin')->with('success', 'Watchlist Deleted!');
     }
+
+    public function create(Request $request)
+    {
+        return view('/admin/create');
+    }
 }

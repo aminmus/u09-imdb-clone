@@ -2,7 +2,7 @@
 
 @section('content')
 <h1 class="text-center">Top 5 Movies</h1>
-<div class="container">
+<div class="container d-flex">
        
         <?php $count = 0; ?>
         @foreach ($popularMovies->results as $movie)
