@@ -36,7 +36,8 @@ class ReviewController extends Controller
         $review->user_id = $userId;
 
         $review->save();
-        return back();
+
+        return back()->with('success', 'Review Submitted!');
     }
 
     public function editReview($id)
