@@ -10,15 +10,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="/reviews/{{$review->id}}">
+                <form id="edit-review-form" method="POST">
                     @csrf
                     @method('PUT')
-                    {{-- <input name="movie_id" type="hidden" class="mb-2"value="{{$review->id}}"/> --}}
+                    <label for="content">Review</label>
                     <input type="text-area" class="form-control" id="formGroupExampleInput2" name="content"
-                        placeholder="review" class="mb-2" value="{{$review->content}}">
+                        placeholder="review" class="mb-2"">
+                    <label for="rating">Rating</label>
                     <select class="custom-select col-md-2 mt-1" id="inputGroupSelect04" name="rating"
                         aria-label="Example select with button addon">
-                        <option selected="{{$review->rating}}">Rating</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -35,3 +35,5 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="{{ asset('js/editModal.js') }}"></script>
