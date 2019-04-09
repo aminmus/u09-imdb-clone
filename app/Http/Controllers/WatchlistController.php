@@ -7,6 +7,7 @@ use App\Film;
 use App\Filmwatchlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Review;
 
 class WatchlistController extends Controller
 {
@@ -109,7 +110,11 @@ class WatchlistController extends Controller
       
         $filmsFromWatchlist = Film::whereIn('id', $movieIds)->get();
 
-        return view('showselectedwatchlist')->with('filmsFromWatchlist', $filmsFromWatchlist);
+        $auth_id = Auth::id();
+       $reviews = Review::where('user_id', $auth_id)->get();
+
+
+        return view('showselectedwatchlist')->with('filmsFromWatchlist', $filmsFromWatchlist)->with('reviews', $reviews);
     }
 
     public function saveWatchlist(Request $request)
