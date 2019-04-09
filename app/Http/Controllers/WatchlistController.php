@@ -130,6 +130,6 @@ class WatchlistController extends Controller
     {
         $movie_id = $request->id;
         Filmwatchlist::where('film_id', $movie_id)->delete();
-        return redirect('/watchlist')->with('success', 'Movie Deleted!');
+        return back()->with('success', 'Movie Deleted!');
     }
 }
