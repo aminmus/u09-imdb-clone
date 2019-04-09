@@ -86,7 +86,7 @@
  editbtn
 @endauth
 
- @endforeach
+ {{-- @endforeach --}}
  
   user-crud-operations
 
