@@ -133,8 +133,10 @@ class WatchlistController extends Controller
 
     public function deleteMovie(Request $request)
     {
+        // dd($request);
         $movie_id = $request->id;
         Filmwatchlist::where('film_id', $movie_id)->delete();
+        Film::where('id', $movie_id)->delete();
         return back()->with('success', 'Movie Deleted!');
     }
 }
