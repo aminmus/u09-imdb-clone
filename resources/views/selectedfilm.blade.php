@@ -53,29 +53,15 @@
 @guest
     <h1>Create an account to create watchlists</h1>
 @endguest
-
-
-
-{{-- <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Watchlists
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-    </div>
-</div> --}}
-
-
-@include('showReviews')
- 
+    
+<!-- Reviews -->
+@include('reviews.showReviews')
 
 
  <!-- Här behövs det visas kommentarer för specifik film
  Ladda in reviews. -->
 @auth
-    @include('createReviewsForm') 
+    @include('reviews.createReviewsForm') 
 @endauth
 
 

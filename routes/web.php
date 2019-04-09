@@ -31,6 +31,7 @@ Route::get('reviews', 'ReviewController@showReview');
 Route::post('postReviews', 'ReviewController@postReview');
 Route::get('reviews/{id}/edit', 'ReviewController@editReview');
 Route::delete('reviews/{id}', 'ReviewController@deleteReview');
+Route::put('reviews/{id}', 'ReviewController@updateReview');
 
 // selectedActor
 Route::get('selectedActor/{id}', 'SearchController@searchActor');
@@ -48,9 +49,6 @@ Route::post('morereviews', 'ReviewController@postReview');
 // Authentication Routes (added by default by laravel)
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-
-
-
 
 // Admin Routes
 Route::group(['middleware' => ['auth', 'admin']], function () {
