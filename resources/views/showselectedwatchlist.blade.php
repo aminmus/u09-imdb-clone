@@ -10,20 +10,11 @@
        <form method="POST" action="/deletemovie/{{$film->id}}">
            @method('DELETE')
            @csrf
-           <button class="btn btn-danger mt-2"type="submit">Delete</button>
+           <button class="btn btn-danger mt-2"type="submit">Delete From Watchlist</button>
        </form>
 
        <hr>
-       {{-- @if (isset($reviews)) --}}
-         @foreach ($reviews as $review)
-           @if ($review->film_id == $film->movie_id)
-           <h5>Your Review for {{$film->title}}</h5>
-           <p class="lead">{{$review->content}}</p>
-           @endif 
-          @endforeach
-           <p>Go ahead and write a review for {{$film->title}}</p>
-        {{-- @endif --}}
-      <hr>
+       
 
 
    @endforeach
