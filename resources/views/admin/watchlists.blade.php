@@ -35,6 +35,7 @@
         </form>
     </tbody>
 </table>
+{{ $watchlists->links() }}
 
 <a href="/admin">Go Back</a>
 @endsection

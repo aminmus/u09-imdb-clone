@@ -24,9 +24,9 @@
                 
                 <tr>
                     <th scope="row"> <input type="checkbox"
-                        name="<?php echo $review["id"] ;?>"
-                        value="<?php echo $review["id"] ;?>">
-                        <?php echo $review["id"] ;?><br>
+                        name="{{$review['id']}}"
+                        value="{{$review['id']}}">
+                        {{$review['id']}}<br>
                     </th>
                     <td>{{$review["content"]}}</td>
                     <td>{{$review["rating"]}}</td>
@@ -41,6 +41,7 @@
             </form>
         </tbody>
     </table>
-    
+
+    {{$reviews->links()}}
     <a href="/admin">Go Back</a>
     @endsection

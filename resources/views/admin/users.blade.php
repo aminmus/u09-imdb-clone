@@ -39,6 +39,6 @@
                 </form>
             </tbody>
         </table>
-        
+        {{$users->links()}}
         <a href="/admin">Go Back</a>
         @endsection
