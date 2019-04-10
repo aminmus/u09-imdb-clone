@@ -57,6 +57,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 Route::delete('deleteReview', 'AdminController@deleteReview');
 Route::delete('deleteUser', 'AdminController@deleteUser');
 Route::delete('deleteWatchlist', 'AdminController@deleteWatchlist');
+Route::get('/admin/reviews', 'AdminController@showReviews');
+Route::get('/admin/users', 'AdminController@showUsers');
+Route::get('/admin/watchlists', 'AdminController@showWatchlists');
+
 
 // Profile
 Route::get('profile', 'ProfileController@showProfile');

@@ -1,3 +1,7 @@
+@extends('welcome')
+
+@section('content')
+    
 <h2>Watchlists</h2>
 <form method="POST" action="{{ action('AdminController@deleteWatchlist') }}">
     @method('DELETE')
@@ -14,11 +18,11 @@
         </thead>
         <tbody>
             @foreach ($watchlists as $watchlist)
-
+            
             <tr>
                 <th scope="row"> <input type="checkbox"
-                        name="<?php echo $watchlist["id"] ;?>"
-                        value="<?php echo $watchlist["id"] ;?>">
+                    name="<?php echo $watchlist["id"] ;?>"
+                    value="<?php echo $watchlist["id"] ;?>">
                     <?php echo $watchlist["id"] ;?><br>
                 </th>
                 <td>{{$watchlist["name"]}}</td>
@@ -28,6 +32,9 @@
             </tr>
             @endforeach
             <input type="submit" value="Submit">
-</form>
-</tbody>
+        </form>
+    </tbody>
 </table>
+
+<a href="/admin">Go Back</a>
+@endsection
