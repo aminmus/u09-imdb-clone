@@ -41,6 +41,7 @@ Route::get('selectedActor/{id}', 'SearchController@searchActor');
 Route::get('watchlist/create', 'WatchlistController@create');
 Route::post('/watchlist', 'WatchlistController@saveWatchlist');
 Route::delete('/deletemovie/{id}', 'WatchlistController@deleteMovie');
+Route::delete('/watchlist/delete', 'WatchlistController@deleteWatchlist');
 
 
 Route::post('morereviews', 'ReviewController@postReview');
