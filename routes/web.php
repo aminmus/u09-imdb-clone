@@ -62,6 +62,9 @@ Route::delete('deleteWatchlist', 'AdminController@deleteWatchlist');
 Route::get('admin/add/review', function () {
     return view('admin/addReview');
 });
+Route::get('admin/add/watchlist', function () {
+    return view('admin/addWatchlist');
+});
 
 // Profile
 Route::get('profile', 'ProfileController@showProfile');
