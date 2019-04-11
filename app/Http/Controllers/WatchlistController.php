@@ -29,7 +29,7 @@ class WatchlistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function createPage(Request $request)
     {
         return view('watchlistform');
     }
@@ -42,7 +42,6 @@ class WatchlistController extends Controller
      */
     public function store(Request $request)
     {
-        
         $film = new Film;
 
         $film->title = $request->title;
@@ -123,7 +122,8 @@ class WatchlistController extends Controller
             'name' => 'required'
         ]);
         
-        $userId = Auth::id();
+        $userId = $request->user_id;
+
         $watchlist = new Watchlist;
         $watchlist->user_Id = $userId;
         $watchlist->name = $request->name;

@@ -38,7 +38,8 @@ Route::get('selectedActor/{id}', 'SearchController@searchActor');
 
 
 // Leo routes
-Route::get('watchlist/create', 'WatchlistController@create');
+// Route::get('watchlist/create', 'WatchlistController@create');
+Route::get('/watchlist', 'WatchlistController@createPage');
 Route::post('/watchlist', 'WatchlistController@saveWatchlist');
 Route::delete('/deletemovie/{id}', 'WatchlistController@deleteMovie');
 Route::delete('/watchlist/delete', 'WatchlistController@deleteWatchlist');
