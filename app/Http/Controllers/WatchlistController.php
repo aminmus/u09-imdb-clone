@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Input;
 
 class WatchlistController extends Controller
 {
+    public function __construct()
+    {
+        // Protects all Watchlist routes from being accessed by unauthenticated users
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
