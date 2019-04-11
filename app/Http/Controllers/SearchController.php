@@ -86,6 +86,8 @@ class SearchController extends Controller
         $popularMoviesSliced = array_slice($finalArray, 0, 5, true);
         
         return view('popularmovies')->with('popularMoviesSliced', $popularMoviesSliced);
+        
+        return view('popularmovies')->with('popularMoviesSliced', $popularMoviesSliced);
     }
 
     public function searchActor(Request $request)

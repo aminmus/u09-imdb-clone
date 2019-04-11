@@ -5,8 +5,14 @@
 
     
 @section('content')
+    <div class="row justify-content-center absolute">
+    <div>
+        <img src="http://image.tmdb.org/t/p/w1280/<?php echo $body->backdrop_path;?>" alt="">
+        </div>
+    </div>
 
 <div class="row justify-content-center my-5">
+    
   <div class="col-md-8 text-center">
     <div class="card card-default">
       <div class="card-header">
@@ -30,24 +36,27 @@
 
 
 
-    
-<div class="row justify-content-center">
+<div class="container">    
+  <div class="row justify-content-center">
     <?php $count = 0; ?>
-@foreach ($credits->cast as $cast)
+      @foreach ($credits->cast as $cast)
     <?php if ($count == 5) {
+    break;
 } ?>
-<div class="mx-3">
-    <p>{{$cast->character}}</p>
-    <p>{{$cast->name}}</p>
-    <a href="{{ url('selectedActor/' .$cast->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $cast->profile_path;?>" alt=""></a>
-    <?php $count++; ?>
+        <div>
+          <p>{{$cast->character}}</p>
+          <p>{{$cast->name}}</p>
+          <a href="{{ url('selectedActor/' .$cast->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $cast->profile_path;?>" alt=""></a>
+          <?php $count++; ?>
+        </div>
+      @endforeach
     </div>
-@endforeach
-    </div>
-
+</div>
 
 @auth
     @if(isset($userWatchlist))
+    <div class="container">
+    <div class="col justify-content-center">
     <form method="POST" action="{{ action('WatchlistController@store') }}">
     <select name="watchlist_id">
         @foreach ($userWatchlist as $watchlist)
@@ -62,19 +71,24 @@
     
     </form> 
     @else
+    <div class="container">
         <h1>No watchlists, why dont you create some!</h1>
         <button class="btn btn-link"><a href="/watchlist/create">Create Watchlist</a></button>
         <hr>
+        </div>
     @endif
 @endauth
 
+<div class="row justify-content-center">
 @guest
     <h1>Create an account to create watchlists</h1>
 @endguest
+</div>
 
 
-
-{{-- <div class="dropdown">
+<div class="container">
+<div class="justify-content-center row">
+<div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Watchlists
     </button>
@@ -83,8 +97,8 @@
         <a class="dropdown-item" href="#">Another action</a>
         <a class="dropdown-item" href="#">Something else here</a>
     </div>
-</div> --}}
-
+</div>
+<div>
 
 <h1>REVIEWS</h1>
  @foreach ($reviews as $review)
@@ -104,6 +118,9 @@
         <button class="btn btn-danger" type="submit">Delete</button>
         <button type="submit" class="btn btn-primary">Edit</button>
     </form>
+    </div>
+  </div>
+  </div>
   </div>
 @endif
 @endauth
