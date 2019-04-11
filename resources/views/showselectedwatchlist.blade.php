@@ -2,7 +2,7 @@
 
 
 @section('content')
-
+  
    @foreach ($filmsFromWatchlist as $film)
        <h1>{{$film->title}}</h1>
        <p>{{$film->movie_id}}</p>
@@ -15,5 +15,5 @@
 
        <hr>
    @endforeach
-   <form action="" method="post"></form>
+  
 @endsection

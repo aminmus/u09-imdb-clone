@@ -17,14 +17,15 @@
 </form>
 
 <h1>Delete Watchlist</h1>
-@foreach ($userWatchlists as $watchlist)
-<form action="/watchlist/{{$watchlist->id}}" method="post">
+<form action="watchlist/delete" method="POST">
     @method('DELETE')
     @csrf
     <select name="watchlists">
-    <option value="{{$watchlist->id}}">{{$watchlist->name}}</option>
+    @foreach ($userWatchlists as $watchlist)
+    <option value="<?php echo $watchlist->id;?>"><?php echo $watchlist->name;?></option>
     @endforeach
     </select>
+    <button type="submit">Delete</button>
 </form>
 @endsection
 

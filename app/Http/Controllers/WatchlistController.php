@@ -109,7 +109,7 @@ class WatchlistController extends Controller
         }
       
         $filmsFromWatchlist = Film::whereIn('id', $movieIds)->get();
-
+        
 
         return view('showselectedwatchlist')->with('filmsFromWatchlist', $filmsFromWatchlist);
     }
@@ -135,5 +135,10 @@ class WatchlistController extends Controller
         Filmwatchlist::where('film_id', $movie_id)->delete();
         Film::where('id', $movie_id)->delete();
         return back()->with('success', 'Movie Deleted!');
+    }
+
+    public function deleteWatchlist(Request $request)
+    {
+       dd(124);
     }
 }
