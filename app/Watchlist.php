@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Watchlist extends Model
 {
+    use Sortable;
+    public $sortable = ['id', 'name', 'create_at', 'updated_at', 'user_id'];
    
     /* protected $fillable = ['movie_id', 'title', 'poster_path']; */
     /* protected $fillable = ['name', 'user_id', 'film_id'];
