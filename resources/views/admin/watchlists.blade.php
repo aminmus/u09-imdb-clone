@@ -9,11 +9,11 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Created at</th>
-                <th scope="col">Updated at</th>
-                <th scope="col">User id</th>
+                <th scope="col">@sortablelink('id')</th>
+                <th scope="col">@sortablelink('name')</th>
+                <th scope="col">@sortablelink('created_at')</th>
+                <th scope="col">@sortablelink('updated_at')</th>
+                <th scope="col">@sortablelink('user_id')</th>
             </tr>
         </thead>
         <tbody>

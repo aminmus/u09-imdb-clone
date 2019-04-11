@@ -51,19 +51,19 @@ class AdminController extends Controller
 
     public function showReviews()
     {
-        $reviews = Review::paginate(1);
+        $reviews = Review::sortable()->paginate(1);
         return view('admin.reviews')->with('reviews', $reviews);
     }
 
     public function showUsers()
     {
-        $users = User::paginate(3);
+        $users = User::sortable()->paginate(3);
         return view('admin.users')->with('users', $users);
     }
 
     public function showWatchlists()
     {
-        $watchlists = Watchlist::paginate(3);
+        $watchlists = Watchlist::sortable()->paginate(3);
         return view('admin.watchlists')->with('watchlists', $watchlists);
     }
 }

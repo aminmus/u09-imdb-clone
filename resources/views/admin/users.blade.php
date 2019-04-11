@@ -10,13 +10,13 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Admin</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Created at</th>
-                    <th scope="col">Updated at</th>
-                    <th scope="col">Email verified at</th>
+                    <th scope="col">@sortablelink('id')</th>
+                    <th scope="col">@sortablelink('is_admin', 'Admin')</th>
+                    <th scope="col">@sortablelink('name')</th>
+                    <th scope="col">@sortablelink('email')</th>
+                    <th scope="col">@sortablelink('created_at', 'Created At')</th>
+                    <th scope="col">@sortablelink('updated_at', 'Updated At')</th>
+                    <th scope="col">@sortablelink('email_verified_at', 'Email Verified At')</th>
                 </tr>
             </thead>
             <tbody>

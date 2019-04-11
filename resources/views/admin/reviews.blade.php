@@ -10,13 +10,13 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Content</th>
-                    <th scope="col">Rating</th>
-                    <th scope="col">Created at</th>
-                    <th scope="col">Updated at</th>
-                    <th scope="col">Film id</th>
-                    <th scope="col">User id</th>
+                    <th scope="col">@sortablelink('id')</th>
+                    <th scope="col">@sortablelink('content')</th>
+                    <th scope="col">@sortablelink('rating')</th>
+                    <th scope="col">@sortablelink('created_at')</th>
+                    <th scope="col">@sortablelink('updated_at')</th>
+                    <th scope="col">@sortablelink('film_id')</th>
+                    <th scope="col">@sortablelink('user_id')</th>
                 </tr>
             </thead>
             <tbody>
