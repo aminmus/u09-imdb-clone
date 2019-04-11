@@ -11,6 +11,7 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- Styles -->
@@ -64,10 +65,6 @@
         .m-b-md {
             margin-bottom: 30px;
         }
-
-        .container {
-            display: flex;
-        }
     </style>
 </head>
 
@@ -75,9 +72,11 @@
     @include('partials.navbar')
     @include('inc.messages')
 
-    @yield('content')
+    <main class="py-4">
+        @yield('content')
+        @include('partials.footer')
+    </main>
 
-    @include('partials.footer')
 
 </body>
 

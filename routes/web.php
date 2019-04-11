@@ -41,6 +41,7 @@ Route::get('selectedActor/{id}', 'SearchController@searchActor');
 Route::get('watchlist/create', 'WatchlistController@create');
 Route::post('/watchlist', 'WatchlistController@saveWatchlist');
 Route::delete('/deletemovie/{id}', 'WatchlistController@deleteMovie');
+Route::delete('/watchlist/delete', 'WatchlistController@deleteWatchlist');
 
 
 Route::post('morereviews', 'ReviewController@postReview');
@@ -54,9 +55,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin', 'AdminController@index');
 });
+
 Route::delete('deleteReview', 'AdminController@deleteReview');
 Route::delete('deleteUser', 'AdminController@deleteUser');
 Route::delete('deleteWatchlist', 'AdminController@deleteWatchlist');
+Route::get('/admin/reviews', 'AdminController@showReviews');
+Route::get('/admin/users', 'AdminController@showUsers');
+Route::get('/admin/watchlists', 'AdminController@showWatchlists');
+
+
+Route::get('admin/add/review', function () {
+    return view('admin/addReview');
+});
+Route::get('admin/add/watchlist', function () {
+    return view('admin/addWatchlist');
+});
 
 // Profile
 Route::get('profile', 'ProfileController@showProfile');

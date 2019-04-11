@@ -48,4 +48,22 @@ class AdminController extends Controller
         Watchlist::whereIn('id', $watchlists)->delete();
         return redirect('/admin')->with('success', 'Watchlist Deleted!');
     }
+
+    public function showReviews()
+    {
+        $reviews = Review::paginate(1);
+        return view('admin.reviews')->with('reviews', $reviews);
+    }
+
+    public function showUsers()
+    {
+        $users = User::paginate(3);
+        return view('admin.users')->with('users', $users);
+    }
+
+    public function showWatchlists()
+    {
+        $watchlists = Watchlist::paginate(3);
+        return view('admin.watchlists')->with('watchlists', $watchlists);
+    }
 }
