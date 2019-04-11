@@ -8,6 +8,7 @@ use App\Filmwatchlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Review;
+use Illuminate\Support\Facades\Input;
 
 class WatchlistController extends Controller
 {
@@ -93,9 +94,11 @@ class WatchlistController extends Controller
      * @param  \App\Watchlist  $watchlists
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Watchlist $watchlists)
+    public function destroy(Watchlist $watchlists, Request $request)
     {
-        //
+        $watchlistID = $request->watchlists;
+        Watchlist::where('id', $watchlistID)->delete();
+        return back()->with('success', 'Watchlist Deleted');
     }
 
     public function loadSelectedWatchlist(Request $request)
@@ -137,8 +140,8 @@ class WatchlistController extends Controller
         return back()->with('success', 'Movie Deleted!');
     }
 
-    public function deleteWatchlist(Request $request)
-    {
-       dd(124);
-    }
+    // public function deleteWatchlist(Request $request)
+    // {
+    //    return 123;
+    // }
 }

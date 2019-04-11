@@ -22,7 +22,7 @@
     @csrf
     <select name="watchlists">
     @foreach ($userWatchlists as $watchlist)
-    <option value="<?php echo $watchlist->id;?>"><?php echo $watchlist->name;?></option>
+    <option value="{{$watchlist->id}}">{{$watchlist->name}}</option>
     @endforeach
     </select>
     <button type="submit">Delete</button>
