@@ -110,11 +110,8 @@ class WatchlistController extends Controller
       
         $filmsFromWatchlist = Film::whereIn('id', $movieIds)->get();
 
-        $auth_id = Auth::id();
-       $reviews = Review::where('user_id', $auth_id)->get();
 
-
-        return view('showselectedwatchlist')->with('filmsFromWatchlist', $filmsFromWatchlist)->with('reviews', $reviews);
+        return view('showselectedwatchlist')->with('filmsFromWatchlist', $filmsFromWatchlist);
     }
 
     public function saveWatchlist(Request $request)
