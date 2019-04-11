@@ -35,7 +35,6 @@
     <?php $count = 0; ?>
 @foreach ($credits->cast as $cast)
     <?php if ($count == 5) {
-    break;
 } ?>
 <div class="mx-3">
     <p>{{$cast->character}}</p>
