@@ -63,12 +63,18 @@ Route::get('/admin/reviews', 'AdminController@showReviews');
 Route::get('/admin/users', 'AdminController@showUsers');
 Route::get('/admin/watchlists', 'AdminController@showWatchlists');
 
+Route::post('/admin/add/user', 'AdminController@addUser');
 
 Route::get('admin/add/review', function () {
     return view('admin/addReview');
 });
+
 Route::get('admin/add/watchlist', function () {
     return view('admin/addWatchlist');
+});
+
+Route::get('admin/add/user', function () {
+    return view('admin/addUser');
 });
 
 // Profile
