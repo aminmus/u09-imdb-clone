@@ -123,4 +123,16 @@ class AdminController extends Controller
         $user->save();
         return back()->with('success', 'User Updated');
     }
+
+    public function updateWatchlist(Request $request, $id)
+    {
+        $watchlist = Watchlist::find($id);
+        $watchlist->id = $request->id;
+        $watchlist->name = $request->name;
+        $watchlist->created_at = $request->created_at;
+        $watchlist->updated_at = $request->updated_at;
+        $watchlist->user_id = $request->user_id;
+        $watchlist->save();
+        return back()->with('success', 'Watchlist Updated');
+    }
 }
