@@ -78,7 +78,7 @@
                                         <label for="rating">Rating</label>
                                         <select class="custom-select col-md-12 form-control" id="inputGroupSelect04" name="rating"
                                         aria-label="Example select with button addon">
-                                        <option selected>Rating</option>
+                                        
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
