@@ -5,10 +5,11 @@
 <button><a href="watchlist/create">Create New Watchlist</a></button>
 
 <h1>Select Watchlist</h1>
-<form method="GET" action="{{ action('WatchlistController@loadSelectedWatchlist') }}">
-    <select name="watchlists">
+<form method="GET" action="/watchlists/69">
+@csrf
+    <select name="watchlist">
         @foreach ($userWatchlists as $watchlist)
-        <option value="<?php echo $watchlist->id;?>"><?php echo $watchlist->name;?>
+        <option value="{{ $watchlist->id }}">{{ $watchlist->name }}
         </option>
 
         @endforeach
@@ -18,10 +19,10 @@
 </form>
 
 <h1>Edit Watchlist</h1>
-<form action="/watchlist/edit/update" method="POST">
+<form action="/watchlists/{{$watchlist->id}}/edit" method="POST">
     @method('PUT')
     @csrf
-    <select name="watchlists">
+    <select name="watchlist">
         @foreach ($userWatchlists as $watchlist)
         <option value="{{$watchlist->id}}">{{$watchlist->name}}</option>
         @endforeach
@@ -33,7 +34,7 @@
 
 
 <h1>Delete Watchlist</h1>
-<form action="watchlist/delete" method="POST">
+<form action="watchlists/{}" method="POST">
     @method('DELETE')
     @csrf
     <select name="watchlists">
