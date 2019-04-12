@@ -31,16 +31,18 @@ Route::get('reviews', 'ReviewController@showReview');
 Route::post('postReviews', 'ReviewController@postReview');
 Route::get('reviews/{id}/edit', 'ReviewController@editReview');
 Route::delete('reviews/{id}', 'ReviewController@deleteReview');
+Route::put('reviews/{id}', 'ReviewController@updateReview');
 
 // selectedActor
 Route::get('selectedActor/{id}', 'SearchController@searchActor');
 
 
-// Leo routes
-Route::get('watchlist/create', 'WatchlistController@create');
+// Watchlist
+Route::get('/watchlist', 'WatchlistController@createPage');
 Route::post('/watchlist', 'WatchlistController@saveWatchlist');
 Route::delete('/deletemovie/{id}', 'WatchlistController@deleteMovie');
-
+Route::delete('/watchlist/delete', 'WatchlistController@deleteWatchlist');
+Route::put('/watchlist/edit/update', 'WatchlistController@editWatchlist');
 
 Route::post('morereviews', 'ReviewController@postReview');
 
@@ -48,3 +50,37 @@ Route::post('morereviews', 'ReviewController@postReview');
 // Authentication Routes (added by default by laravel)
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Admin Routes
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/admin', 'AdminController@index');
+});
+
+Route::delete('deleteReview/{id}', 'AdminController@deleteReview');
+Route::delete('deleteUser/{id}', 'AdminController@deleteUser');
+Route::delete('deleteWatchlist/{id}', 'AdminController@deleteWatchlist');
+Route::get('/admin/reviews', 'AdminController@showReviews');
+Route::get('/admin/users', 'AdminController@showUsers');
+Route::get('/admin/watchlists', 'AdminController@showWatchlists');
+
+Route::post('/admin/add/user', 'AdminController@addUser');
+
+Route::get('admin/add/review', function () {
+    return view('admin/addReview');
+});
+
+Route::get('admin/add/watchlist', function () {
+    return view('admin/addWatchlist');
+});
+
+Route::get('admin/add/user', function () {
+    return view('admin/addUser');
+});
+
+Route::patch('admin/review/update/{id}', 'AdminController@updateReview');
+Route::patch('admin/users/update/{id}', 'AdminController@updateUsers');
+Route::patch('admin/watchlist/update/{id}', 'AdminController@updateWatchlist');
+
+// Profile
+Route::get('profile', 'ProfileController@showProfile');
+Route::get('profile/reviews', 'ReviewController@getMyReviews');
