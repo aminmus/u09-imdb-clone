@@ -78,9 +78,9 @@ class WatchlistController extends Controller
      * @param  \App\Watchlist  $watchlists
      * @return \Illuminate\Http\Response
      */
-    public function edit(Watchlist $watchlists)
+    public function edit(Watchlist $watchlists, Request $request)
     {
-        //
+        // return 123;
     }
     /**
      * Update the specified resource in storage.
@@ -91,7 +91,11 @@ class WatchlistController extends Controller
      */
     public function update(Request $request, Watchlist $watchlists)
     {
-        //
+        $watchlistID = $request->id;
+        $watchlist = Watchlist::where('id', $watchlistID)->first();
+        $watchlist->name = $request->input('name');
+        $watchlist->save();
+        return redirect('/watchlist')->with('success', 'Watchlist Updated!');
     }
     /**
      * Remove the specified resource from storage.
@@ -150,4 +154,12 @@ class WatchlistController extends Controller
     // {
     //    return 123;
     // }
+
+    public function editWatchlist(Request $request)
+    {
+        $watchlistID = $request->watchlists;
+        $watchlist = Watchlist::where('id', $watchlistID)->get()->all();
+        unset($watchlistArr);
+        return view('watchlists.edit')->with('watchlist', $watchlist);
+    }
 }
