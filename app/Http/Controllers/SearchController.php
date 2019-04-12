@@ -68,26 +68,16 @@ class SearchController extends Controller
     public function getPopularMovies()
     {
         /* This function gets the current popular movies */
-
+        
+       
+        
         $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
         $response = $client->request('GET', "movie/popular?api_key=45499dda27fbc45918728b51e4e82810&language=en-US&page=1");
         
         $json = $response->getBody();
         $popularMovies = json_decode($json);
-        $MovieArray = [];
+        return view('popularmovies')->with('popularMovies', $popularMovies);
         
-        foreach ($popularMovies as $item) {
-            array_push($MovieArray, $item);
-        }
-        
-        $finalArray = $MovieArray[3];
-        
-        
-        $popularMoviesSliced = array_slice($finalArray, 0, 5, true);
-        
-        return view('popularmovies')->with('popularMoviesSliced', $popularMoviesSliced);
-        
-        return view('popularmovies')->with('popularMoviesSliced', $popularMoviesSliced);
     }
 
     public function searchActor(Request $request)

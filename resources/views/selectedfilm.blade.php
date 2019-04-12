@@ -32,7 +32,7 @@
     </div>
   </div>
 </div>
-<?php $count = 0; ?>
+<!-- <?php $count = 0; ?>
 @foreach ($credits->cast as $cast)
     @if ($count == 5)
         @break
@@ -40,8 +40,8 @@
     <p>{{$cast->character}}</p>
     <p>{{$cast->name}}</p>
     <a href="{{ url('selectedActor/' .$cast->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $cast->profile_path;?>" alt=""></a>
-    <?php $count++; ?>
-@endforeach
+    {{-- <?php $count++; ?> --}}
+  @endforeach -->
 
 
 
@@ -52,14 +52,14 @@
     @if ($count == 5)
         @break
     @endif
-    <div class="justify-content-center column mx-4">
+    <div class="mx-4">
     <p>{{$cast->character}}</p>
     <p>{{$cast->name}}</p>
     <a href="{{ url('selectedActor/' .$cast->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $cast->profile_path;?>" alt=""></a>
     <?php $count++; ?>
+      </div>
 @endforeach
 
-      </div>
       </div>
 
 <div class="text-center align-items-center my-5">
@@ -102,11 +102,10 @@
 
  <!-- Här behövs det visas kommentarer för specifik film
  Ladda in reviews. -->
- <div class="row my-5 justify-content-center">
 @auth
+ 
     @include('reviews.createReviewsForm') 
 @endauth
-</div>
 
 
 @endsection

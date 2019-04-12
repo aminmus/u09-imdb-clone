@@ -1,7 +1,6 @@
    
 
-      <div class="form-group col-md-8 text-center">
-      <form class="justify-content-center" method="POST" action="{{ action('ReviewController@postReview') }}" >
+      <form class="text-center" method="POST" action="{{ action('ReviewController@postReview') }}" >
   @csrf
           <label for="formGroupExampleInput2">Another label</label>
           <input name="movie_id" type="hidden" value="<?php echo $body->id;?>"/>
@@ -16,5 +15,5 @@
         </select>
 
       <button type="submit" class="btn btn-success">Post</button>
+
   </form>
-      </div>
