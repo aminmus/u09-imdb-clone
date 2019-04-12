@@ -1,5 +1,3 @@
-
-
 @extends('welcome')
 
 
@@ -36,27 +34,28 @@
 
 
 
-<div class="container">    
-  <div class="row justify-content-center">
+
+      <div class="row justify-content-center">
     <?php $count = 0; ?>
       @foreach ($credits->cast as $cast)
     <?php if ($count == 5) {
-    break;
-} ?>
-        <div>
+      break;
+    } ?>
+    <div class="justify-content-center column mx-4">
+
           <p>{{$cast->character}}</p>
           <p>{{$cast->name}}</p>
           <a href="{{ url('selectedActor/' .$cast->id. '/') }}"><img src="http://image.tmdb.org/t/p/w185/<?php echo $cast->profile_path;?>" alt=""></a>
-          <?php $count++; ?>
-        </div>
-      @endforeach
-    </div>
-</div>
 
+      </div>
+          <?php $count++; ?>
+      @endforeach
+      </div>
+
+<div class="text-center align-items-center my-5">
+<div class="justify-content-center">
 @auth
     @if(isset($userWatchlist))
-    <div class="container">
-    <div class="col justify-content-center">
     <form method="POST" action="{{ action('WatchlistController@store') }}">
     <select name="watchlist_id">
         @foreach ($userWatchlist as $watchlist)
@@ -71,23 +70,24 @@
     
     </form> 
     @else
-    <div class="container">
+
         <h1>No watchlists, why dont you create some!</h1>
         <button class="btn btn-link"><a href="/watchlist/create">Create Watchlist</a></button>
         <hr>
-        </div>
+
     @endif
 @endauth
 
-<div class="row justify-content-center">
 @guest
+<div class="row justify-content-center">
     <h1>Create an account to create watchlists</h1>
+</div>
 @endguest
 </div>
+</div>
 
-
-<div class="container">
-<div class="justify-content-center row">
+<div>
+<div class="justify-content-center row my-5">
 <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Watchlists
@@ -97,20 +97,24 @@
         <a class="dropdown-item" href="#">Another action</a>
         <a class="dropdown-item" href="#">Something else here</a>
     </div>
-</div>
-<div>
+    </div>
+    </div>
+    </div>
 
-<h1>REVIEWS</h1>
+<h1 class="text-center my-5">REVIEWS</h1>
+
+<div class="justify-content-center text-center">
  @foreach ($reviews as $review)
- <div class="container card my-3">
-  <div class="row justify-content-center">
-     <h1>{{$review->content}}</h1>
-     <h1>{{$review->rating}}</h1>
-     <h1>{{$review->user_id}}</h1>
+<div>
+<div class="row">
+     <h3>{{$review->user_id}} user name</h3>
+     <h3>{{$review->rating}} rating</h3>
+     </div>
+     <h4 class="text-left">{{$review->content}}</h4>
      <hr>
+  </div>
 @auth
     
-  </div>
 @if(Auth::user()->id === $review->user_id)
     <form class="d-inline"method="POST" action="/reviews/{{$review->id}}">
         @method('DELETE')
@@ -119,23 +123,25 @@
         <button type="submit" class="btn btn-primary">Edit</button>
     </form>
     </div>
-  </div>
-  </div>
+    </div>
+    </div>
   </div>
 @endif
 @endauth
 
  @endforeach
+  </div>
  
  
 
 
  <!-- Här behövs det visas kommentarer för specifik film
  Ladda in reviews. -->
+ <div class="row my-5 justify-content-center">
 @auth
     @include('reviews') 
 @endauth
-
+</div>
 
 
 @endsection
