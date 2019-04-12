@@ -41,60 +41,11 @@
             </td>
         </tr>
 
-        <div class="modal fade" id="editModal{{$watchlist['id']}}" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="/admin/watchlist/update/{{$watchlist['id']}}">
-                            @csrf
-                            @method('PATCH')
+        @include('admin.modals.editWatchlist')
 
-                            <div class="form-group">
-                                <label for="id">ID</label>
-                                <input type="text" name="id" class="form-control" value="{{$watchlist['id']}}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="namn">Name</label>
-                                <input type="text" name="name" class="form-control" value="{{$watchlist['name']}}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="created_at">Created At</label>
-                                <input type="text" name="created_at" class="form-control"
-                                    value="{{$watchlist['created_at']}}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="updated_at">Updated At</label>
-                                <input type="text" name="updated_at" class="form-control"
-                                    value="{{$watchlist['updated_at']}}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="user_at">User Id</label>
-                                <input type="text" name="user_id" class="form-control"
-                                    value="{{$watchlist['user_id']}}">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-outline-secondary"
-                                    data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-sm btn-outline-primary">Save changes</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-            {{-- <input type="submit" value="Submit"> --}}
-            {{-- </form> --}}
+        @endforeach
+        {{-- <input type="submit" value="Submit"> --}}
+        {{-- </form> --}}
     </tbody>
 </table>
 {{ $watchlists->links() }}
