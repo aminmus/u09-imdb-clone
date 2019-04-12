@@ -42,7 +42,7 @@ Route::get('watchlist/create', 'WatchlistController@create');
 Route::post('/watchlist', 'WatchlistController@saveWatchlist');
 Route::delete('/deletemovie/{id}', 'WatchlistController@deleteMovie');
 Route::delete('/watchlist/delete', 'WatchlistController@deleteWatchlist');
-
+Route::put('/watchlist/edit/update', 'WatchlistController@editWatchlist');
 
 Route::post('morereviews', 'ReviewController@postReview');
 

@@ -16,6 +16,21 @@
     <button type="submit">Show Watchlist</button>
 </form>
 
+<h1>Edit Watchlist</h1>
+<form action="/watchlist/edit/update" method="POST">
+    @method('PUT')
+    @csrf
+    <select name="watchlists">
+            @foreach ($userWatchlists as $watchlist)
+    <option value="{{$watchlist->id}}">{{$watchlist->name}}</option>
+    @endforeach
+    </select>
+    <button type="submit">
+        Edit 
+    </button>
+</form>
+
+
 <h1>Delete Watchlist</h1>
 <form action="watchlist/delete" method="POST">
     @method('DELETE')
