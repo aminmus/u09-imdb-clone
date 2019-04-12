@@ -57,8 +57,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 });
 
 Route::delete('deleteReview/{id}', 'AdminController@deleteReview');
-Route::delete('deleteUser', 'AdminController@deleteUser');
-Route::delete('deleteWatchlist', 'AdminController@deleteWatchlist');
+Route::delete('deleteUser/{id}', 'AdminController@deleteUser');
+Route::delete('deleteWatchlist/{id}', 'AdminController@deleteWatchlist');
 Route::get('/admin/reviews', 'AdminController@showReviews');
 Route::get('/admin/users', 'AdminController@showUsers');
 Route::get('/admin/watchlists', 'AdminController@showWatchlists');
@@ -78,6 +78,8 @@ Route::get('admin/add/user', function () {
 });
 
 Route::patch('admin/review/update/{id}', 'AdminController@updateReview');
+Route::patch('admin/users/update/{id}', 'AdminController@updateUsers');
+Route::patch('admin/watchlist/update/{id}', 'AdminController@updateWatchlist');
 
 // Profile
 Route::get('profile', 'ProfileController@showProfile');

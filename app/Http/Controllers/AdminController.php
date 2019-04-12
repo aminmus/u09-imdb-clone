@@ -33,12 +33,17 @@ class AdminController extends Controller
 
     }
 
-    public function deleteUser(Request $request)
+    public function deleteUser(Request $request, $id)
     {
-        $input = Input::all();
-        $users = array_slice($input, 2);
-        User::whereIn('id', $users)->delete();
+        // $input = Input::all();
+        // $users = array_slice($input, 2);
+        // User::whereIn('id', $users)->delete();
+        // return redirect('/admin')->with('success', 'User Deleted!');
+
+        $user = User::find($id);
+        $user->delete();
         return redirect('/admin')->with('success', 'User Deleted!');
+
     }
 
     public function deleteWatchlist(Request $request)
@@ -94,5 +99,21 @@ class AdminController extends Controller
         $review->save();
         return back()->with('success', 'Review Updated');
         
+    }
+
+    public function updateUsers(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        $user->id = $request->id;
+        $user->is_admin = $request->is_admin;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->created_at = $request->created_at;
+        $user->updated_at = $request->updated_at;
+        $user->email_verified_at = $request->email_verified_at;
+
+        $user->save();
+        return back()->with('success', 'User Updated');
     }
 }
