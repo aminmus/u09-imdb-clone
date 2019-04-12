@@ -3,9 +3,9 @@
 @section('content')
     
 <h2>Watchlists</h2>
-<form method="POST" action="{{ action('AdminController@deleteWatchlist') }}">
+{{-- <form method="POST" action="{{ action('AdminController@deleteWatchlist') }}">
     @method('DELETE')
-    @csrf
+    @csrf --}}
     <table class="table">
         <thead>
             <tr>
@@ -14,6 +14,8 @@
                 <th scope="col">@sortablelink('created_at')</th>
                 <th scope="col">@sortablelink('updated_at')</th>
                 <th scope="col">@sortablelink('user_id')</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -29,10 +31,17 @@
                 <td>{{$watchlist["created_at"]}}</td>
                 <td>{{$watchlist["updated_at"]}}</td>
                 <td>{{$watchlist["user_id"]}}</td>
+                <td>
+                <form method="POST" action="/deleteWatchlist/{{$watchlist['id']}}">
+                @method('DELETE')
+                @csrf
+                    <button type="submit">Delete</button>
+                </form>
+                </td>
             </tr>
             @endforeach
-            <input type="submit" value="Submit">
-        </form>
+            {{-- <input type="submit" value="Submit"> --}}
+        {{-- </form> --}}
     </tbody>
 </table>
 {{ $watchlists->links() }}

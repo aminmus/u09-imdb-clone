@@ -46,16 +46,23 @@ class AdminController extends Controller
 
     }
 
-    public function deleteWatchlist(Request $request)
+    public function deleteWatchlist(Request $request, $id)
     {
-        $input = Input::all();
-        $watchlists = array_slice($input, 2);
+        // $input = Input::all();
+        // $watchlists = array_slice($input, 2);
         
-        // Remove the relation in pivot table (required for next step)
-        Filmwatchlist::whereIn('watchlist_id', $watchlists)->delete();
+        // // Remove the relation in pivot table (required for next step)
+        // Filmwatchlist::whereIn('watchlist_id', $watchlists)->delete();
 
-        Watchlist::whereIn('id', $watchlists)->delete();
-        return redirect('/admin')->with('success', 'Watchlist Deleted!');
+        // Watchlist::whereIn('id', $watchlists)->delete();
+        // return redirect('/admin')->with('success', 'Watchlist Deleted!');
+
+        $watchlist = Watchlist::find($id);
+        $watchlist->delete();
+        // $filmWatchlist = Filmwatchlist::whereIn('watchlist_id', $id);
+        // $filmWatchlist->delete();
+        return redirect('/admin')->with('success', 'Watchlist Deleted');
+
     }
 
     public function showReviews()
