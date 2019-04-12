@@ -66,4 +66,13 @@ class AdminController extends Controller
         $watchlists = Watchlist::sortable()->paginate(3);
         return view('admin.watchlists')->with('watchlists', $watchlists);
     }
+
+    public function addUser(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+        ]);
+    }
 }

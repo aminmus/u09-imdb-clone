@@ -37,8 +37,8 @@ Route::put('reviews/{id}', 'ReviewController@updateReview');
 Route::get('selectedActor/{id}', 'SearchController@searchActor');
 
 
-// Leo routes
-Route::get('watchlist/create', 'WatchlistController@create');
+// Watchlist
+Route::get('/watchlist', 'WatchlistController@createPage');
 Route::post('/watchlist', 'WatchlistController@saveWatchlist');
 Route::delete('/deletemovie/{id}', 'WatchlistController@deleteMovie');
 Route::delete('/watchlist/delete', 'WatchlistController@deleteWatchlist');
@@ -63,12 +63,18 @@ Route::get('/admin/reviews', 'AdminController@showReviews');
 Route::get('/admin/users', 'AdminController@showUsers');
 Route::get('/admin/watchlists', 'AdminController@showWatchlists');
 
+Route::post('/admin/add/user', 'AdminController@addUser');
 
 Route::get('admin/add/review', function () {
     return view('admin/addReview');
 });
+
 Route::get('admin/add/watchlist', function () {
     return view('admin/addWatchlist');
+});
+
+Route::get('admin/add/user', function () {
+    return view('admin/addUser');
 });
 
 // Profile
