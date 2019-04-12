@@ -21,12 +21,16 @@ class AdminController extends Controller
         return view('admin')->with(compact('users', 'reviews', 'watchlists'));
     }
 
-    public function deleteReview(Request $request)
+    public function deleteReview($id)
     {
-        $input = Input::all();
-        $reviews = array_slice($input, 2);
-        Review::whereIn('id', $reviews)->delete();
+        // $input = Input::all();
+        // $reviews = array_slice($input, 2);
+        // Review::whereIn('id', $reviews)->delete();
+        // return redirect('/admin')->with('success', 'Review Deleted!');
+        $review = Review::find($id);
+        $review->delete();
         return redirect('/admin')->with('success', 'Review Deleted!');
+
     }
 
     public function deleteUser(Request $request)
@@ -74,5 +78,21 @@ class AdminController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
+    }
+
+    public function updateReview(Request $request, $id)
+    {
+        $review = Review::find($id);
+
+        $review->id = Input::get('id');
+        $review->content = Input::get('content');
+        $review->rating = $request->rating;
+        $review->created_at = $request->created_at;
+        $review->updated_at = $request->updated_at;
+        $review->film_id = $request->film_id;
+        $review->user_id = $request->user_id;
+        $review->save();
+        return back()->with('success', 'Review Updated');
+        
     }
 }
