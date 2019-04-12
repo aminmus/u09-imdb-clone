@@ -27,7 +27,7 @@ class WatchlistController extends Controller
     {
         $userId = Auth::id();
         $userWatchlists = Watchlist::where('user_id', $userId)->get();
-        return view('watchlist')->with('userWatchlists', $userWatchlists);
+        return view('watchlists.index')->with('userWatchlists', $userWatchlists);
     }
 
     /**
@@ -35,9 +35,9 @@ class WatchlistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createPage(Request $request)
+    public function create(Request $request)
     {
-        return view('watchlistform');
+        return view('watchlists.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class WatchlistController extends Controller
         $currentWatchlistId = 5;
         $film = Film::all()->last();
         $film->watchlist()->attach($watchlistId);
-        return redirect('/watchlist');
+        return redirect('/watchlists');
     }
     /**
      * Display the specified resource.

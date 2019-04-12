@@ -1,12 +1,48 @@
+@extends('welcome')
 
-    <h1>Posts</h1>
-    @if(count($watchlists) > 0)
-        @foreach($watchlists as $watchlist)
-            <div>
-            <h3>{{$watchlist->list_name}}</h3>
-            <small>user id: {{$watchlist->user_id}}</small>
-            </div>
-            @endforeach
-    @else
-        <p>No watchlists found</p>
-    @endif
+
+@section('content')
+<button><a href="watchlist/create">Create New Watchlist</a></button>
+
+<h1>Select Watchlist</h1>
+<form method="GET" action="{{ action('WatchlistController@loadSelectedWatchlist') }}">
+    <select name="watchlists">
+        @foreach ($userWatchlists as $watchlist)
+        <option value="<?php echo $watchlist->id;?>"><?php echo $watchlist->name;?>
+        </option>
+
+        @endforeach
+
+    </select>
+    <button type="submit">Show Watchlist</button>
+</form>
+
+<h1>Edit Watchlist</h1>
+<form action="/watchlist/edit/update" method="POST">
+    @method('PUT')
+    @csrf
+    <select name="watchlists">
+        @foreach ($userWatchlists as $watchlist)
+        <option value="{{$watchlist->id}}">{{$watchlist->name}}</option>
+        @endforeach
+    </select>
+    <button type="submit">
+        Edit
+    </button>
+</form>
+
+
+<h1>Delete Watchlist</h1>
+<form action="watchlist/delete" method="POST">
+    @method('DELETE')
+    @csrf
+    <select name="watchlists">
+        @foreach ($userWatchlists as $watchlist)
+        <option value="{{$watchlist->id}}">{{$watchlist->name}}</option>
+        @endforeach
+    </select>
+    <button type="submit">Delete</button>
+</form>
+@endsection
+
+<!---  Refaktorisera ovanstående formulär till att göra en submit när man väljer en select "onchange"-> fire submit -->
