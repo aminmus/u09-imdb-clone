@@ -21,32 +21,48 @@ class AdminController extends Controller
         return view('admin')->with(compact('users', 'reviews', 'watchlists'));
     }
 
-    public function deleteReview(Request $request)
+    public function deleteReview($id)
     {
-        $input = Input::all();
-        $reviews = array_slice($input, 2);
-        Review::whereIn('id', $reviews)->delete();
+        // $input = Input::all();
+        // $reviews = array_slice($input, 2);
+        // Review::whereIn('id', $reviews)->delete();
+        // return redirect('/admin')->with('success', 'Review Deleted!');
+        $review = Review::find($id);
+        $review->delete();
         return redirect('/admin')->with('success', 'Review Deleted!');
+
     }
 
-    public function deleteUser(Request $request)
+    public function deleteUser(Request $request, $id)
     {
-        $input = Input::all();
-        $users = array_slice($input, 2);
-        User::whereIn('id', $users)->delete();
+        // $input = Input::all();
+        // $users = array_slice($input, 2);
+        // User::whereIn('id', $users)->delete();
+        // return redirect('/admin')->with('success', 'User Deleted!');
+
+        $user = User::find($id);
+        $user->delete();
         return redirect('/admin')->with('success', 'User Deleted!');
+
     }
 
-    public function deleteWatchlist(Request $request)
+    public function deleteWatchlist(Request $request, $id)
     {
-        $input = Input::all();
-        $watchlists = array_slice($input, 2);
+        // $input = Input::all();
+        // $watchlists = array_slice($input, 2);
         
-        // Remove the relation in pivot table (required for next step)
-        Filmwatchlist::whereIn('watchlist_id', $watchlists)->delete();
+        // // Remove the relation in pivot table (required for next step)
+        // Filmwatchlist::whereIn('watchlist_id', $watchlists)->delete();
 
-        Watchlist::whereIn('id', $watchlists)->delete();
-        return redirect('/admin')->with('success', 'Watchlist Deleted!');
+        // Watchlist::whereIn('id', $watchlists)->delete();
+        // return redirect('/admin')->with('success', 'Watchlist Deleted!');
+
+        $watchlist = Watchlist::find($id);
+        $watchlist->delete();
+        // $filmWatchlist = Filmwatchlist::whereIn('watchlist_id', $id);
+        // $filmWatchlist->delete();
+        return redirect('/admin')->with('success', 'Watchlist Deleted');
+
     }
 
     public function showReviews()
@@ -74,5 +90,49 @@ class AdminController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
+    }
+
+    public function updateReview(Request $request, $id)
+    {
+        $review = Review::find($id);
+
+        $review->id = Input::get('id');
+        $review->content = Input::get('content');
+        $review->rating = $request->rating;
+        $review->created_at = $request->created_at;
+        $review->updated_at = $request->updated_at;
+        $review->film_id = $request->film_id;
+        $review->user_id = $request->user_id;
+        $review->save();
+        return back()->with('success', 'Review Updated');
+        
+    }
+
+    public function updateUsers(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        $user->id = $request->id;
+        $user->is_admin = $request->is_admin;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->created_at = $request->created_at;
+        $user->updated_at = $request->updated_at;
+        $user->email_verified_at = $request->email_verified_at;
+
+        $user->save();
+        return back()->with('success', 'User Updated');
+    }
+
+    public function updateWatchlist(Request $request, $id)
+    {
+        $watchlist = Watchlist::find($id);
+        $watchlist->id = $request->id;
+        $watchlist->name = $request->name;
+        $watchlist->created_at = $request->created_at;
+        $watchlist->updated_at = $request->updated_at;
+        $watchlist->user_id = $request->user_id;
+        $watchlist->save();
+        return back()->with('success', 'Watchlist Updated');
     }
 }
