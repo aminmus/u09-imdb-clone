@@ -39,8 +39,8 @@
 // Route::put('/watchlists/{watchlist}', update action); // modifies an existing article based on ID in the url
 // Route::delete('/watchlists/{watchlist}', destroy action); // deletes one article based on ID in the url
 
-Route::resource('watchlists', 'WatchlistController');
-
+Route::resource('watchlists', 'WatchlistController');   // Watchlist CRUD and related routes
+Route::post('addfilm', 'WatchlistController@addFilm');  // Add a film to a watchlist
 
 
 Route::get('/', function () {

@@ -4,19 +4,34 @@
 @section('content')
 <button><a href="watchlist/create">Create New Watchlist</a></button>
 
-<h1>Select Watchlist</h1>
-<form method="GET" action="/watchlists/69">
-@csrf
-    <select name="watchlist">
+<h1>Watchlists</h1>
+
+<div class="dropdown show">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        My Watchlists
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         @foreach ($userWatchlists as $watchlist)
-        <option value="{{ $watchlist->id }}">{{ $watchlist->name }}
-        </option>
-
+        <a class="dropdown-item" href="{{ route('watchlists.show', $watchlist->id) }}">{{$watchlist->name}}</a>
         @endforeach
+    </div>
+</div>
 
-    </select>
-    <button type="submit">Show Watchlist</button>
-</form>
+
+<!-- <form method="GET" action="{{ url('watchlists/{$watchlist->id}') }}">
+@csrf
+<select name="watchlist">
+    @foreach ($userWatchlists as $watchlist)
+    <option value="{{ $watchlist->id }}">{{ $watchlist->name }}
+    </option>
+
+    @endforeach
+
+</select>
+<button type="submit">Show Watchlist</button>
+</form> 
 
 <h1>Edit Watchlist</h1>
 <form action="/watchlists/{{$watchlist->id}}/edit" method="POST">
@@ -43,7 +58,7 @@
         @endforeach
     </select>
     <button type="submit">Delete</button>
-</form>
+</form> -->
 @endsection
 
 <!---  Refaktorisera ovanstående formulär till att göra en submit när man väljer en select "onchange"-> fire submit -->

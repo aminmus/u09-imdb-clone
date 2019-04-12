@@ -81,7 +81,11 @@ class WatchlistController extends Controller
             
     
         // return view('showselectedwatchlist')->with('filmsFromWatchlist', $filmsFromWatchlist);
-        print_r('tja');
+
+        // Get all film_ids connected to the given watchlist
+        $filmIds = FilmWatchlist::where('watchlist_id', $watchlist)->get();
+
+        var_dump($filmIds);
     }
     /**
      * Show the form for editing the specified resource.
