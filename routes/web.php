@@ -10,37 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::resource('watchlist', 'WatchlistController');
 
-// Route::get('testingapi', 'WatchlistController@test');
-// Route::post('testingapi', 'WatchlistController@store');
-// Route::get('testingapi', 'WatchlistController@show');
-// Route::get('watchlisttest', 'WatchlistController@loadSelectedWatchlist');
-
-// // Route::get('watchlist', 'WatchlistController@index');
-// Route::get('watchlists', 'WatchlistController@index');
-
-
-// // Watchlist
-// Route::get('/watchlist', 'WatchlistController@createPage');
-// Route::post('/watchlist', 'WatchlistController@saveWatchlist');
-// Route::delete('/deletemovie/{id}', 'WatchlistController@deleteMovie');
-// Route::delete('/watchlist/delete', 'WatchlistController@deleteWatchlist');
-// Route::put('/watchlist/edit/update', 'WatchlistController@editWatchlist');
-
-
-
-// // RESTful Watchlists
-// Route::get('/watchlists', index action); //index page to display all Watchlists
-// Route::get('/watchlists/new', create action); // displays create Watchlist form      
-// Route::post('/watchlists', store action); // creates/stores one watchlist
-// Route::get('/watchlists/{watchlist}', show action); // displays one article based on ID in the url
-// Route::get('/watchlists/{watchlist}/edit', edit action); // displays edit form based on ID in the url 
-// Route::put('/watchlists/{watchlist}', update action); // modifies an existing article based on ID in the url
-// Route::delete('/watchlists/{watchlist}', destroy action); // deletes one article based on ID in the url
-
+// Watchlist routes RESTful
 Route::resource('watchlists', 'WatchlistController');   // Watchlist CRUD and related routes
-Route::post('addfilm', 'WatchlistController@addFilm');  // Add a film to a watchlist
+
+// Add a film to a watchlist
+Route::post('addfilm', 'WatchlistController@addFilm');
 
 
 Route::get('/', function () {
