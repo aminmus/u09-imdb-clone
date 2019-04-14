@@ -8,22 +8,16 @@ use Illuminate\Support\Facades\Auth;
 use App\Watchlist;
 use App\Review;
 
-
 class SearchController extends Controller
 {
-
     public function __construct()
     {
         // ser till att man måste vara en authorized user för att kunna se vyerna i denna controller förutom de i except arrayen.
         // $this->middleware('auth', ['except' => ['searchMovie', 'getPopularMovies']]);
     }
 
-    public function searchMovie(Request $request) 
+    public function searchMovie(Request $request)
     {
-       
-       
-        
-
         $searchString = $request->search;
         $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
         $response = $client->request('GET', "search/movie?api_key=45499dda27fbc45918728b51e4e82810&query=${searchString}");
@@ -32,7 +26,7 @@ class SearchController extends Controller
        
         
         return view('searchresult')->with('body', $body);
-    } 
+    }
 
     public function searchMovieById(Request $request)
     {
@@ -42,11 +36,7 @@ class SearchController extends Controller
 
 
         $userId = Auth::id();
-        $checkWatchlist = Watchlist::where('user_id', $userId)->exists();
-        $userWatchlist = null;
-        if($checkWatchlist) {
-            $userWatchlist = Watchlist::where('user_id', $userId)->get();
-        } 
+
 
         // Main api call
         $movieId = $request->id;
@@ -55,21 +45,22 @@ class SearchController extends Controller
         $json = $response->getBody();
         $body = json_decode($json);
         
-        // Second api call 
+        // Second api call
         $movieId2 = $request->id;
         $client2 = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
         $response2 = $client2->request('GET', "movie/${movieId2}/credits?api_key=45499dda27fbc45918728b51e4e82810");
         $json2 = $response2->getBody();
         $credits = json_decode($json2);
 
-      
-          
-     
 
-    
+        $checkWatchlist = Watchlist::where('user_id', $userId)->exists();
+
+        if ($checkWatchlist === true) {
+            $userWatchlist = Watchlist::where('user_id', $userId)->get();
+        }
+
 
         return view('selectedfilm')->with(compact('userWatchlist', 'body', 'reviews', 'credits'));
-
     }
 
     public function getPopularMovies()
@@ -84,10 +75,9 @@ class SearchController extends Controller
         $json = $response->getBody();
         $popularMovies = json_decode($json);
         return view('popularmovies')->with('popularMovies', $popularMovies);
-        
     }
 
-    public function searchActor (Request $request) 
+    public function searchActor(Request $request)
     {
         // Get movies
         $actorId = $request->id;

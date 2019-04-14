@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Film extends Model
 {
-   
+    // Set custom primary key and its options
+    protected $primaryKey = 'movie_id';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+
     protected $fillable = ['movie_id', 'title', 'poster_path'];
     /* protected $fillable = ['movieinfo']; */
 
@@ -16,7 +21,7 @@ class Film extends Model
         'movie_info' => 'array'
     ]; */
 
-    public function watchlist() 
+    public function watchlist()
     {
         return $this->belongsToMany('App\Watchlist', 'film_watchlist', 'movie_id', 'watchlist_id');
     }

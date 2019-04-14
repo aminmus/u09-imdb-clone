@@ -158,16 +158,38 @@ class WatchlistController extends Controller
 
     public function addFilm(Request $request)
     {
-        $film = new Film;
 
-        $film->title = $request->title;
-        $film->poster_path = $request->poster_path;
-        $film->movie_id = $request->movie_id;
-        $film->save();
+        // Check if film is already in selected watchlist
+        $filmInsideWatchlist = Filmwatchlist::where([
+            'watchlist_id' => $request->watchlist_id,
+            'movie_id' => $request->movie_id
+            ])->first();
+
+        // If film is already in watchlist return with error message
+        if ($filmInsideWatchlist) {
+            return back()->with('error', 'Movie is already in watchlist');
+        }
+
+
+        $film = Film::where('movie_id', $request->movie_id)->first();
+
+        // If film is not already in DB, add it to DB
+        if ($film === null) {
+            $film = new Film;
+
+            $film->title = $request->title;
+            $film->poster_path = $request->poster_path;
+            $film->movie_id = $request->movie_id;
+
+            $film->save();
+        }
         
-        $watchlistId = $request->watchlist_id;
-        $film = Film::all()->last();
-        $film->watchlist()->attach($watchlistId);
+        // Add the film to selected watchlist
+        $filmWatchlist = new Filmwatchlist;
+        $filmWatchlist->movie_id = $film->movie_id;
+        $filmWatchlist->watchlist_id = $request->watchlist_id;
+        $filmWatchlist->save();
+
         return back()->with('success', 'Movie added to watchlist!');
     }
 
@@ -179,11 +201,6 @@ class WatchlistController extends Controller
         Film::where('id', $movie_id)->delete();
         return back()->with('success', 'Movie Deleted!');
     }
-
-    // public function deleteWatchlist(Request $request)
-    // {
-    //    return 123;
-    // }
 
     public function editWatchlist(Request $request)
     {
