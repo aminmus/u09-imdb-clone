@@ -5,8 +5,36 @@
 <button><a href="watchlist/create">Create New Watchlist</a></button>
 
 <h1>Watchlists</h1>
+<!-- 
+<div class="container">
+    <div class="list-group">
+        @foreach ($userWatchlists as $watchlist)
+        <button href="{{ route('watchlists.show', $watchlist->id) }}" type="button"
+            class="list-group-item list-group-item-action">{{ $watchlist->name }}</button>
 
-<div class="dropdown show">
+        @endforeach
+    </div>
+</div> -->
+<div class="container">
+    <div class="card">
+        <div class="card-header">Watchlists</div>
+        <div class="card-body">
+            <div class="list-group">
+                @foreach ($userWatchlists as $watchlist)
+                <a href="{{ route('watchlists.show', $watchlist->id) }}"
+                    class="list-group-item list-group-item-action">{{ $watchlist->name }}</a>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+    </button> -->
+
+<!-- <div class="dropdown show">
     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         My Watchlists
@@ -17,7 +45,7 @@
         <a class="dropdown-item" href="{{ route('watchlists.show', $watchlist->id) }}">{{$watchlist->name}}</a>
         @endforeach
     </div>
-</div>
+</div> -->
 
 
 <!-- <form method="GET" action="{{ url('watchlists/{$watchlist->id}') }}">

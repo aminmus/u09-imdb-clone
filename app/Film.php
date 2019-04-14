@@ -18,7 +18,7 @@ class Film extends Model
 
     public function watchlist() 
     {
-        return $this->belongsToMany('App\Watchlist', 'film_watchlist', 'film_id', 'watchlist_id');
+        return $this->belongsToMany('App\Watchlist', 'film_watchlist', 'movie_id', 'watchlist_id');
     }
     // One Film can have many Reviews
     public function reviews()

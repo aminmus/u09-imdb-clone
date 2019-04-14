@@ -74,7 +74,7 @@ class WatchlistController extends Controller
           
         // $movieIds = [];
         // foreach ($watchlist as $movie) {
-        //     array_push($movieIds, $movie->film_id);
+        //     array_push($movieIds, $movie->movie_id);
         // }
           
         // $filmsFromWatchlist = Film::whereIn('id', $movieIds)->get();
@@ -82,10 +82,17 @@ class WatchlistController extends Controller
     
         // return view('showselectedwatchlist')->with('filmsFromWatchlist', $filmsFromWatchlist);
 
-        // Get all film_ids connected to the given watchlist
-        $filmIds = FilmWatchlist::where('watchlist_id', $watchlist)->get();
+        //
 
-        var_dump($filmIds);
+        
+        // All films in watchlist, can loop over to get specific films
+        // $films = $watchlist->films()->get();
+
+        $films = FilmWatchlist::where('watchlist_id', $watchlist->id)->get();
+        
+        print_r($films);
+
+        // return view('watchlists.show')->with('films', $films);
     }
     /**
      * Show the form for editing the specified resource.
@@ -140,7 +147,7 @@ class WatchlistController extends Controller
       
     //     $movieIds = [];
     //     foreach ($watchlist as $movie) {
-    //         array_push($movieIds, $movie->film_id);
+    //         array_push($movieIds, $movie->movie_id);
     //     }
       
     //     $filmsFromWatchlist = Film::whereIn('id', $movieIds)->get();
@@ -159,7 +166,6 @@ class WatchlistController extends Controller
         $film->save();
         
         $watchlistId = $request->watchlist_id;
-        $currentWatchlistId = 5;
         $film = Film::all()->last();
         $film->watchlist()->attach($watchlistId);
         return back()->with('success', 'Movie added to watchlist!');
@@ -169,7 +175,7 @@ class WatchlistController extends Controller
     {
         // dd($request);
         $movie_id = $request->id;
-        Filmwatchlist::where('film_id', $movie_id)->delete();
+        Filmwatchlist::where('movie_id', $movie_id)->delete();
         Film::where('id', $movie_id)->delete();
         return back()->with('success', 'Movie Deleted!');
     }
