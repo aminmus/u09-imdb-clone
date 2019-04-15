@@ -2,8 +2,8 @@
 @foreach ($reviews as $review)
 <div id="review-container-{{$review->id}}">
     <h2 class="review-content">{{$review->content}}</h2>
-    <h2 class="review-rating">{{$review->rating}}</h2>
-    <h2 class="review-user_id">{{$review->user_id}}</h2>
+    <h2 class="review-rating">Rating: {{$review->rating}}/5</h2>
+    <h2 class="review-user_name">Written by: {{$review->user()->first()->name}}</h2>
     <hr>
     @auth
 
