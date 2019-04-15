@@ -6,6 +6,9 @@
         <div class="card-header">{{ $watchlist->name }}</div>
         <div class="card-body">
             <div class="list-group">
+                @if ($films->isEmpty())
+                <p class="list-group-item">Watchlist is empty</p>
+                @else
                 @foreach ($films as $film)
                 <a href="{{ url("selectedfilm/{$film->movie_id}") }}"
                     class="list-group-item list-group-item-action">{{ $film->title }}
@@ -15,8 +18,8 @@
                     --}}
 
                 </a>
-
                 @endforeach
+                @endif
             </div>
         </div>
     </div>

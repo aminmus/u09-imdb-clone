@@ -2,7 +2,7 @@
 
 
 @section('content')
-<button><a href="watchlist/create">Create New Watchlist</a></button>
+<button><a href="watchlists/create">Create New Watchlist</a></button>
 
 <h1>Watchlists</h1>
 <!-- 
