@@ -111,10 +111,14 @@ class WatchlistController extends Controller
      * @param  \App\Watchlist  $watchlists
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Watchlist $watchlists, Request $request)
+    public function destroy(Watchlist $watchlist, Request $request)
     {
-        $watchlistID = $request->watchlists;
+        $watchlistID = $request->watchlist;
+
+        Filmwatchlist::where('watchlist_id', $watchlistID)->delete();
+
         Watchlist::where('id', $watchlistID)->delete();
+        
         return back()->with('success', 'Watchlist Deleted');
     }
 

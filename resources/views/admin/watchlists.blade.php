@@ -29,9 +29,10 @@
             <td>{{$watchlist["updated_at"]}}</td>
             <td>{{$watchlist["user_id"]}}</td>
             <td>
-                <form method="POST" action="/deleteWatchlist/{{$watchlist['id']}}">
+                <form method="POST" action="/watchlists/{{$watchlist['id']}}">
                     @method('DELETE')
                     @csrf
+                    <input type="hidden" name="watchlist" value="{{ $watchlist['id'] }}">
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>
