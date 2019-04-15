@@ -37,7 +37,6 @@ class SearchController extends Controller
 
         $userId = Auth::id();
 
-
         // Main api call
         $movieId = $request->id;
         $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
@@ -58,7 +57,6 @@ class SearchController extends Controller
         if ($checkWatchlist === true) {
             $userWatchlist = Watchlist::where('user_id', $userId)->get();
         }
-
 
         return view('selectedfilm')->with(compact('userWatchlist', 'body', 'reviews', 'credits'));
     }
