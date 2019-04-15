@@ -41,8 +41,8 @@
                 @endforeach
                 @endif
             </div>
-            <a class="btn btn-primary" href="{{ route('watchlists.show', ['watchlist' => $watchlist->id]) }}">Done</a>
         </div>
+            <a class="btn btn-primary" href="{{ route('watchlists.show', ['watchlist' => $watchlist->id]) }}">Done</a>
     </div>
 </div>
 @endsection

@@ -1,12 +1,10 @@
 @extends('welcome')
 
 @section('content')
-<button><a href="watchlists/create">Create New Watchlist</a></button>
 
-<h1>Watchlists</h1>
 <div class="container">
     <div class="card">
-        <div class="card-header">Watchlists</div>
+        <div class="card-header">My Watchlists</div>
         <div class="card-body">
             <div class="list-group">
                 @foreach ($userWatchlists as $watchlist)
@@ -15,6 +13,7 @@
                 @endforeach
             </div>
         </div>
+        <a class="btn btn-primary" href="watchlists/create">Create New Watchlist</a>
     </div>
 </div>
 
