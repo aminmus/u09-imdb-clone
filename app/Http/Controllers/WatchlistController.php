@@ -69,30 +69,22 @@ class WatchlistController extends Controller
      */
     public function show(Watchlist $watchlist)
     {
-        // $selectedWatchlist = $request->watchlists;
-        // $watchlist = FilmWatchlist::where('watchlist_id', $selectedWatchlist)->get();
-          
-        // $movieIds = [];
-        // foreach ($watchlist as $movie) {
-        //     array_push($movieIds, $movie->movie_id);
-        // }
-          
-        // $filmsFromWatchlist = Film::whereIn('id', $movieIds)->get();
-            
-    
-        // return view('showselectedwatchlist')->with('filmsFromWatchlist', $filmsFromWatchlist);
-
-        //
+        // 1. Gets which films are in watchlist
+        $filmRelations = FilmWatchlist::where('watchlist_id', $watchlist->id)->get();
 
         
-        // All films in watchlist, can loop over to get specific films
-        // $films = $watchlist->films()->get();
-
-        $films = FilmWatchlist::where('watchlist_id', $watchlist->id)->get();
+        //2. Creates an array and put movie ids in
+        $movieIdList = [];
         
-        print_r($films);
+        foreach ($filmRelations as $filmRelation) {
+            $movieIdList[] = $filmRelation->movie_id;
+        };
+        
+        // 3. Gets the film objects
+        $films = Film::find($movieIdList);
 
-        // return view('watchlists.show')->with('films', $films);
+        // 4. Sends film objects to returned view
+        return view('watchlists.show')->with(compact('films', 'watchlist'));
     }
     /**
      * Show the form for editing the specified resource.
