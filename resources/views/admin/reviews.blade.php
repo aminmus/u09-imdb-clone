@@ -15,7 +15,7 @@
             <th scope="col">@sortablelink('rating')</th>
             <th scope="col">@sortablelink('created_at')</th>
             <th scope="col">@sortablelink('updated_at')</th>
-            <th scope="col">@sortablelink('film_id')</th>
+            <th scope="col">@sortablelink('movie_id')</th>
             <th scope="col">@sortablelink('user_id')</th>
             <th></th>
             <th></th>
@@ -32,7 +32,7 @@
             <td>{{$review["rating"]}}</td>
             <td>{{$review["created_at"]}}</td>
             <td>{{$review["updated_at"]}}</td>
-            <td>{{$review["film_id"]}}</td>
+            <td>{{$review["movie_id"]}}</td>
             <td>{{$review["user_id"]}}</td>
             <td>
                 <form action="/deleteReview/{{$review['id']}}" method="post">

@@ -21,12 +21,12 @@ class Watchlist extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')-> on('users');
             //Foreign keys
-            /* $table->unsignedInteger('film_id');
-            $table->foreign('film_id')->references('id')-> on('film');
+            /* $table->unsignedInteger('movie_id');
+            $table->foreign('movie_id')->references('id')-> on('film');
             $table->timestamps(); */
         });
     }
-    /* App\Watchlist::create(['name' => 'test', 'user_id' => 0, 'film_id' => 0]); */
+    /* App\Watchlist::create(['name' => 'test', 'user_id' => 0, 'movie_id' => 0]); */
     /**
      * Reverse the migrations.
      *

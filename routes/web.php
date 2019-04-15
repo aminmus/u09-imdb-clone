@@ -11,19 +11,20 @@
 |
 */
 
+// Watchlist routes RESTful
+Route::resource('watchlists', 'WatchlistController');   // Watchlist CRUD and related routes
+
+// Add a film to a watchlist
+Route::post('addfilm', 'WatchlistController@addFilm');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/', 'SearchController@getPopularMovies');
-Route::resource('watchlist', 'WatchlistController');
-Route::get('testingapi', 'WatchlistController@test');
 
 Route::post('searchresults', 'SearchController@searchMovie')->name('searchMovie');
-Route::post('testingapi', 'WatchlistController@store');
-Route::get('testingapi', 'WatchlistController@show');
 Route::any('adminer', '\Miroc\LaravelAdminer\AdminerController@index');
-Route::get('watchlist', 'WatchlistController@index');
-Route::get('watchlisttest', 'WatchlistController@loadSelectedWatchlist');
 Route::get('selectedfilm/{id}', 'SearchController@searchMovieById');
 
 // Reviews
@@ -37,12 +38,6 @@ Route::put('reviews/{id}', 'ReviewController@updateReview');
 Route::get('selectedActor/{id}', 'SearchController@searchActor');
 
 
-// Watchlist
-Route::get('/watchlist', 'WatchlistController@createPage');
-Route::post('/watchlist', 'WatchlistController@saveWatchlist');
-Route::delete('/deletemovie/{id}', 'WatchlistController@deleteMovie');
-Route::delete('/watchlist/delete', 'WatchlistController@deleteWatchlist');
-Route::put('/watchlist/edit/update', 'WatchlistController@editWatchlist');
 
 Route::post('morereviews', 'ReviewController@postReview');
 
@@ -58,10 +53,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
 Route::delete('deleteReview/{id}', 'AdminController@deleteReview');
 Route::delete('deleteUser/{id}', 'AdminController@deleteUser');
-Route::delete('deleteWatchlist/{id}', 'AdminController@deleteWatchlist');
 Route::get('/admin/reviews', 'AdminController@showReviews');
 Route::get('/admin/users', 'AdminController@showUsers');
-Route::get('/admin/watchlists', 'AdminController@showWatchlists');
 
 Route::post('/admin/add/user', 'AdminController@addUser');
 
@@ -69,9 +62,14 @@ Route::get('admin/add/review', function () {
     return view('admin/addReview');
 });
 
+Route::delete('deleteWatchlist/{id}', 'AdminController@deleteWatchlist');
+
+Route::get('/admin/watchlists', 'AdminController@showWatchlists');
+
 Route::get('admin/add/watchlist', function () {
     return view('admin/addWatchlist');
 });
+Route::patch('admin/watchlist/update/{id}', 'AdminController@updateWatchlist');
 
 Route::get('admin/add/user', function () {
     return view('admin/addUser');
@@ -79,7 +77,6 @@ Route::get('admin/add/user', function () {
 
 Route::patch('admin/review/update/{id}', 'AdminController@updateReview');
 Route::patch('admin/users/update/{id}', 'AdminController@updateUsers');
-Route::patch('admin/watchlist/update/{id}', 'AdminController@updateWatchlist');
 
 // Profile
 Route::get('profile', 'ProfileController@showProfile');

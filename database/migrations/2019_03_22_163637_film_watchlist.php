@@ -15,8 +15,8 @@ class Filmwatchlist extends Migration
     {
         //
         Schema::create('film_watchlist', function (Blueprint $table) {
-            $table->unsignedInteger('film_id');
-            $table->foreign('film_id')->references('id')-> on('film');
+            $table->string('movie_id');
+            $table->foreign('movie_id')->references('movie_id')->on('film');
             $table->unsignedInteger('watchlist_id');
             $table->foreign('watchlist_id')->references('id')->on('watchlist');
             $table->timestamps();

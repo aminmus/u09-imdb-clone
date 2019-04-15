@@ -11,7 +11,7 @@ class Watchlist extends Model
     public $sortable = ['id', 'name', 'create_at', 'updated_at', 'user_id'];
    
     /* protected $fillable = ['movie_id', 'title', 'poster_path']; */
-    /* protected $fillable = ['name', 'user_id', 'film_id'];
+    /* protected $fillable = ['name', 'user_id', 'movie_id'];
  */
     protected $fillable = ['name'];
     protected $table = "watchlist";
@@ -27,7 +27,7 @@ class Watchlist extends Model
 
     public function films()
     {
-        return $this->belongsToMany('App\Film', 'film_watchlist', 'film_id', 'watchlist_id');
+        return $this->belongsToMany('App\Film', 'film_watchlist', 'movie_id', 'watchlist_id');
     }
 
     // One Watchlist has many Films

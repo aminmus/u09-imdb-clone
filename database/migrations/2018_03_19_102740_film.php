@@ -14,11 +14,13 @@ class Film extends Migration
     public function up()
     {
         Schema::create('film', function (Blueprint $table) {
-            $table->increments('id');
+            // $table->increments('id');
             $table->string('movie_id');
             $table->string('title');
             $table->string('poster_path');
             $table->timestamps();
+
+            $table->primary('movie_id');
         });
     }
 
