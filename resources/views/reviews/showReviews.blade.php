@@ -27,8 +27,6 @@
     @endif
     @endauth
 
-
-    <hr>
 </div>
 @endforeach
 </div>
