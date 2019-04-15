@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>Create Watchlist</h1>
-<form method="POST" action="/watchlist">
+<form method="POST" action="/watchlists">
     @csrf
     <input type="hidden" name="user_id" value="<?php echo(Auth::user()->id); ?>">
     <label for="name">Genre name:</label>

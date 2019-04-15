@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Create a Watchlist</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ action('WatchlistController@saveWatchlist') }}">
+                    <form method="POST" action="/watchlists">
                         @csrf
 
                         <div class="form-group">

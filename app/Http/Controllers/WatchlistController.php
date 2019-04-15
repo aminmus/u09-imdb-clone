@@ -27,7 +27,7 @@ class WatchlistController extends Controller
     {
         $userId = Auth::id();
         $userWatchlists = Watchlist::where('user_id', $userId)->get();
-        return view('watchlist')->with('userWatchlists', $userWatchlists);
+        return view('watchlists.index')->with('userWatchlists', $userWatchlists);
     }
 
     /**
@@ -35,9 +35,9 @@ class WatchlistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createPage(Request $request)
+    public function create(Request $request)
     {
-        return view('watchlistform');
+        return view('watchlists.create');
     }
 
     /**
@@ -47,86 +47,6 @@ class WatchlistController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $film = new Film;
-
-        $film->title = $request->title;
-        $film->poster_path = $request->poster_path;
-        $film->movie_id = $request->movie_id;
-        $film->save();
-        
-        $watchlistId = $request->watchlist_id;
-        $currentWatchlistId = 5;
-        $film = Film::all()->last();
-        $film->watchlist()->attach($watchlistId);
-        return redirect('/watchlist');
-    }
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Watchlist  $watchlist
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Watchlist $watchlists)
-    {
-        //
-        $users = Watchlist::select('movie_info')->where('id', 1)->get();
-    }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Watchlist  $watchlists
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Watchlist $watchlists, Request $request)
-    {
-        // return 123;
-    }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Watchlist  $watchlists
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Watchlist $watchlists)
-    {
-        $watchlistID = $request->id;
-        $watchlist = Watchlist::where('id', $watchlistID)->first();
-        $watchlist->name = $request->input('name');
-        $watchlist->save();
-        return redirect('/watchlist')->with('success', 'Watchlist Updated!');
-    }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Watchlist  $watchlists
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Watchlist $watchlists, Request $request)
-    {
-        $watchlistID = $request->watchlists;
-        Watchlist::where('id', $watchlistID)->delete();
-        return back()->with('success', 'Watchlist Deleted');
-    }
-
-    public function loadSelectedWatchlist(Request $request)
-    {
-        $selectedWatchlist = $request->watchlists;
-        $watchlist = FilmWatchlist::where('watchlist_id', $selectedWatchlist)->get();
-      
-        $movieIds = [];
-        foreach ($watchlist as $movie) {
-            array_push($movieIds, $movie->film_id);
-        }
-      
-        $filmsFromWatchlist = Film::whereIn('id', $movieIds)->get();
-        
-
-        return view('showselectedwatchlist')->with('filmsFromWatchlist', $filmsFromWatchlist);
-    }
-
-    public function saveWatchlist(Request $request)
     {
         $this->validate($request, [
             'name' => 'required'
@@ -141,19 +61,138 @@ class WatchlistController extends Controller
         return back()->with('success', 'Watchlist Created!');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Watchlist  $watchlist
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Watchlist $watchlist)
+    {
+        // 1. Gets which films are in watchlist
+        $filmRelations = FilmWatchlist::where('watchlist_id', $watchlist->id)->get();
+
+        
+        //2. Creates an array and put movie ids in
+        $movieIdList = [];
+        
+        foreach ($filmRelations as $filmRelation) {
+            $movieIdList[] = $filmRelation->movie_id;
+        };
+        
+        // 3. Gets the film objects
+        $films = Film::find($movieIdList);
+
+        // 4. Sends film objects to returned view
+        return view('watchlists.show')->with(compact('films', 'watchlist'));
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Watchlist  $watchlists
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Watchlist $watchlist, Request $request)
+    {
+        return view('watchlists.edit')->with('watchlist', $watchlist);
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Watchlist  $watchlists
+     * @return \Illuminate\Http\Response
+     */
+    // public function update(Request $request, Watchlist $watchlist)
+    // {
+    //     $watchlistID = $request->id;
+    //     $watchlist = Watchlist::where('id', $watchlistID)->first();
+    //     $watchlist->name = $request->input('name');
+    //     $watchlist->save();
+    //     return back()->with('success', 'Watchlist Updated!');
+    // }
+
+    public function update(Request $request, Watchlist $watchlist)
+    {
+        $watchlist->name = $request->input('name');
+        $watchlist->save();
+        return back()->with('success', 'Watchlist Updated!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Watchlist  $watchlists
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Watchlist $watchlists, Request $request)
+    {
+        $watchlistID = $request->watchlists;
+        Watchlist::where('id', $watchlistID)->delete();
+        return back()->with('success', 'Watchlist Deleted');
+    }
+
+    // public function loadSelectedWatchlist(Request $request)
+    // {
+    //     $selectedWatchlist = $request->watchlists;
+    //     $watchlist = FilmWatchlist::where('watchlist_id', $selectedWatchlist)->get();
+      
+    //     $movieIds = [];
+    //     foreach ($watchlist as $movie) {
+    //         array_push($movieIds, $movie->movie_id);
+    //     }
+      
+    //     $filmsFromWatchlist = Film::whereIn('id', $movieIds)->get();
+        
+
+    //     return view('showselectedwatchlist')->with('filmsFromWatchlist', $filmsFromWatchlist);
+    // }
+
+    public function addFilm(Request $request)
+    {
+
+        // Check if film is already in selected watchlist
+        $filmInsideWatchlist = Filmwatchlist::where([
+            'watchlist_id' => $request->watchlist_id,
+            'movie_id' => $request->movie_id
+            ])->first();
+
+        // If film is already in watchlist return with error message
+        if ($filmInsideWatchlist) {
+            return back()->with('error', 'Movie is already in watchlist');
+        }
+
+
+        $film = Film::where('movie_id', $request->movie_id)->first();
+
+        // If film is not already in DB, add it to DB
+        if ($film === null) {
+            $film = new Film;
+
+            $film->title = $request->title;
+            $film->poster_path = $request->poster_path;
+            $film->movie_id = $request->movie_id;
+
+            $film->save();
+        }
+        
+        // Add the film to selected watchlist
+        $filmWatchlist = new Filmwatchlist;
+        $filmWatchlist->movie_id = $film->movie_id;
+        $filmWatchlist->watchlist_id = $request->watchlist_id;
+        $filmWatchlist->save();
+
+        return back()->with('success', 'Movie added to watchlist!');
+    }
+
     public function deleteMovie(Request $request)
     {
         // dd($request);
         $movie_id = $request->id;
-        Filmwatchlist::where('film_id', $movie_id)->delete();
+        Filmwatchlist::where('movie_id', $movie_id)->delete();
         Film::where('id', $movie_id)->delete();
         return back()->with('success', 'Movie Deleted!');
     }
-
-    // public function deleteWatchlist(Request $request)
-    // {
-    //    return 123;
-    // }
 
     public function editWatchlist(Request $request)
     {

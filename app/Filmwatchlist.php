@@ -9,7 +9,7 @@ class Filmwatchlist extends Model
    
     /* protected $fillable = ['movie_id', 'title', 'poster_path']; */
     /* protected $fillable = ['movieinfo']; */
-    protected $fillable = ['film_id', 'watchlist_id'];
+    protected $fillable = ['movie_id', 'watchlist_id'];
     protected $table = "film_watchlist";
 
     /* protected $casts = [
