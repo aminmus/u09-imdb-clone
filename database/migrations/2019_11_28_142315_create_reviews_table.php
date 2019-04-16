@@ -17,6 +17,7 @@ class CreateReviewsTable extends Migration
             $table->increments('id');
             $table->string('content', 1024);
             $table->float('rating');
+            $table->boolean('is_approved')->default(false);
             $table->timestamps();
 
             // Foreign keys

@@ -7,6 +7,7 @@
 {{-- <form method="POST" action="{{ action('AdminController@deleteReview') }}">
 @method('DELETE')
 @csrf --}}
+
 <table class="table">
     <thead>
         <tr>
@@ -17,6 +18,7 @@
             <th scope="col">@sortablelink('updated_at')</th>
             <th scope="col">@sortablelink('movie_id')</th>
             <th scope="col">@sortablelink('user_id')</th>
+            <th scope="col">@sortablelink('is_approved')</th>
             <th></th>
             <th></th>
         </tr>
@@ -34,6 +36,7 @@
             <td>{{$review["updated_at"]}}</td>
             <td>{{$review["movie_id"]}}</td>
             <td>{{$review["user_id"]}}</td>
+            <td>{{$review["is_approved"]}}</td>
             <td>
                 <form action="/deleteReview/{{$review['id']}}" method="post">
                     @csrf

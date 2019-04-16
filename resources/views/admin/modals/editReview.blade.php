@@ -57,6 +57,11 @@
                         <input class="form-control" type="text" name="user_id" value="{{$review['user_id']}}">
                     </div>
 
+                    <div class="form-group">
+                        <label for="is_approved">Is Approved</label>
+                        <input class="form-control" type="text" name="user_id" value="{{$review['is_approved']}}">
+                    </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal">Close</button>
