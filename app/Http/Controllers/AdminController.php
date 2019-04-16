@@ -30,7 +30,6 @@ class AdminController extends Controller
         $review = Review::find($id);
         $review->delete();
         return redirect('/admin')->with('success', 'Review Deleted!');
-
     }
 
     public function deleteUser(Request $request, $id)
@@ -43,7 +42,6 @@ class AdminController extends Controller
         $user = User::find($id);
         $user->delete();
         return redirect('/admin')->with('success', 'User Deleted!');
-
     }
 
     public function deleteWatchlist(Request $request, $id)
@@ -62,7 +60,6 @@ class AdminController extends Controller
         // $filmWatchlist = Filmwatchlist::whereIn('watchlist_id', $id);
         // $filmWatchlist->delete();
         return redirect('/admin')->with('success', 'Watchlist Deleted');
-
     }
 
     public function showReviews()
@@ -90,6 +87,11 @@ class AdminController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
+
+        $request->merge(['password' => Hash::make($request->password)]);
+
+        $user = User::create($request->only(['name', 'email', 'password']));
+
     }
 
     public function updateReview(Request $request, $id)
@@ -105,7 +107,6 @@ class AdminController extends Controller
         $review->user_id = $request->user_id;
         $review->save();
         return back()->with('success', 'Review Updated');
-        
     }
 
     public function updateUsers(Request $request, $id)
