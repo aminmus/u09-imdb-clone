@@ -48,8 +48,8 @@
 
 
                     <div class="form-group">
-                        <label for="film_id">Film ID</label>
-                        <input class="form-control" type="text" name="film_id" value="{{$review['film_id']}}">
+                        <label for="movie_id">Film ID</label>
+                        <input class="form-control" type="text" name="movie_id" value="{{$review['movie_id']}}">
                     </div>
 
                     <div class="form-group">

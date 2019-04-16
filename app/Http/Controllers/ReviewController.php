@@ -31,7 +31,7 @@ class ReviewController extends Controller
         $userId = Auth::id();
         $review = new Review;
         $review->content = $request->content;
-        $review->film_id = $request->movie_id;
+        $review->movie_id = $request->movie_id;
         $review->rating = $request->rating;
         $review->user_id = $userId;
 

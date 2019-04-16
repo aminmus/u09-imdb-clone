@@ -66,7 +66,7 @@
 <div class="justify-content-center">
 @auth
     @if(isset($userWatchlist))
-    <form method="POST" action="{{ action('WatchlistController@store') }}">
+    <form method="POST" action="{{ action('WatchlistController@addFilm') }}">
     <select name="watchlist_id">
         @foreach ($userWatchlist as $watchlist)
         <option value="<?php echo $watchlist->id ;?>"><?php echo $watchlist->name ;?></option>
@@ -77,14 +77,14 @@
         <input name="title" type="hidden" value="<?php echo $body->title;?>"/>
         <input name="poster_path" type="hidden" value="<?php echo $body->poster_path;?>"/>
     <button type="submit">Save Movie</button>
-    <a href="/watchlist" class="btn btn-link">Create Watchlist</a>
-    <a class="btn btn-link" href="/watchlist">Show Watchlists</a>
+    <a href="/watchlists/create" class="btn btn-link">Create Watchlist</a>
+    <a class="btn btn-link" href="/watchlists">Show Watchlists</a>
     
     </form> 
     @else
 
         <h1>No watchlists, why dont you create some!</h1>
-        <button class="btn btn-link"><a href="/watchlist">Create Watchlist</a></button>
+        <button class="btn btn-link"><a href="/watchlists/create">Create Watchlist</a></button>
         <hr>
 
     @endif

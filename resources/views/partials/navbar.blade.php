@@ -37,7 +37,7 @@
                         <a class="dropdown-item" href="{{ url('/profile') }}">Profile Dashboard</a>
 
 
-                        <a class="dropdown-item" href="{{ url('/watchlist') }}">My Watchlists</a>
+                        <a class="dropdown-item" href="{{ url('/watchlists') }}">My Watchlists</a>
 
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

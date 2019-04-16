@@ -9,8 +9,9 @@
 </div>
 <div class="col-md-8">
     <h2 class="review-content">{{$review->content}}</h2>
-</div>
-
+    <h2 class="review-rating">Rating: {{$review->rating}}/5</h2>
+    <h2 class="review-user_name">Written by: {{$review->user()->first()->name}}</h2>
+    <hr>
     @auth
 
     @if(Auth::user()->id === $review->user_id)

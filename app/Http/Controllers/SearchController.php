@@ -31,16 +31,19 @@ class SearchController extends Controller
     public function searchMovieById(Request $request)
     {
         /* This function recieves a request when a user clicks a movie after having used the search function and makes a request with the movie id */
-        $reviews = Review::where('film_id', $request->id)->get();
+        $reviews = Review::where('movie_id', $request->id)->get();
         
 
 
         $userId = Auth::id();
+<<<<<<< HEAD
         $checkWatchlist = Watchlist::where('user_id', $userId)->exists();
         $userWatchlist = null;
         if ($checkWatchlist) {
             $userWatchlist = Watchlist::where('user_id', $userId)->get();
         }
+=======
+>>>>>>> develop
 
         // Main api call
         $movieId = $request->id;
@@ -56,12 +59,16 @@ class SearchController extends Controller
         $json2 = $response2->getBody();
         $credits = json_decode($json2);
 
-      
-          
-     
 
-    
+        $checkWatchlist = Watchlist::where('user_id', $userId)->exists();
 
+<<<<<<< HEAD
+=======
+        if ($checkWatchlist === true) {
+            $userWatchlist = Watchlist::where('user_id', $userId)->get();
+        }
+
+>>>>>>> develop
         return view('selectedfilm')->with(compact('userWatchlist', 'body', 'reviews', 'credits'));
     }
 
@@ -77,7 +84,6 @@ class SearchController extends Controller
         $json = $response->getBody();
         $popularMovies = json_decode($json);
         return view('popularmovies')->with('popularMovies', $popularMovies);
-        
     }
 
     public function searchActor(Request $request)

@@ -1,12 +1,20 @@
+@extends('welcome')
 
-    <h1>Posts</h1>
-    @if(count($watchlists) > 0)
-        @foreach($watchlists as $watchlist)
-            <div>
-            <h3>{{$watchlist->list_name}}</h3>
-            <small>user id: {{$watchlist->user_id}}</small>
+@section('content')
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">My Watchlists</div>
+        <div class="card-body">
+            <div class="list-group">
+                @foreach ($userWatchlists as $watchlist)
+                <a href="{{ route('watchlists.show', $watchlist->id) }}"
+                    class="list-group-item list-group-item-action">{{ $watchlist->name }}</a>
+                @endforeach
             </div>
-            @endforeach
-    @else
-        <p>No watchlists found</p>
-    @endif
+        </div>
+        <a class="btn btn-primary" href="watchlists/create">Create New Watchlist</a>
+    </div>
+</div>
+
+@endsection

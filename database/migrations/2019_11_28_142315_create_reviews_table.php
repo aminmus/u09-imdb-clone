@@ -20,7 +20,7 @@ class CreateReviewsTable extends Migration
             $table->timestamps();
 
             // Foreign keys
-            $table->unsignedInteger('film_id');
+            $table->unsignedInteger('movie_id')->references('movie_id')->on('film');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });
