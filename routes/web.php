@@ -63,3 +63,6 @@ Route::delete('deleteWatchlist', 'AdminController@deleteWatchlist');
 // Profile
 Route::get('profile', 'ProfileController@showProfile');
 Route::get('profile/reviews', 'ReviewController@getMyReviews');
+
+// Ajax reload
+Route::post('testingajax', 'AdminController@testingajax');

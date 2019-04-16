@@ -14,7 +14,9 @@
     </select>
     <button type="submit">Show Watchlist</button>
     <button><a href="watchlist/create">Create Watchlist</a></button>
+    
 </form>
+
 @endsection
 
 <!---  Refaktorisera ovanstående formulär till att göra en submit när man väljer en select "onchange"-> fire submit -->
