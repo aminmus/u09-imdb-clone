@@ -14,7 +14,7 @@
             <th scope="col">@sortablelink('created_at')</th>
             <th scope="col">@sortablelink('updated_at')</th>
             <th scope="col">@sortablelink('user_id')</th>
-            <th></th>
+            <th><a href="/admin/add/watchlist" class="btn btn-success">Add new watchlist</a></th>
             <th></th>
         </tr>
     </thead>

@@ -14,7 +14,7 @@
             <th scope="col">@sortablelink('created_at', 'Created At')</th>
             <th scope="col">@sortablelink('updated_at', 'Updated At')</th>
             <th scope="col">@sortablelink('email_verified_at', 'Email Verified At')</th>
-            <th><a href="/admin/add/user" class="btn btn-secondary">Add new user</a></th>
+            <th><a href="/admin/add/user" class="btn btn-success">Add new user</a></th>
             <th></th>
         </tr>
     </thead>
