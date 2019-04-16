@@ -4,9 +4,6 @@
 
 
 <h2>Users</h2>
-{{-- <form method="POST" action="{{ action('AdminController@deleteUser') }}">
-@method('DELETE')
-@csrf --}}
 <table class="table">
     <thead>
         <tr>
@@ -17,7 +14,7 @@
             <th scope="col">@sortablelink('created_at', 'Created At')</th>
             <th scope="col">@sortablelink('updated_at', 'Updated At')</th>
             <th scope="col">@sortablelink('email_verified_at', 'Email Verified At')</th>
-            <th></th>
+            <th><a href="/admin/add/user" class="btn btn-secondary">Add new user</a></th>
             <th></th>
         </tr>
     </thead>
@@ -47,9 +44,8 @@
         @include('admin.modals.editUser')
         @endforeach
 
-        {{-- </form> --}}
     </tbody>
 </table>
-{{$users->links()}}
+{{ $users->links() }}
 <a href="/admin">Go Back</a>
 @endsection

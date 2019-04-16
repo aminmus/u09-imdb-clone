@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Watchlist;
 use App\Review;
 use App\User;
@@ -29,7 +30,7 @@ class AdminController extends Controller
         // return redirect('/admin')->with('success', 'Review Deleted!');
         $review = Review::find($id);
         $review->delete();
-        return redirect('/admin')->with('success', 'Review Deleted!');
+        return back()->with('success', 'Review Deleted!');
     }
 
     public function deleteUser(Request $request, $id)
@@ -41,7 +42,7 @@ class AdminController extends Controller
 
         $user = User::find($id);
         $user->delete();
-        return redirect('/admin')->with('success', 'User Deleted!');
+        return back()->with('success', 'User Deleted!');
     }
 
     public function deleteWatchlist(Request $request, $id)
@@ -59,7 +60,7 @@ class AdminController extends Controller
         $watchlist->delete();
         // $filmWatchlist = Filmwatchlist::whereIn('watchlist_id', $id);
         // $filmWatchlist->delete();
-        return redirect('/admin')->with('success', 'Watchlist Deleted');
+        return back()->with('success', 'Watchlist Deleted');
     }
 
     public function showReviews()
@@ -82,16 +83,26 @@ class AdminController extends Controller
 
     public function addUser(Request $request)
     {
+        // Validation
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
 
+        // Hash the password
         $request->merge(['password' => Hash::make($request->password)]);
 
+        // Create the user by applying mass asignables
         $user = User::create($request->only(['name', 'email', 'password']));
 
+        // Check if is_admin checkbox on view is selected, and if so make user admin
+        if ($request->is_admin === 'on') {
+            $user->is_admin = true;
+            $user->save();
+        };
+
+        return back()->with('success', 'User added!');
     }
 
     public function updateReview(Request $request, $id)
