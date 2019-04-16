@@ -112,8 +112,6 @@ class AdminController extends Controller
         $review->id = Input::get('id');
         $review->content = Input::get('content');
         $review->rating = $request->rating;
-        $review->created_at = $request->created_at;
-        $review->updated_at = $request->updated_at;
         $review->movie_id = $request->movie_id;
         $review->user_id = $request->user_id;
         $review->save();
@@ -128,8 +126,6 @@ class AdminController extends Controller
         $user->is_admin = $request->is_admin;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->created_at = $request->created_at;
-        $user->updated_at = $request->updated_at;
         $user->email_verified_at = $request->email_verified_at;
 
         $user->save();
@@ -141,8 +137,6 @@ class AdminController extends Controller
         $watchlist = Watchlist::find($id);
         $watchlist->id = $request->id;
         $watchlist->name = $request->name;
-        $watchlist->created_at = $request->created_at;
-        $watchlist->updated_at = $request->updated_at;
         $watchlist->user_id = $request->user_id;
         $watchlist->save();
         return back()->with('success', 'Watchlist Updated');
