@@ -11,16 +11,18 @@
 |
 */
 
-// Watchlist routes RESTful
-Route::resource('watchlists', 'WatchlistController');   // Watchlist CRUD and related routes
-
+// Watchlist CRUD and related routes
+Route::resource('watchlists', 'WatchlistController');
 // Add a film to a watchlist
 Route::post('addfilm', 'WatchlistController@addFilm');
+// Remove a film from watchlist
+Route::delete('removefilm/{movie_id}', 'WatchlistController@removeFilm');
 
-
+// Main and layout page
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/', 'SearchController@getPopularMovies');
 
 Route::post('searchresults', 'SearchController@searchMovie')->name('searchMovie');

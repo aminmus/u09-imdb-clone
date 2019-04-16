@@ -69,23 +69,13 @@ class WatchlistController extends Controller
      */
     public function show(Watchlist $watchlist)
     {
-        // 1. Gets which films are in watchlist
-        $filmRelations = FilmWatchlist::where('watchlist_id', $watchlist->id)->get();
+        // Gets all film objects for this watchlist (using helper method)
+        $films = self::getFilms($watchlist);
 
-        
-        //2. Creates an array and put movie ids in
-        $movieIdList = [];
-        
-        foreach ($filmRelations as $filmRelation) {
-            $movieIdList[] = $filmRelation->movie_id;
-        };
-        
-        // 3. Gets the film objects
-        $films = Film::find($movieIdList);
-
-        // 4. Sends film objects to returned view
+        // Sends film objects to returned view
         return view('watchlists.show')->with(compact('films', 'watchlist'));
     }
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -94,25 +84,21 @@ class WatchlistController extends Controller
      */
     public function edit(Watchlist $watchlist, Request $request)
     {
-        return view('watchlists.edit')->with('watchlist', $watchlist);
+        $films = self::getFilms($watchlist);
+        
+        return view('watchlists.edit')->with(compact('films', 'watchlist'));
     }
+
     /**
      * Update the specified resource in storage.
+     *
+     * Used to change name of specified watchlist.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Watchlist  $watchlists
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, Watchlist $watchlist)
-    // {
-    //     $watchlistID = $request->id;
-    //     $watchlist = Watchlist::where('id', $watchlistID)->first();
-    //     $watchlist->name = $request->input('name');
-    //     $watchlist->save();
-    //     return back()->with('success', 'Watchlist Updated!');
-    // }
-
-    public function update(Request $request, Watchlist $watchlist)
+    public function update(Watchlist $watchlist, Request $request)
     {
         $watchlist->name = $request->input('name');
         $watchlist->save();
@@ -131,22 +117,6 @@ class WatchlistController extends Controller
         Watchlist::where('id', $watchlistID)->delete();
         return back()->with('success', 'Watchlist Deleted');
     }
-
-    // public function loadSelectedWatchlist(Request $request)
-    // {
-    //     $selectedWatchlist = $request->watchlists;
-    //     $watchlist = FilmWatchlist::where('watchlist_id', $selectedWatchlist)->get();
-      
-    //     $movieIds = [];
-    //     foreach ($watchlist as $movie) {
-    //         array_push($movieIds, $movie->movie_id);
-    //     }
-      
-    //     $filmsFromWatchlist = Film::whereIn('id', $movieIds)->get();
-        
-
-    //     return view('showselectedwatchlist')->with('filmsFromWatchlist', $filmsFromWatchlist);
-    // }
 
     public function addFilm(Request $request)
     {
@@ -185,20 +155,35 @@ class WatchlistController extends Controller
         return back()->with('success', 'Movie added to watchlist!');
     }
 
-    public function deleteMovie(Request $request)
+    // Remove film from watchlist
+    public function removeFilm(Watchlist $watchlist, Request $request)
     {
-        // dd($request);
-        $movie_id = $request->id;
+        $movie_id = $request->movie_id;
         Filmwatchlist::where('movie_id', $movie_id)->delete();
-        Film::where('id', $movie_id)->delete();
-        return back()->with('success', 'Movie Deleted!');
+
+        // Gets all film objects for this watchlist (using helper method)
+        $films = self::getFilms($watchlist);
+
+        return back()->with(compact(['success' => 'Movie Deleted!'], 'films', 'watchlist'));
     }
 
-    public function editWatchlist(Request $request)
+    // Returns all films from a watchlist
+    public function getFilms(Watchlist $watchlist)
     {
-        $watchlistID = $request->watchlists;
-        $watchlist = Watchlist::where('id', $watchlistID)->get()->all();
-        unset($watchlistArr);
-        return view('watchlists.edit')->with('watchlist', $watchlist);
+        // Gets which films are in watchlist
+        $filmRelations = FilmWatchlist::where('watchlist_id', $watchlist->id)->get();
+
+        // Creates an array and put movie ids in
+        $movieIdList = [];
+                
+        foreach ($filmRelations as $filmRelation) {
+            $movieIdList[] = $filmRelation->movie_id;
+        };
+
+        // Gets film objects
+        $films = Film::find($movieIdList);
+
+        // Returns array with film objects
+        return $films;
     }
 }
