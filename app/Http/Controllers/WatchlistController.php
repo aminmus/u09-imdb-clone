@@ -58,7 +58,7 @@ class WatchlistController extends Controller
         $watchlist->user_id = $userId;
         $watchlist->name = $request->name;
         $watchlist->save();
-        return back()->with('success', 'Watchlist Created!');
+        return redirect('watchlists')->with('success', 'Watchlist Created!');
     }
 
     /**
