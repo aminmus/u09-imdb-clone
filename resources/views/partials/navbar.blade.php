@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-sm navbar-light navbar-laravel">
       <div class="navbar-nav">
+      <a class="navbar-brand" href="{{ url('/')}}">
         <h3 class="nav-item">IMDB-CLONE DRAGONS</h3>
+        </a>
       </div>
         <div class="justify-content-right">
             
