@@ -37,17 +37,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="created_at">Created At</label>
-                        <input class="form-control" type="text" name="created_at" value="{{$review['created_at']}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="updated_at">Updated At</label>
-                        <input class="form-control" type="text" name="updated_at" value="{{$review['updated_at']}}">
-                    </div>
-
-
-                    <div class="form-group">
                         <label for="movie_id">Film ID</label>
                         <input class="form-control" type="text" name="movie_id" value="{{$review['movie_id']}}">
                     </div>
