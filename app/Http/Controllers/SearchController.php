@@ -36,6 +36,14 @@ class SearchController extends Controller
 
 
         $userId = Auth::id();
+<<<<<<< HEAD
+        $checkWatchlist = Watchlist::where('user_id', $userId)->exists();
+        $userWatchlist = null;
+        if ($checkWatchlist) {
+            $userWatchlist = Watchlist::where('user_id', $userId)->get();
+        }
+=======
+>>>>>>> develop
 
         // Main api call
         $movieId = $request->id;
@@ -54,10 +62,13 @@ class SearchController extends Controller
 
         $checkWatchlist = Watchlist::where('user_id', $userId)->exists();
 
+<<<<<<< HEAD
+=======
         if ($checkWatchlist === true) {
             $userWatchlist = Watchlist::where('user_id', $userId)->get();
         }
 
+>>>>>>> develop
         return view('selectedfilm')->with(compact('userWatchlist', 'body', 'reviews', 'credits'));
     }
 
