@@ -2,14 +2,14 @@
 
 @section('content')
 
-  <div class="row justify-content-center my-5">
+  <div class="row justify-content-center my-2">
     <div class="col-md-12 text-center">
       <div class="card card-default">
         <div class="card-header">
           <h1 class="text-center">Top 5 Movies</h1>
         </div>
-        <div class="card-body justify-content-center">
-            <div class="container d-flex">  
+        <div class="card-body justify-content-center my-5">
+            <div class="container d-flex my-5">  
                 <?php $count = 0; ?>
                  @foreach ($popularMovies->results as $movie)
                  @if ($count == 5)
