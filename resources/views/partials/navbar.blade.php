@@ -1,31 +1,22 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
+<nav class="navbar navbar-expand-sm navbar-light navbar-laravel">
+      <div class="navbar-nav">
+      <a class="navbar-brand" href="{{ url('/')}}">
+        <h3 class="nav-item">IMDB-CLONE DRAGONS</h3>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+      </div>
+        <div class="justify-content-right">
+            
+        </div>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
-                <div class="column">
-                    IMDB Clone Dragones
-                </div>
-                <div class="column align-self-center">
-                    <form method="POST" action="{{ route('searchMovie') }}">
-                        <input type="text" name="search">
-                        <input name="_token" type="hidden" value="{{ csrf_token() }}" />
-                        <button type="submit">Search Movie</button>
-                    </form>
-                </div>
-            </ul>
-
-            <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
-                <!-- Authentication Links -->
+                <form class="nav-item" method="POST" action="{{ route('searchMovie') }}">
+                    <input class="nav-item" type="text" name="search">
+                    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+                    <button class="nav-button" type="submit">Search Movie</button>
+                </form>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/watchlist') }}"><b>My Watchlists</b></a>
+                </li>
                 @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -61,6 +52,4 @@
                 </li>
                 @endguest
             </ul>
-        </div>
-    </div>
 </nav>

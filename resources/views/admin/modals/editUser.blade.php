@@ -34,16 +34,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="created_at">Created At</label>
-                        <input class="form-control" type="text" name="created_at" value="{{$user['created_at']}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="updated_at">Updated At</label>
-                        <input class="form-control" type="text" name="updated_at" value="{{$user['updated_at']}}">
-                    </div>
-
-                    <div class="form-group">
                         <label for="email_verified_at">Email Verified At</label>
                         <input class="form-control" type="text" name="email_verified_at"
                             value="{{$user['email_verified_at']}}">

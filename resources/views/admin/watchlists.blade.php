@@ -14,7 +14,7 @@
             <th scope="col">@sortablelink('created_at')</th>
             <th scope="col">@sortablelink('updated_at')</th>
             <th scope="col">@sortablelink('user_id')</th>
-            <th></th>
+            <th><a href="/admin/add/watchlist" class="btn btn-success">Add new watchlist</a></th>
             <th></th>
         </tr>
     </thead>
@@ -29,9 +29,10 @@
             <td>{{$watchlist["updated_at"]}}</td>
             <td>{{$watchlist["user_id"]}}</td>
             <td>
-                <form method="POST" action="/deleteWatchlist/{{$watchlist['id']}}">
+                <form method="POST" action="/watchlists/{{$watchlist['id']}}">
                     @method('DELETE')
                     @csrf
+                    <input type="hidden" name="watchlist" value="{{ $watchlist['id'] }}">
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>

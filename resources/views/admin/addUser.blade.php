@@ -36,7 +36,7 @@
 
                         <div class="form-group">
                             <label for="is-admin-input">Admin</label>
-                            <input id="is-admin-input" name="is_admin" type="checkbox" value="{{true}}"
+                            <input id="is-admin-input" name="is_admin" type="checkbox"
                                 class="form-control" />
                         </div>
 

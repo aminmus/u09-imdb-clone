@@ -17,7 +17,7 @@
             <th scope="col">@sortablelink('updated_at')</th>
             <th scope="col">@sortablelink('movie_id')</th>
             <th scope="col">@sortablelink('user_id')</th>
-            <th></th>
+            <th><a href="/admin/add/review" class="btn btn-success">Add new review</a></th>
             <th></th>
         </tr>
     </thead>
