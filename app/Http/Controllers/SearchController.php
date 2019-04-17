@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use App\Watchlist;
 use App\Review;
+use Illuminate\Support\Facades\Input;
 
 class SearchController extends Controller
 {
@@ -58,6 +59,8 @@ class SearchController extends Controller
             case "Thriller":
                 $genreId = 53;
                 break;
+            default:
+            echo "Genre doesnt exist";
             }
             
             $searchString = $request->search;
