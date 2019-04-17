@@ -3,9 +3,6 @@
 @section('content')
 
 <h2>Watchlists</h2>
-{{-- <form method="POST" action="{{ action('AdminController@deleteWatchlist') }}">
-@method('DELETE')
-@csrf --}}
 <table class="table">
     <thead>
         <tr>
@@ -29,7 +26,7 @@
             <td>{{$watchlist["updated_at"]}}</td>
             <td>{{$watchlist["user_id"]}}</td>
             <td>
-                <form method="POST" action="/watchlists/{{$watchlist['id']}}">
+                <form method="POST" action="{{ action('AdminController@deleteWatchlist', [$watchlist['id']]) }}">
                     @method('DELETE')
                     @csrf
                     <input type="hidden" name="watchlist" value="{{ $watchlist['id'] }}">
@@ -45,8 +42,6 @@
         @include('admin.modals.editWatchlist')
 
         @endforeach
-        {{-- <input type="submit" value="Submit"> --}}
-        {{-- </form> --}}
     </tbody>
 </table>
 {{ $watchlists->links() }}

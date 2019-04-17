@@ -37,9 +37,10 @@
             <td>{{$review["user_id"]}}</td>
             <td>{{$review["is_approved"]}}</td>
             <td>
-                <form action="/deleteReview/{{$review['id']}}" method="post">
-                    @csrf
+
+                <form action="{{ action('AdminController@deleteReview', [$review['id']]) }}" method="post">
                     @method('DELETE')
+                    @csrf
                     <button type="submit" class="btn btn-danger" value="Submit">Delete</button>
 
                 </form>

@@ -12,7 +12,7 @@ class SearchController extends Controller
 {
     public function __construct()
     {
-        // ser till att man måste vara en authorized user för att kunna se vyerna i denna controller förutom de i except arrayen.
+        // ser till att man måste vara en authenticated user för att kunna se vyerna i denna controller förutom de i except arrayen.
         // $this->middleware('auth', ['except' => ['searchMovie', 'getPopularMovies']]);
     }
 
