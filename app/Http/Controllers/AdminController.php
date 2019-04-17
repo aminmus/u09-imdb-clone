@@ -114,6 +114,7 @@ class AdminController extends Controller
         $review->rating = $request->rating;
         $review->movie_id = $request->movie_id;
         $review->user_id = $request->user_id;
+        $review->is_approved = $request->is_approved;
         $review->save();
         return back()->with('success', 'Review Updated');
     }
