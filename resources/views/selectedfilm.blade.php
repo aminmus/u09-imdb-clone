@@ -91,7 +91,7 @@
 @endauth
 
 @guest
-<div class="row justify-content-center">
+<div class="row">
     <h1>Create an account to create watchlists</h1>
 </div>
 @endguest
@@ -100,10 +100,10 @@
 @include('reviews.showReviews')
 
 
+
  <!-- Här behövs det visas kommentarer för specifik film
  Ladda in reviews. -->
 @auth
- 
     @include('reviews.createReviewsForm') 
 @endauth
 
