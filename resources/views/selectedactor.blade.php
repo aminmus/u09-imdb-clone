@@ -1,6 +1,9 @@
 @extends('welcome')
 
 @section('content')
+<?php
+dd($movies)
+?>
     <div class="container my-5">
       <div class="mx-3">
         <img src="http://image.tmdb.org/t/p/w185/<?php echo $actor->profile_path;?>" alt="">

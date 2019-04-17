@@ -3,6 +3,7 @@
 
     
 @section('content')
+
     <div class="row justify-content-center absolute">
     <div>
         <img src="http://image.tmdb.org/t/p/w1280/<?php echo $body->backdrop_path;?>" alt="">
@@ -19,6 +20,10 @@
       </div>
       <div class="card-body justify-content-center">
         <p>  {{$body->overview}}<p>
+        <p>  {{$body->vote_average}}<p>
+        @foreach ($body->genres as $genre)
+            <p>{{$genre->name}}</p>
+        @endforeach
 
         <img src="http://image.tmdb.org/t/p/w185/<?php echo $body->poster_path;?>">
         <form method="POST" action="{{ action('WatchlistController@store') }}">

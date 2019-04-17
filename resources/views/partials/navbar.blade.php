@@ -12,6 +12,10 @@
                 <form class="nav-item" method="POST" action="{{ route('searchMovie') }}">
                     <input class="nav-item" type="text" name="search">
                     <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+                    <select name="searchoption">
+                        <option value="movie">Movies</option>
+                        <option value="genre">Genre</option>
+                    </select>
                     <button class="nav-button" type="submit">Search Movie</button>
                 </form>
                 <li class="nav-item">

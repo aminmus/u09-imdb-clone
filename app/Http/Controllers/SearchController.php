@@ -17,13 +17,63 @@ class SearchController extends Controller
     }
 
     public function searchMovie(Request $request)
-    {
+    {   
+        
+        if ($request->searchoption === "genre") {
+            $genreId = '';
+            switch ($request->search) {
+                case "Action":
+                $genreId = 28;
+                break;
+            case "Adventure":
+                $genreId = 12;
+                break;
+            case "Comedy":
+                $genreId = 35;
+                break;
+            case "Crime":
+                $genreId = 80;
+                break;
+            case "Animation":
+                $genreId = 16;
+                break;
+            case "Documentary":
+                $genreId = 99;
+                break;
+            case "Drama":
+                $genreId = 18;
+                break;
+            case "Fantasy":
+                $genreId = 14;
+                break;
+            case "Horror":
+                $genreId = 27;
+                break;
+            case "Romance":
+                $genreId = 10749;
+                break;
+            case "Science Fiction":
+                $genreId = 878;
+                break;
+            case "Thriller":
+                $genreId = 53;
+                break;
+            }
+            
+            $searchString = $request->search;
+            $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
+            $response = $client->request('GET', "discover/movie?api_key=45499dda27fbc45918728b51e4e82810&with_genres=${genreId}");
+            $json = $response->getBody();
+            $body = json_decode($json);
+            
+            return view('searchresult')->with('body', $body);
+        }
+        
         $searchString = $request->search;
         $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
         $response = $client->request('GET', "search/movie?api_key=45499dda27fbc45918728b51e4e82810&query=${searchString}");
         $json = $response->getBody();
         $body = json_decode($json);
-       
         
         return view('searchresult')->with('body', $body);
     }
