@@ -19,4 +19,5 @@
 @else
     <h1>Didnt work</h1>
 @endif 
+@include('inc.messages')
 @endsection

@@ -103,12 +103,14 @@
     
 <!-- Reviews -->
 @include('reviews.showReviews')
+@include('inc.messages')
+
 
 
  <!-- Här behövs det visas kommentarer för specifik film
  Ladda in reviews. -->
 @auth
- 
+
     @include('reviews.createReviewsForm') 
 @endauth
 

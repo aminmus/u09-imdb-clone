@@ -19,7 +19,7 @@ class SearchController extends Controller
 
     public function searchMovie(Request $request)
     {   
-        strtolower ( string $string ) 
+        
         if ($request->searchoption === "genre") {
             $genreId = '';
             switch (strtolower($request->search)) {
@@ -61,6 +61,7 @@ class SearchController extends Controller
                 break;
             default:
             echo "Genre doesnt exist";
+            return view('searchresult')->with('success', 'Review Updated!');
             }
             
             $searchString = $request->search;
