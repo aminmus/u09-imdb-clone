@@ -19,17 +19,17 @@ class SearchController extends Controller
 
     public function searchMovie(Request $request)
     {   
-        
+        strtolower ( string $string ) 
         if ($request->searchoption === "genre") {
             $genreId = '';
-            switch ($request->search) {
-                case "Action":
+            switch (strtolower($request->search)) {
+                case "action":
                 $genreId = 28;
                 break;
-            case "Adventure":
+            case "adventure":
                 $genreId = 12;
                 break;
-            case "Comedy":
+            case "comedy":
                 $genreId = 35;
                 break;
             case "Crime":
