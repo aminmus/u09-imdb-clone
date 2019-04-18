@@ -25,12 +25,9 @@ class ReviewController extends Controller
     }
 
     public function postReview(Request $request)
-    {   
-        if(strtolower($request->rating) === "rating")
-        {   
-            return back()->with('error', 'You must include a rating when posting a review!');
-        }
-        
+    {
+        // $film = Film::where('movie_id', $request->movie_id)->get();
+
         $userId = Auth::id();
         $review = new Review;
         $review->content = $request->content;
