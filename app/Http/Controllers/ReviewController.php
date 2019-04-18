@@ -25,12 +25,11 @@ class ReviewController extends Controller
     }
 
     public function postReview(Request $request)
-    {
-        // Validate input, if input is invalid an error message will be sent to view
-        $request->validate([
-            'content' => ['required', 'max:191'],   // Max characters because of our default string length
-            'rating' => ['required', 'numeric']
-        ]);
+    {   
+        if(strtolower($request->rating) === "rating")
+        {   
+            return back()->with('error', 'You must include a rating when posting a review!');
+        }
         
         $userId = Auth::id();
         $review = new Review;
