@@ -30,7 +30,7 @@
             <td>{{$user["updated_at"]}}</td>
             <td>{{$user["email_verified_at"]}}</td>
             <td>
-                <form action="/deleteUser/{{$user['id']}}" method="post">
+                <form action=" {{ action('AdminController@deleteUser', [$user['id']]) }}" method="post">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-danger">Delete</button>
