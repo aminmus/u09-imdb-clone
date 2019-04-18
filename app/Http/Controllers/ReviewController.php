@@ -15,10 +15,6 @@ class ReviewController extends Controller
         $this->middleware('auth', ['except' => ['showReview']]);
     }
 
-    public function getReviews(Request $request)
-    {
-    }
-
     public function showReview()
     {
         return view('reviews');
@@ -51,16 +47,10 @@ class ReviewController extends Controller
         view('editreview')->with(compact('review'));
 
         return back()->with('edit', $edit);
-
-        // need to be completed
     }
 
     public function deleteReview($id)
     {
-        // $auth_id = auth()->user()->id;
-        // $review_id = Review::find($id)->user_id;
-
-        // return $review_id;
         $review = Review::find($id);
         $review->delete();
 
@@ -77,6 +67,12 @@ class ReviewController extends Controller
 
     public function updateReview(Request $request, $id)
     {
+        // Validate input, if input is invalid an error message will be sent to view
+        $request->validate([
+        'content' => ['required', 'max:191'],   // Max characters because of our default string length
+        'rating' => ['required', 'numeric']
+        ]);
+
         $review = Review::find($id);
         $review->content = $request->content;
         $review->rating = $request->rating;
