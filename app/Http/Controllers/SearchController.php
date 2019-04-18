@@ -32,19 +32,19 @@ class SearchController extends Controller
             case "comedy":
                 $genreId = 35;
                 break;
-            case "Crime":
+            case "crime":
                 $genreId = 80;
                 break;
-            case "Animation":
+            case "animation":
                 $genreId = 16;
                 break;
-            case "Documentary":
+            case "documentary":
                 $genreId = 99;
                 break;
-            case "Drama":
+            case "drama":
                 $genreId = 18;
                 break;
-            case "Fantasy":
+            case "fantasy":
                 $genreId = 14;
                 break;
             case "Horror":
@@ -149,4 +149,6 @@ class SearchController extends Controller
         
         return view('selectedactor')->with(compact('movies', 'actor'));
     }
+
+    public function advanced
 }
