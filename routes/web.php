@@ -85,4 +85,7 @@ Route::get('profile', 'ProfileController@showProfile');
 Route::get('profile/reviews', 'ReviewController@getMyReviews');
 
 // Advanced Search
-Route::get('advancedsearch', SearchController@)
+Route::get('advancedsearch', function () {
+    return view('advancedsearch');
+});
+Route::post('advancedsearch/results', 'SearchController@advancedsearch');

@@ -10,10 +10,7 @@
                 src="{{ url("http://image.tmdb.org/t/p/w185/{$result->poster_path}") }}">
             </a>
             <h4>{{$result->title}} </h4>
-        
         </div>
-  
-
     @endforeach
     </div>
 @else

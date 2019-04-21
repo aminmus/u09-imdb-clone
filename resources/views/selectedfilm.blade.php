@@ -27,6 +27,7 @@
 
         <img src="http://image.tmdb.org/t/p/w185/<?php echo $body->poster_path;?>">
         <form method="POST" action="{{ action('WatchlistController@store') }}">
+        @csrf
         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
         <input name="movie_id" type="hidden" value="<?php echo $body->id;?>"/>
         <input name="title" type="hidden" value="<?php echo $body->title;?>"/>

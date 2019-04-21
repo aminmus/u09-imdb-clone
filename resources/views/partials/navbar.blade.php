@@ -7,15 +7,15 @@
         <div class="justify-content-right">
             
         </div>
-
+        
             <ul class="navbar-nav ml-auto">
                 <form class="nav-item" method="POST" action="{{ route('searchMovie') }}">
                     <input class="nav-item" type="text" name="search">
                     <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                     <button class="nav-button" type="submit">Search Movie</button>
                 </form>
-                <a href='/' class="btn btn-secondary">Advanced Search</a>
-                <button>Advanced Search</button>
+                <a href="{{ url('/advancedsearch') }}" class="btn btn-secondary">Advanced Search</a>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/watchlist') }}"><b>My Watchlists</b></a>
                 </li>
