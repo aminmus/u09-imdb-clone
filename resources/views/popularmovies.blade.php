@@ -2,10 +2,9 @@
 
 @section('content')
 
-  <div class="row justify-content-center my-2">
-    <div class="col-md-12 text-center">
-      <div class="card card-default">
-        <div class="card-header">
+  <div class="row bgpicture">
+    <div class="col-md-12 text-center ">
+      
           <h1 class="text-center">Top 5 Movies</h1>
         </div>
         <div class="card-body justify-content-center my-5">
@@ -22,8 +21,6 @@
                 @endforeach
       
           </div>
-        </div>
-      </div>
     </div>
   </div>
 @endsection

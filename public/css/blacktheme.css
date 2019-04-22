@@ -1,0 +1,13 @@
+
+.bgpicture {
+    background-image: url("/images/test.jpg"); 
+}
+
+.filmhero {
+    height: 600px;
+    background-size:cover;
+}
+
+.posterpath {
+    margin-top: 150px;
+}

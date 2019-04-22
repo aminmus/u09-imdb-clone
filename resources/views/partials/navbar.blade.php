@@ -4,10 +4,6 @@
         <h3 class="nav-item">IMDB-CLONE DRAGONS</h3>
         </a>
       </div>
-        <div class="justify-content-right">
-            
-        </div>
-
             <ul class="navbar-nav ml-auto">
                 <form class="nav-item" method="POST" action="{{ route('searchMovie') }}">
                     <input class="nav-item" type="text" name="search">

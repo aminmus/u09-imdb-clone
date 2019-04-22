@@ -20,7 +20,7 @@ class SearchController extends Controller
     {
         $searchString = $request->search;
         $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
-        $response = $client->request('GET', "search/movie?api_key=45499dda27fbc45918728b51e4e82810&query=${searchString}");
+        $response = $client->request('GET', "search/movie?api_key=45499dda27fbc45918728b51e4e82810&query=${searchString}&apprend_to_response=videos");
         $json = $response->getBody();
         $body = json_decode($json);
        
@@ -40,9 +40,12 @@ class SearchController extends Controller
         // Main api call
         $movieId = $request->id;
         $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
-        $response = $client->request('GET', "movie/${movieId}?api_key=45499dda27fbc45918728b51e4e82810");
+        $response = $client->request('GET', "movie/${movieId}?api_key=45499dda27fbc45918728b51e4e82810&append_to_response=videos");
         $json = $response->getBody();
         $body = json_decode($json);
+        $trailers = reset($body->videos);
+        $trailer = reset($trailers);
+        
         
         // Second api call
         $movieId2 = $request->id;
@@ -51,14 +54,13 @@ class SearchController extends Controller
         $json2 = $response2->getBody();
         $credits = json_decode($json2);
 
-
         $checkWatchlist = Watchlist::where('user_id', $userId)->exists();
 
         if ($checkWatchlist === true) {
             $userWatchlist = Watchlist::where('user_id', $userId)->get();
         }
 
-        return view('selectedfilm')->with(compact('userWatchlist', 'body', 'reviews', 'credits'));
+        return view('selectedfilm')->with(compact('userWatchlist', 'body', 'reviews', 'credits', 'trailer'));
     }
 
     public function getPopularMovies()
