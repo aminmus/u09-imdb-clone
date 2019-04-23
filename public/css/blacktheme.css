@@ -14,11 +14,14 @@
     grid-template-columns: 342px 600px 500px;
     grid-template-rows: auto;
     grid-template-areas: 
-    "poster movietext trailer";
+    "poster movietext trailer"
+    ". cast ."
+    "actors actors actors"
+    "watchlist watchlist watchlist";
     grid-gap: 25px ;
 }
     
-}
+
 
 .poster {
     grid-area: poster;
@@ -34,22 +37,53 @@
     align-self: end;
 }
 
+.actors {
+    grid-area: actors;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    justify-items: center;
+}
+
+.cast {
+    display: grid;
+    grid-area: cast;
+    justify-items: center;
+}
+
 .flex {
     display: flex;
 }
 
+.resp-container {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%;
+}
+
+.resp-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
 
 
 @media screen and (max-width: 1270px) {
     .posterpath {
         margin-top: 300px;
         display: grid;
-        grid-template-columns: 250px;
+        grid-template-columns: 350px;
         grid-template-rows: auto;
         grid-template-areas: 
         "poster"
         "movietext"
-        "trailer";
+        "trailer"
+        "cast"
+        "actors"
+        "watchlist";
         grid-gap: 25px ;
     }
 }
