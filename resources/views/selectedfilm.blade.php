@@ -42,7 +42,7 @@
                 @endauth
                 @guest
                 <div class="row justify-content-center">
-                    <h1>Create an account to create watchlists</h1>
+                    <p><b>Create an account to create watchlists</b></p>
                 </div>
                 @endguest
         </div>
