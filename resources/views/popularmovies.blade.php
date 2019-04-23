@@ -2,9 +2,11 @@
 
 @section('content')
 
-  <div class="row bgpicture">
-    <div class="col-md-12 text-center ">
-      
+  <div class="bgpicture">
+  </div>
+  <div class="row">
+      <div class="col-md-12 text-center ">
+    
           <h1 class="text-center">Top 5 Movies</h1>
         </div>
         <div class="card-body justify-content-center my-5">

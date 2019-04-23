@@ -1,6 +1,8 @@
 
 .bgpicture {
     background-image: url("/images/test.jpg"); 
+    background-size: cover;
+    height: 400px;
 }
 
 .filmhero {
@@ -98,7 +100,9 @@
         "movietext"
         "trailer"
         "cast"
-        "actors";
+        "actors"
+        "reviewcontent"
+        "createreviews";
         grid-gap: 25px ;
     }
 
