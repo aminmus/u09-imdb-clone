@@ -3,6 +3,7 @@
         <a class="navbar-brand" href="{{ url('/')}}">
             <h3 class="nav-item">IMDB-CLONE DRAGONS</h3>
         </a>
+
     </div>
     <div class="justify-content-right">
 
@@ -14,6 +15,7 @@
             <input name="_token" type="hidden" value="{{ csrf_token() }}" />
             <button class="nav-button" type="submit">Search Movie</button>
         </form>
+        <a href="{{ url('/advancedsearch') }}" class="btn btn-secondary">Advanced Search</a>
         @guest
         <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

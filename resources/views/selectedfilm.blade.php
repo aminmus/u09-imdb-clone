@@ -77,10 +77,13 @@
 
 
         @include('reviews.showReviews')
+        @include('inc.messages')
+
 
 
         @auth
         @include('reviews.createReviewsForm')
         @endauth
-
-        @endsection
+    </div>
+</div>
+@endsection
