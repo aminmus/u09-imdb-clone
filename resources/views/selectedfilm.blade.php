@@ -76,10 +76,6 @@
                  <!-- Här behövs det visas kommentarer för specifik film
                  Ladda in reviews. -->
         </div>
-        
-        <div class="testinghere">
-            <h1>hehe</h1>
-        </div>
     </div>
 </div>
  
