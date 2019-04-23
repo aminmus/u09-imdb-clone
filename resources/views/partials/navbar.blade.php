@@ -13,7 +13,7 @@
         <form class="nav-item" method="POST" action="{{ route('searchMovie') }}">
             <input class="nav-item" type="text" name="search">
             <input name="_token" type="hidden" value="{{ csrf_token() }}" />
-            <button class="nav-button" type="submit">Search Movie</button>
+            <button class="btn btn-primary nav-button m-1" type="submit">Search Movie</button>
         </form>
         <a href="{{ url('/advancedsearch') }}" class="btn btn-secondary">Advanced Search</a>
         @guest

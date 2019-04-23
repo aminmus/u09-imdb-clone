@@ -3,7 +3,7 @@
 @section('content')
 <div class="row justify-content-center absolute">
     <div>
-        <img src="http://image.tmdb.org/t/p/w1280/{{ $body->backdrop_path }}" alt="Movie Backdrop">
+        <img class="img-fluid" src="http://image.tmdb.org/t/p/w1280/{{ $body->backdrop_path }}" alt="Movie Backdrop">
     </div>
 </div>
 
@@ -75,11 +75,8 @@
         </div>
         @endguest
 
-
         @include('reviews.showReviews')
         @include('inc.messages')
-
-
 
         @auth
         @include('reviews.createReviewsForm')
