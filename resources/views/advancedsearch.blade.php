@@ -6,7 +6,7 @@
         <form method="POST" action="{{ action('SearchController@advancedsearch') }}">
             @csrf
             <div class="form-group">
-                <input class="form-control" type="text" name="year" placeholder="release date">
+                <input class="form-control" type="text" name="year" placeholder="release date - by year (XXXX)">
             </div>
             <div class="form-group">
                 <select class="form-control" name="language" id="">
