@@ -9,7 +9,7 @@
             <img src="http://image.tmdb.org/t/p/w342/<?php echo $body->poster_path;?>">
         </div>
         <div class="movietext">
-            <h1><?php echo strtoupper($body->title);?></h1>
+            <h1 class="mt-1"><?php echo strtoupper($body->title);?></h1>
             <p>{{$body->release_date}}<p>
             <div class="flex mb-2">
                 @foreach ($body->genres as $genre)
