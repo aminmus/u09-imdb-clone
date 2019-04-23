@@ -28,6 +28,7 @@ class AdminController extends Controller
     {
         $review = Review::find($id);
         $review->delete();
+
         return back()->with('success', 'Review Deleted!');
     }
 
@@ -35,6 +36,7 @@ class AdminController extends Controller
     {
         $user = User::find($id);
         $user->delete();
+
         return back()->with('success', 'User Deleted!');
     }
 
@@ -48,19 +50,19 @@ class AdminController extends Controller
 
     public function showReviews()
     {
-        $reviews = Review::sortable()->paginate(1);
+        $reviews = Review::sortable()->paginate(15);
         return view('admin.reviews')->with('reviews', $reviews);
     }
 
     public function showUsers()
     {
-        $users = User::sortable()->paginate(3);
+        $users = User::sortable()->paginate(15);
         return view('admin.users')->with('users', $users);
     }
 
     public function showWatchlists()
     {
-        $watchlists = Watchlist::sortable()->paginate(3);
+        $watchlists = Watchlist::sortable()->paginate(15);
         return view('admin.watchlists')->with('watchlists', $watchlists);
     }
 
