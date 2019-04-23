@@ -48,8 +48,8 @@ class WatchlistController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required'
+        $request->validate([
+            'name' => ['required', 'max:191']
         ]);
         
         $userId = $request->user_id;
@@ -100,6 +100,10 @@ class WatchlistController extends Controller
      */
     public function update(Watchlist $watchlist, Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'max:191']
+        ]);
+
         $watchlist->name = $request->input('name');
         $watchlist->save();
         return back()->with('success', 'Watchlist Updated!');
@@ -122,6 +126,7 @@ class WatchlistController extends Controller
         return back()->with('success', 'Watchlist Deleted');
     }
 
+    // Add film to watchlist
     public function addFilm(Request $request)
     {
 

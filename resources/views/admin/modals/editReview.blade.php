@@ -45,6 +45,10 @@
                         <label for="user_id">User ID</label>
                         <input class="form-control" type="text" name="user_id" value="{{$review['user_id']}}">
                     </div>
+                    <div class="form-group">
+                        <label for="is_approved">Approved</label>
+                        <input class="form-control" type="text" name="is_approved" value="{{$review['is_approved']}}">
+                    </div>
 
             </div>
             <div class="modal-footer">

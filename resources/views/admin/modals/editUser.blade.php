@@ -33,12 +33,6 @@
                         <input class="form-control" type="text" name="email" value="{{$user['email']}}">
                     </div>
 
-                    <div class="form-group">
-                        <label for="email_verified_at">Email Verified At</label>
-                        <input class="form-control" type="text" name="email_verified_at"
-                            value="{{$user['email_verified_at']}}">
-                    </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal">Close</button>
