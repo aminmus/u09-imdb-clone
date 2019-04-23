@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container-fluid">
 
     <h2>Users</h2>
     <table class="table">
