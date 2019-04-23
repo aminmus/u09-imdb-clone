@@ -24,60 +24,43 @@ class AdminController extends Controller
 
     public function deleteReview($id)
     {
-        // $input = Input::all();
-        // $reviews = array_slice($input, 2);
-        // Review::whereIn('id', $reviews)->delete();
-        // return redirect('/admin')->with('success', 'Review Deleted!');
         $review = Review::find($id);
         $review->delete();
+
         return back()->with('success', 'Review Deleted!');
     }
 
     public function deleteUser(Request $request, $id)
     {
-        // $input = Input::all();
-        // $users = array_slice($input, 2);
-        // User::whereIn('id', $users)->delete();
-        // return redirect('/admin')->with('success', 'User Deleted!');
-
         $user = User::find($id);
         $user->delete();
+
         return back()->with('success', 'User Deleted!');
     }
 
     public function deleteWatchlist(Request $request, $id)
     {
-        // $input = Input::all();
-        // $watchlists = array_slice($input, 2);
-        
-        // // Remove the relation in pivot table (required for next step)
-        // Filmwatchlist::whereIn('watchlist_id', $watchlists)->delete();
-
-        // Watchlist::whereIn('id', $watchlists)->delete();
-        // return redirect('/admin')->with('success', 'Watchlist Deleted!');
-
         $watchlist = Watchlist::find($id);
         $watchlist->delete();
-        // $filmWatchlist = Filmwatchlist::whereIn('watchlist_id', $id);
-        // $filmWatchlist->delete();
+
         return back()->with('success', 'Watchlist Deleted');
     }
 
     public function showReviews()
     {
-        $reviews = Review::sortable()->paginate(1);
+        $reviews = Review::sortable()->paginate(15);
         return view('admin.reviews')->with('reviews', $reviews);
     }
 
     public function showUsers()
     {
-        $users = User::sortable()->paginate(3);
+        $users = User::sortable()->paginate(15);
         return view('admin.users')->with('users', $users);
     }
 
     public function showWatchlists()
     {
-        $watchlists = Watchlist::sortable()->paginate(3);
+        $watchlists = Watchlist::sortable()->paginate(15);
         return view('admin.watchlists')->with('watchlists', $watchlists);
     }
 
