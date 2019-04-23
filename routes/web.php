@@ -35,13 +35,10 @@ Route::post('postReviews', 'ReviewController@postReview');
 Route::get('reviews/{id}/edit', 'ReviewController@editReview');
 Route::delete('reviews/{id}', 'ReviewController@deleteReview');
 Route::put('reviews/{id}', 'ReviewController@updateReview');
+Route::post('morereviews', 'ReviewController@postReview');
 
-// selectedActor
 Route::get('selectedActor/{id}', 'SearchController@searchActor');
 
-
-
-Route::post('morereviews', 'ReviewController@postReview');
 
 
 // Authentication Routes (added by default by laravel)
@@ -51,35 +48,41 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Admin Routes
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin', 'AdminController@index');
+    Route::delete('admin/deleteReview/{id}', 'AdminController@deleteReview');
+    Route::delete('admin/deleteUser/{id}', 'AdminController@deleteUser');
+    Route::get('/admin/reviews', 'AdminController@showReviews');
+    Route::get('/admin/users', 'AdminController@showUsers');
+
+    Route::post('/admin/add/user', 'AdminController@addUser');
+
+    Route::get('admin/add/review', function () {
+        return view('admin/addReview');
+    });
+
+    Route::get('/admin/watchlists', 'AdminController@showWatchlists');
+
+    Route::get('admin/add/watchlist', function () {
+        return view('admin/addWatchlist');
+    });
+    
+    Route::delete('admin/deleteWatchlist/{id}', 'AdminController@deleteWatchlist');
+
+    Route::patch('admin/watchlist/update/{id}', 'AdminController@updateWatchlist');
+
+    Route::get('admin/add/user', function () {
+        return view('admin/addUser');
+    });
+
+    Route::patch('admin/review/update/{id}', 'AdminController@updateReview');
+    Route::patch('admin/users/update/{id}', 'AdminController@updateUsers');
 });
-
-Route::delete('deleteReview/{id}', 'AdminController@deleteReview');
-Route::delete('deleteUser/{id}', 'AdminController@deleteUser');
-Route::get('/admin/reviews', 'AdminController@showReviews');
-Route::get('/admin/users', 'AdminController@showUsers');
-
-Route::post('/admin/add/user', 'AdminController@addUser');
-
-Route::get('admin/add/review', function () {
-    return view('admin/addReview');
-});
-
-Route::delete('deleteWatchlist/{id}', 'AdminController@deleteWatchlist');
-
-Route::get('/admin/watchlists', 'AdminController@showWatchlists');
-
-Route::get('admin/add/watchlist', function () {
-    return view('admin/addWatchlist');
-});
-Route::patch('admin/watchlist/update/{id}', 'AdminController@updateWatchlist');
-
-Route::get('admin/add/user', function () {
-    return view('admin/addUser');
-});
-
-Route::patch('admin/review/update/{id}', 'AdminController@updateReview');
-Route::patch('admin/users/update/{id}', 'AdminController@updateUsers');
 
 // Profile
 Route::get('profile', 'ProfileController@showProfile');
 Route::get('profile/reviews', 'ReviewController@getMyReviews');
+
+// Advanced Search
+Route::get('advancedsearch', function () {
+    return view('advancedsearch');
+});
+Route::post('advancedsearch/results', 'SearchController@advancedsearch');

@@ -7,12 +7,13 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use App\Watchlist;
 use App\Review;
+use Illuminate\Support\Facades\Input;
 
 class SearchController extends Controller
 {
     public function __construct()
     {
-        // ser till att man måste vara en authorized user för att kunna se vyerna i denna controller förutom de i except arrayen.
+        // ser till att man måste vara en authenticated user för att kunna se vyerna i denna controller förutom de i except arrayen.
         // $this->middleware('auth', ['except' => ['searchMovie', 'getPopularMovies']]);
     }
 
@@ -23,7 +24,6 @@ class SearchController extends Controller
         $response = $client->request('GET', "search/movie?api_key=45499dda27fbc45918728b51e4e82810&query=${searchString}");
         $json = $response->getBody();
         $body = json_decode($json);
-       
         
         return view('searchresult')->with('body', $body);
     }
@@ -94,5 +94,82 @@ class SearchController extends Controller
         $actor = $result2;
         
         return view('selectedactor')->with(compact('movies', 'actor'));
+    }
+
+    public function advancedSearch(Request $request)
+    {
+        $input = Input::all();
+        $genres = Input::except('_token', 'year', 'language');
+        $genreSearch = implode(",", $genres);
+        
+        if (isset($request->language)) {
+            $language = "";
+            switch (strtolower($request->language)) {
+                case "cs":
+                    $language = "cs";
+                    break;
+                case "da":
+                    $language = "da";
+                    break;
+                case "de":
+                    $language = "de";
+                    break;
+                case "et":
+                    $language = "et";
+                    break;
+                case "fi":
+                    $language = "fi";
+                    break;
+                case "fr":
+                    $language = "fr";
+                    break;
+                case "ga":
+                    $language = "ga";
+                    break;
+                case "id":
+                    $language = "id";
+                    break;
+                case "is":
+                    $language = "is";
+                    break;
+                case "it":
+                    $language = "it";
+                    break;
+                case "ja":
+                    $language = "ja";
+                    break;
+                case "ko":
+                    $language = "ko";
+                    break;
+                case "no":
+                    $language = "no";
+                    break;
+                case "pt":
+                    $language = "pt";
+                    break;
+                case "ru":
+                    $language = "ru";
+                    break;
+                case "es":
+                    $language = "ES";
+                    break;
+                case "sv":
+                    $language = "sv";
+                    break;
+                case "en":
+                    $language = "en";
+                    break;
+                default:
+                    echo "hello";
+            }
+        }
+        
+        $releaseDate = $request->year;
+        $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
+        $response = $client->request('GET', "discover/movie?api_key=45499dda27fbc45918728b51e4e82810&language=${language}&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreSearch}&primary_release_year=${releaseDate}");
+        $json = $response->getBody();
+        $body = json_decode($json);
+        
+        return view('advancedsearch')->with('body', $body);
     }
 }
