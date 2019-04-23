@@ -6,7 +6,7 @@
 
     <h2>Reviews</h2>
 
-    <table class="table">
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th scope="col">@sortablelink('id')</th>
