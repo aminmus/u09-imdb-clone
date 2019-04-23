@@ -13,55 +13,54 @@ class SearchController extends Controller
 {
     public function __construct()
     {
-        // ser till att man måste vara en authorized user för att kunna se vyerna i denna controller förutom de i except arrayen.
+        // ser till att man måste vara en authenticated user för att kunna se vyerna i denna controller förutom de i except arrayen.
         // $this->middleware('auth', ['except' => ['searchMovie', 'getPopularMovies']]);
     }
 
     public function searchMovie(Request $request)
-    {   
-        
+    {
         if ($request->searchoption === "genre") {
             $genreId = '';
             switch (strtolower($request->search)) {
                 case "action":
-                $genreId = 28;
-                break;
-            case "adventure":
-                $genreId = 12;
-                break;
-            case "comedy":
-                $genreId = 35;
-                break;
-            case "crime":
-                $genreId = 80;
-                break;
-            case "animation":
-                $genreId = 16;
-                break;
-            case "documentary":
-                $genreId = 99;
-                break;
-            case "drama":
-                $genreId = 18;
-                break;
-            case "fantasy":
-                $genreId = 14;
-                break;
-            case "Horror":
-                $genreId = 27;
-                break;
-            case "Romance":
-                $genreId = 10749;
-                break;
-            case "Science Fiction":
-                $genreId = 878;
-                break;
-            case "Thriller":
-                $genreId = 53;
-                break;
-            default:
-            echo "Genre doesnt exist";
-            return view('searchresult')->with('success', 'Review Updated!');
+                    $genreId = 28;
+                    break;
+                case "adventure":
+                    $genreId = 12;
+                    break;
+                case "comedy":
+                    $genreId = 35;
+                    break;
+                case "crime":
+                    $genreId = 80;
+                    break;
+                case "animation":
+                    $genreId = 16;
+                    break;
+                case "documentary":
+                    $genreId = 99;
+                    break;
+                case "drama":
+                    $genreId = 18;
+                    break;
+                case "fantasy":
+                    $genreId = 14;
+                    break;
+                case "Horror":
+                    $genreId = 27;
+                    break;
+                case "Romance":
+                    $genreId = 10749;
+                    break;
+                case "Science Fiction":
+                    $genreId = 878;
+                    break;
+                case "Thriller":
+                    $genreId = 53;
+                    break;
+                default:
+                    echo "Genre doesnt exist";
+                    return view('searchresult')->with('success', 'Review Updated!');
             }
             
             $searchString = $request->search;
@@ -151,71 +150,70 @@ class SearchController extends Controller
     }
 
     public function advancedSearch(Request $request)
-    {   
+    {
         $input = Input::all();
         $genres = Input::except('_token', 'year', 'language');
         $genreSearch = implode(",", $genres);
         
         if (isset($request->language)) {
             $language = "";
-            switch (strtolower($request->language)){
-                case "cs";
-                $language = "cs";
-                break;
-                case "da";
-                $language = "da";
-                break;
-                case "de";
-                $language = "de";
-                break;
-                case "et";
-                $language = "et";
-                break;
-                case "fi";
-                $language = "fi";
-                break;
-                case "fr";
-                $language = "fr";
-                break;
-                case "ga";
-                $language = "ga";
-                break;
-                case "id";
-                $language = "id";
-                break;
-                case "is";
-                $language = "is";
-                break;
-                case "it";
-                $language = "it";
-                break;
-                case "ja";
-                $language = "ja";
-                break;
-                case "ko";
-                $language = "ko";
-                break;
-                case "no";
-                $language = "no";
-                break;
-                case "pt";
-                $language = "pt";
-                break;
-                case "ru";
-                $language = "ru";
-                break;
-                case "es";
-                $language = "ES";
-                break;
-                case "sv";
-                $language = "sv";
-                break;
-                case "en";
-                $language = "en";
-                break;
+            switch (strtolower($request->language)) {
+                case "cs":
+                    $language = "cs";
+                    break;
+                case "da":
+                    $language = "da";
+                    break;
+                case "de":
+                    $language = "de";
+                    break;
+                case "et":
+                    $language = "et";
+                    break;
+                case "fi":
+                    $language = "fi";
+                    break;
+                case "fr":
+                    $language = "fr";
+                    break;
+                case "ga":
+                    $language = "ga";
+                    break;
+                case "id":
+                    $language = "id";
+                    break;
+                case "is":
+                    $language = "is";
+                    break;
+                case "it":
+                    $language = "it";
+                    break;
+                case "ja":
+                    $language = "ja";
+                    break;
+                case "ko":
+                    $language = "ko";
+                    break;
+                case "no":
+                    $language = "no";
+                    break;
+                case "pt":
+                    $language = "pt";
+                    break;
+                case "ru":
+                    $language = "ru";
+                    break;
+                case "es":
+                    $language = "ES";
+                    break;
+                case "sv":
+                    $language = "sv";
+                    break;
+                case "en":
+                    $language = "en";
+                    break;
                 default:
-                echo "hello";
-    
+                    echo "hello";
             }
         }
         
@@ -226,8 +224,5 @@ class SearchController extends Controller
         $body = json_decode($json);
         
         return view('advancedsearch')->with('body', $body);
-        
     }
-
-    
 }

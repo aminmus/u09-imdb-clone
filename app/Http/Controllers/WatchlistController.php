@@ -122,6 +122,7 @@ class WatchlistController extends Controller
         return back()->with('success', 'Watchlist Deleted');
     }
 
+    // Add film to watchlist
     public function addFilm(Request $request)
     {
 
