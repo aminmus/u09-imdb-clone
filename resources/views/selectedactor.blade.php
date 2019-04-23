@@ -12,26 +12,17 @@
         <p><b>{{$actor->place_of_birth}}</b></p>
       </div>
       </div>
-
-
-
-
-<div class="col">
-<div class="">
-@foreach ($movies as $movie)
-<div class="row text-left">
-  <ul class="row">
-    <li>
-      <a class="mx-3 row" href="{{ url('selectedfilm/' .$movie->id. '/') }}">
-      <p class="mx-3">{{$movie->release_date}}</p>
-      <p>{{$movie->title}}</p>
-      </a>
-      </li>
-      <p class="">{{$movie->character}}</p>
-  </ul>
-  </div>
-@endforeach
-</div>
-</div>
-
+<h1 class="text-center">Filmography</h1>
+<div class="row justify-content-center text-center my-5 ">
+    @foreach ($movies as $movie)
+        <div class="col-md-2 text-center">
+            <a href="{{ url("selectedfilm/{$movie->id}") }}">
+                <img
+                src="{{ url("http://image.tmdb.org/t/p/w185/{$movie->poster_path}") }}">
+            </a>
+            <h4>{{$movie->title}} </h4>
+            <p class="">{{$movie->character}}</p>
+        </div>
+    @endforeach
+    </div>
 @endsection

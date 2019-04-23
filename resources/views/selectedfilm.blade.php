@@ -63,6 +63,12 @@
             </div>
             @endforeach
         </div>
+        <div class="createreviews">
+                @auth
+                    
+                @include('reviews.createReviewsForm') 
+                @endauth
+            </div>
         <div class="reviewcontent">
                 <!-- Reviews -->
                 @include('reviews.showReviews')
@@ -70,27 +76,11 @@
                  <!-- Här behövs det visas kommentarer för specifik film
                  Ladda in reviews. -->
         </div>
-        <div class="createreviews">
-            @auth
-                
-            @include('reviews.createReviewsForm') 
-            @endauth
+        
+        <div class="testinghere">
+            <h1>hehe</h1>
         </div>
     </div>
-    
- 
-        
-    
-    
-    
-    
-      
-    
-        
-    
-
-
-    
 </div>
  
 
