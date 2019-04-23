@@ -14,13 +14,29 @@
     grid-template-columns: 342px 600px 500px;
     grid-template-rows: auto;
     grid-template-areas: 
+    
     "poster movietext trailer"
     ". cast ."
     "actors actors actors"
-    "watchlist watchlist watchlist";
+    "reviewcontent reviewcontent reviewcontent"
+    "createreviews createreviews createreviews"
+    ;
     grid-gap: 25px ;
 }
-    
+
+.reviewcontent {
+    grid-area: reviewcontent;
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.createreviews {
+    grid-area: createreviews;
+}
+
+.reviews {
+    display: grid;
+}
 
 
 .poster {
@@ -82,8 +98,11 @@
         "movietext"
         "trailer"
         "cast"
-        "actors"
-        "watchlist";
+        "actors";
         grid-gap: 25px ;
+    }
+
+    .actors {
+        grid-template-columns: 1fr;
     }
 }

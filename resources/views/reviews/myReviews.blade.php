@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div class="container">
-  <div class="row justify-content-center">
+<div class="">
+  <div class="">
     <h1>My Reviews</h1>
   </div>
 </div>

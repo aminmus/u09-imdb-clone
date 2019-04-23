@@ -1,7 +1,7 @@
 
 
 
-<div class="col-md-12 my-5">
+<div class="test">
   <div class="column">
 
     <form method="POST" action="{{ action('ReviewController@postReview') }}">
