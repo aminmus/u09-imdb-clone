@@ -66,9 +66,7 @@ class SearchController extends Controller
     public function getPopularMovies()
     {
         /* This function gets the current popular movies */
-        
        
-        
         $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
         $response = $client->request('GET', "movie/popular?api_key=45499dda27fbc45918728b51e4e82810&language=en-US&page=1");
         

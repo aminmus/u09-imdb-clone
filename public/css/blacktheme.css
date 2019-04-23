@@ -4,10 +4,52 @@
 }
 
 .filmhero {
-    height: 600px;
+    height: 500px;
     background-size:cover;
 }
 
 .posterpath {
-    margin-top: 150px;
+    margin-top: 300px;
+    display: grid;
+    grid-template-columns: 342px 600px 500px;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "poster movietext trailer";
+    grid-gap: 25px ;
+}
+    
+}
+
+.poster {
+    grid-area: poster;
+}
+
+.movietext {
+    grid-area: movietext;
+    align-self: end;
+}
+
+.trailer {
+    grid-area: trailer;
+    align-self: end;
+}
+
+.flex {
+    display: flex;
+}
+
+
+
+@media screen and (max-width: 1270px) {
+    .posterpath {
+        margin-top: 300px;
+        display: grid;
+        grid-template-columns: 250px;
+        grid-template-rows: auto;
+        grid-template-areas: 
+        "poster"
+        "movietext"
+        "trailer";
+        grid-gap: 25px ;
+    }
 }
