@@ -19,60 +19,6 @@ class SearchController extends Controller
 
     public function searchMovie(Request $request)
     {   
-        
-        if ($request->searchoption === "genre") {
-            $genreId = '';
-            switch (strtolower($request->search)) {
-                case "action":
-                $genreId = 28;
-                break;
-            case "adventure":
-                $genreId = 12;
-                break;
-            case "comedy":
-                $genreId = 35;
-                break;
-            case "crime":
-                $genreId = 80;
-                break;
-            case "animation":
-                $genreId = 16;
-                break;
-            case "documentary":
-                $genreId = 99;
-                break;
-            case "drama":
-                $genreId = 18;
-                break;
-            case "fantasy":
-                $genreId = 14;
-                break;
-            case "Horror":
-                $genreId = 27;
-                break;
-            case "Romance":
-                $genreId = 10749;
-                break;
-            case "Science Fiction":
-                $genreId = 878;
-                break;
-            case "Thriller":
-                $genreId = 53;
-                break;
-            default:
-            echo "Genre doesnt exist";
-            return view('searchresult')->with('success', 'Review Updated!');
-            }
-            
-            $searchString = $request->search;
-            $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
-            $response = $client->request('GET', "discover/movie?api_key=45499dda27fbc45918728b51e4e82810&with_genres=${genreId}");
-            $json = $response->getBody();
-            $body = json_decode($json);
-            
-            return view('searchresult')->with('body', $body);
-        }
-        
         $searchString = $request->search;
         $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
         $response = $client->request('GET', "search/movie?api_key=45499dda27fbc45918728b51e4e82810&query=${searchString}");
