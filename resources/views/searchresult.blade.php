@@ -2,7 +2,7 @@
 
 @section('content')
 @if(isset($body->results))
-<div class="row justify-content-center text-center my-5 bgpicture">
+<div class="row justify-content-center text-center my-5 ">
     @foreach ($body->results as $result)
         <div class="col-md-2 text-center">
             <a href="{{ url("selectedfilm/{$result->id}") }}">

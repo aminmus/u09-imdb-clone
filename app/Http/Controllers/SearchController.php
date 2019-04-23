@@ -68,11 +68,20 @@ class SearchController extends Controller
         /* This function gets the current popular movies */
        
         $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
-        $response = $client->request('GET', "movie/popular?api_key=45499dda27fbc45918728b51e4e82810&language=en-US&page=1");
+        $response = $client->request('GET', "movie/upcoming?api_key=45499dda27fbc45918728b51e4e82810&language=en-US&page=1");
         
         $json = $response->getBody();
-        $popularMovies = json_decode($json);
-        return view('popularmovies')->with('popularMovies', $popularMovies);
+        $upcoming = json_decode($json);
+        
+        // Gets upcoming movies
+        $client2 = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
+        $response2 = $client2->request('GET', "movie/now_playing?api_key=45499dda27fbc45918728b51e4e82810&language=en-US&page=1&region=US");
+        
+        $json2 = $response2->getBody();
+        $nowplaying = json_decode($json2);
+        
+        return view('popularmovies')->with(compact('upcoming', 'nowplaying'));
+
     }
 
     public function searchActor(Request $request)
@@ -94,5 +103,18 @@ class SearchController extends Controller
         $actor = $result2;
         
         return view('selectedactor')->with(compact('movies', 'actor'));
+    }
+
+    public function searchByGenre(Request $request) 
+    {
+        $genreId = $request->id;
+        $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/']);
+        $response = $client->request('GET', "discover/movie?api_key=45499dda27fbc45918728b51e4e82810&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=${genreId}");
+        $json = $response->getBody();
+        $result = json_decode($json);
+        
+
+        return view('searchbygenre')->with(compact('result'));
+        
     }
 }

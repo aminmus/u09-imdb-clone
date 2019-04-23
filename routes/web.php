@@ -83,3 +83,6 @@ Route::patch('admin/users/update/{id}', 'AdminController@updateUsers');
 // Profile
 Route::get('profile', 'ProfileController@showProfile');
 Route::get('profile/reviews', 'ReviewController@getMyReviews');
+
+// 
+Route::get('genresearch/{id}', 'SearchController@searchByGenre');

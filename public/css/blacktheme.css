@@ -88,6 +88,21 @@
     border: 0;
 }
 
+.moviecontent {
+    display: grid; 
+    grid-template-columns: 1fr 1fr ;
+}
+
+.upcoming {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.nowplaying {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+}
 
 @media screen and (max-width: 1270px) {
     .posterpath {
@@ -107,6 +122,12 @@
     }
 
     .actors {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .moviecontent {
         grid-template-columns: 1fr;
     }
 }
