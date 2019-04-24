@@ -18,10 +18,10 @@
         @method('DELETE')
         @csrf
         <button class="btn btn-danger" type="submit">Delete</button>
+      </form>
       <button type="submit" class="btn btn-primary"
             data-toggle="modal" data-target="#editModal" value={{$review->id}}
             onClick="handleClick(this.value)">Edit</button>
-      </form>
     </div>
     @endif
     @endauth
