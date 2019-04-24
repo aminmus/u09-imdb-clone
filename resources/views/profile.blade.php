@@ -7,7 +7,7 @@
 <div class="card-deck">
   <div class="card mb-4">
     <div class="card-body">
-      <h4 class="card-title"><li><a href="{{ url('/watchlist') }}">Watchlists</a></li></h4>
+      <h4 class="card-title"><li><a href="{{ url('/watchlists') }}">Watchlists</a></li></h4>
       <p class="card-text">Browse, edit and update your personal watchlists here!</p>
       <button type="button" class="btn btn-light-blue btn-md">---></button>
     </div>
